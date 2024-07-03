@@ -4,7 +4,7 @@ type Props = React.HTMLAttributes<HTMLDivElement>;
 
 const Card = ({ children, className = '', ...other }: Props) => {
   return (
-    <div className={styles.card + className} {...other}>
+    <div className={`${styles.card} ${className}`} {...other}>
       {children}
     </div>
   );

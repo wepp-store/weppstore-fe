@@ -1,3 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  @apply m-0 p-0 font-sans;
+}
+
 /* 
 :root {
   --max-width: 1100px;
