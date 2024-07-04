@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.scss';
-import { Footer, Header } from '@/layouts';
+import {
+  ClientNotistackProvider,
+  ClientQueryClientProvider,
+} from '@/_providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,11 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div>
-          <Header />
-          <main className="container mx-auto px-4 py-8">{children}</main>
-          <Footer />
-        </div>
+        <ClientQueryClientProvider>
+          <ClientNotistackProvider>{children}</ClientNotistackProvider>
+        </ClientQueryClientProvider>
       </body>
     </html>
   );
