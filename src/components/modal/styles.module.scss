@@ -1,0 +1,64 @@
+@import '/src/styles/variables.scss';
+@import '/src/styles/utils.scss';
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  .modalBox {
+    position: relative;
+    max-width: px(340);
+    padding: px(16);
+    border-radius: px(8);
+    background-color: #fff;
+    animation: fadeIn 0.2s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+  }
+}
+
+.modalTitle {
+  font-size: px(18);
+  font-weight: 600;
+  text-align: center;
+  margin-top: px(32);
+  margin-bottom: px(16);
+}
+
+.modalContent {
+  width: 100%;
+  padding: px(16);
+  border-radius: px(8);
+}
+
+.modalAction {
+  width: 100%;
+}
