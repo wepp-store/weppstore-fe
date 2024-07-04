@@ -1,8 +1,7 @@
-'use client';
-
 import Image from 'next/image';
 import styles from './page.module.css';
 import MainSection from '@/sections/main/MainSection';
+import { MainLayout } from '@/layouts/main';
 
 export default function Home() {
   async function uploadFile(e: any) {
@@ -27,7 +26,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <MainLayout>
       <MainSection />
       <div
         style={{
@@ -37,8 +36,8 @@ export default function Home() {
           marginBottom: '20px',
         }}
       >
-        <input type="file" onChange={uploadFile} />
+        {/* <input type="file" onChange={uploadFile} /> */}
       </div>
-    </>
+    </MainLayout>
   );
 }
