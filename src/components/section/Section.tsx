@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { bindClassNames } from '@/utils/styles';
+import { bindClassNames } from '@/_utils/styles';
 
 type Props = React.HTMLAttributes<HTMLDivElement>;
 
