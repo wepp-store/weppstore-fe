@@ -6,6 +6,9 @@ export const PATH_API = {
     SIGN_UP: '/auth/sign-up',
     REFRESH_TOKEN: '/auth/refresh',
   },
+  WEPP: {
+    ROOT: '/wepp',
+  },
 };
 
 /**
