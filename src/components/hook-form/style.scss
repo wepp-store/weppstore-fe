@@ -5,10 +5,15 @@
 .RHFTextarea {
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: px(4);
+
   div {
     width: 100%;
     padding-block: px(8);
   }
+
   input,
   textarea {
     all: initial;
@@ -18,9 +23,9 @@
     border-radius: px(8);
     padding-inline: px(12);
     box-sizing: border-box;
-    box-shadow: $boxShadow;
-    background-color: #fff;
+    background-color: #f9fafb;
     font-family: inherit;
+    border: px(1) solid rgba(210, 213, 219);
 
     &::placeholder {
       color: #ddd;
