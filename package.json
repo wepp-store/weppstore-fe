@@ -12,6 +12,7 @@
     "@tanstack/react-query": "^5.49.2",
     "autoprefixer": "^10.4.19",
     "axios": "^1.7.2",
+    "framer-motion": "^11.2.13",
     "lucide-react": "^0.400.0",
     "next": "14.2.3",
     "notistack": "^3.0.1",
