@@ -9,6 +9,7 @@ export const PATH_API = {
   WEPP: {
     ROOT: '/wepp',
     MINE: '/wepp/mine',
+    UPLOAD: '/wepp/upload',
   },
 };
 
