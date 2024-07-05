@@ -1,12 +1,25 @@
 'use client';
 
-import { useUpdateWepp, useUploadWeppImage } from '@/_apis/queries/wepp';
+import {
+  useWeppDetail,
+  useUpdateWepp,
+  useUploadWeppImage,
+} from '@/_apis/queries/wepp';
+import { IWepp } from '@/_types';
 import { Card } from '@/components/card';
 import { FormProvider, RHFInput, RHFTextArea } from '@/components/hook-form';
+import { useParams } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const defaultValues = {
+type FieldValues = Omit<
+  IWepp,
+  // TODO: 카테고리는 api 생성까지 임시로 omit
+  'id' | 'developerId' | 'developer' | 'categories' | 'createdAt' | 'updatedAt'
+>;
+
+const defaultValues: FieldValues = {
+  url: '',
   name: '',
   description: '',
   logo: '',
@@ -16,23 +29,35 @@ const defaultValues = {
 };
 
 const WeppInfoForm = () => {
+  const { id: weppId }: { id: string } = useParams();
+
+  const { data, isFetched } = useWeppDetail<FieldValues>({ weppId });
+
   const patchWeppMutation = useUpdateWepp();
 
   const uploadImageMutation = useUploadWeppImage();
 
-  const methods = useForm({ defaultValues });
+  const methods = useForm<FieldValues>({ defaultValues });
 
-  const { handleSubmit, setValue } = methods;
+  const { handleSubmit, setValue, reset } = methods;
 
-  const onSubmit = (data: any) => {
-    // signUp
-    delete data.id;
-
-    patchWeppMutation.mutate({
-      ...defaultValues,
-      ...data,
-    });
+  const onSubmit = (data: FieldValues) => {
+    patchWeppMutation.mutate(data);
   };
+
+  React.useEffect(() => {
+    if (!isFetched) return;
+    reset({
+      name: data?.name,
+      url: data?.url,
+      description: data?.description,
+      logo: data?.logo,
+      status: data?.status,
+      version: data?.version,
+      screenshots: data?.screenshots,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFetched]);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
