@@ -1,15 +1,7 @@
 'use client';
-
-import { useWeppDetail } from '@/_apis/queries/wepp/wepp-detail';
-import { IWepp } from '@/_types';
-import { useParams } from 'next/navigation';
 import React from 'react';
 
 const WeppDashboardHeader = () => {
-  const { id: weppId }: { id: string } = useParams();
-
-  const { data } = useWeppDetail<IWepp>({ weppId });
-
   return (
     <div className="container mx-auto p-4">
       <header>
