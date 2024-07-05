@@ -6,6 +6,7 @@ import { CircleX } from 'lucide-react';
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
+  label?: string;
   required?: boolean;
   readonly?: boolean;
   loading?: boolean;
@@ -14,6 +15,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export default function RHFInput({
   name,
+  label,
   readonly = false,
   required = false,
   loading = false,
@@ -47,6 +49,12 @@ export default function RHFInput({
 
   return (
     <div className="RHFInput">
+      {label && (
+        <label className="RHFLabel" htmlFor={name}>
+          {label}
+          {required && <span className="RHFRequired">*</span>}
+        </label>
+      )}
       <input
         style={isError ? { border: `${px(1)} solid rgb(255, 43, 43)` } : {}}
         {...register(name, { required })}

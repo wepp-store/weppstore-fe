@@ -4,12 +4,9 @@ import React from 'react';
 import { px } from '@/_utils';
 // ----------------------------------------------------------------------
 
-interface Props
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLTextAreaElement>,
-    HTMLTextAreaElement
-  > {
+interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
+  label?: string;
   placeholder?: string;
   required?: boolean;
   readonly?: boolean;
@@ -20,6 +17,7 @@ interface Props
 
 export default function RHFTextarea({
   name,
+  label,
   placeholder,
   readonly = false,
   required = false,
@@ -49,6 +47,12 @@ export default function RHFTextarea({
         ...props
       }) => (
         <div className="RHFTextarea">
+          {label && (
+            <label className="RHFLabel" htmlFor={name}>
+              {label}
+              {required && <span className="RHFRequired">*</span>}
+            </label>
+          )}
           <textarea
             style={{
               border: error ? `${px(1)} solid rgb(255, 43, 43)` : '',
