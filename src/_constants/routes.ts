@@ -6,4 +6,8 @@ export const PATH = {
   MAIN: {
     HOME: '/',
   },
+  DEVELOPER: {
+    MAIN: 'developer',
+    WEPP: 'developer/wepp',
+  },
 };
