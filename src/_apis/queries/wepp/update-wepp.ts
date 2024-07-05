@@ -5,17 +5,20 @@ import { useSnackbar } from 'notistack';
 import { PATH } from '@/_constants';
 import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 export const useUpdateWepp = <T>(
   options?: Omit<UseMutationOptions<any, any, T>, 'mutationKey'>
 ) => {
   const { enqueueSnackbar } = useSnackbar();
-  const router = useRouter();
+  const { id: weppId }: { id: string } = useParams();
 
   return useMutation({
     mutationFn: async (payload: T) => {
-      const response = await axiosInstance.patch(PATH_API.WEPP.ROOT, payload);
+      const response = await axiosInstance.patch(
+        `${PATH_API.WEPP.ROOT}/${weppId}`,
+        payload
+      );
       return response.data;
     },
     onSuccess: () => {
