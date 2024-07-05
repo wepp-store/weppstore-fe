@@ -4,6 +4,7 @@ import { useWeppList } from '@/_apis/queries/wepp';
 import { Card } from '@/components/card';
 import { Section } from '@/components/section';
 import React from 'react';
+import { WeppCard } from './components';
 
 const MainSection = () => {
   const {
@@ -42,10 +43,7 @@ const MainSection = () => {
           data?.pages.map((group, i) => (
             <React.Fragment key={i}>
               {group.data.map((wepp) => (
-                <Card key={wepp.id}>
-                  <h3 className="text-xl font-semibold">{wepp.name}</h3>
-                  <p className="text-gray-700">{wepp.description}</p>
-                </Card>
+                <WeppCard key={wepp.id} wepp={wepp} />
               ))}
             </React.Fragment>
           ))}
