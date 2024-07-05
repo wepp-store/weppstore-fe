@@ -103,7 +103,7 @@ interface ModalActionProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 
-const ModalAction = ({
+const ModalActions = ({
   children,
   className = '',
   ...other
@@ -118,7 +118,7 @@ const ModalAction = ({
 // ----------------------------------------------------------------------
 
 Modal.Title = ModalTitle;
-Modal.Action = ModalAction;
+Modal.Actions = ModalActions;
 Modal.Content = ModalContent;
 
 export default Modal;
