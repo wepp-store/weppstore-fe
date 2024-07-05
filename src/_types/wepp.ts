@@ -1,10 +1,10 @@
 import { ICategory } from './category';
 import { IUser } from './user';
 
-interface WeppImage {
+interface WeppScreenshot {
   id: number;
   url: string;
-  type: 'LOGO' | 'SCREENSHOT';
+  style: string;
   order: number;
 }
 
@@ -19,5 +19,7 @@ export interface IWepp {
   createdAt: string;
   updatedAt: string;
   categories: ICategory[];
-  images: WeppImage[];
+  logo: string;
+  screenshots: WeppScreenshot[];
+  version: string;
 }
