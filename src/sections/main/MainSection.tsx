@@ -20,15 +20,17 @@ const MainSection = () => {
 
   return (
     <Section>
-      <h2
-        className="
-        text-3xl
-        font-bold
-        text-gray-800
-        mb-4"
-      >
-        Featured Apps
-      </h2>
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-800">게임 카테고리</h1>
+      </header>
+
+      <div className="mb-4">
+        <select className="w-full p-2 rounded-lg border border-gray-300">
+          <option>인기순</option>
+          <option>최신순</option>
+          <option>평점순</option>
+        </select>
+      </div>
       <div
         className="
         grid
