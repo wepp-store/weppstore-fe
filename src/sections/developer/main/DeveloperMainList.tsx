@@ -2,6 +2,7 @@
 import { useMineWeppList } from '@/_apis/queries/wepp';
 import { Card } from '@/components/card';
 import { Section } from '@/components/section';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -39,13 +40,15 @@ const DeveloperMainList = () => {
             {group.data.map((wepp) => (
               <Card key={wepp.id} onClick={() => navigateToWeppDetail(wepp.id)}>
                 <div className="flex items-center justify-between">
+                  <Image
+                    src={wepp.logo || ''}
+                    alt={wepp.name}
+                    width={48}
+                    height={48}
+                  />
                   <div>
                     <h3 className="text-lg font-semibold">{wepp.name}</h3>
                     <p className="text-sm text-gray-500">{wepp.description}</p>
-                  </div>
-                  <div className="flex gap-2">
-                    <button className="btn btn-sm">Edit</button>
-                    <button className="btn btn-sm">Delete</button>
                   </div>
                 </div>
               </Card>
