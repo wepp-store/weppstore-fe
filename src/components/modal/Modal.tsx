@@ -1,12 +1,14 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import styles from './styles.module.scss';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Portal } from '../portal';
 
-const modalRoot = document.getElementById('modal-root')!;
-interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+interface ModalProps {
   open: boolean;
   onClose?: () => void;
   children: React.ReactNode;
+  className?: string;
 }
 
 /**
@@ -19,17 +21,9 @@ interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
  *   </Modal.Action>
  * </Modal>
  */
-const Modal = ({
-  open,
-  onClose,
-  children,
-  className = '',
-  ...other
-}: ModalProps) => {
+const Modal = ({ open, onClose, children, className = '' }: ModalProps) => {
   const bgRef = React.useRef<HTMLDivElement>(null);
   const modalRef = React.useRef<HTMLDivElement>(null);
-
-  const [innerOpenState, setInnerOpenState] = React.useState(false);
 
   const onBackgroundClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -47,39 +41,37 @@ const Modal = ({
     }
   };
 
-  React.useEffect(() => {
-    if (open) {
-      setInnerOpenState(open);
-    } else {
-      if (!modalRef.current) return;
-      modalRef.current.style.animation = `${styles.fadeOut} 0.2s ease forwards`;
-      modalRef.current.onanimationend = () => {
-        setInnerOpenState(false);
-        modalRef.current!.onanimationend = null;
-      };
-    }
-  }, [open]);
-
-  if (!innerOpenState) return null;
-
-  return createPortal(
-    <div
-      ref={bgRef}
-      tabIndex={0}
-      role="button"
-      onKeyDown={onkeyDown}
-      onClick={onBackgroundClick}
-      className={styles.modalContainer}
-    >
-      <div
-        ref={modalRef}
-        className={`${styles.modalBox} ${className}`}
-        {...other}
-      >
-        {children}
-      </div>
-    </div>,
-    modalRoot
+  return (
+    <Portal selector="modal-root">
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            ref={bgRef}
+            tabIndex={0}
+            role="button"
+            onKeyDown={onkeyDown}
+            onClick={onBackgroundClick}
+            className={styles.modalContainer}
+            // framer-motion
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.1 }}
+          >
+            <motion.div
+              ref={modalRef}
+              className={`${styles.modalBox} ${className}`}
+              initial={{ scale: 0.7, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.7, opacity: 0 }}
+              transition={{ duration: 0.1 }}
+            >
+              {children}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Portal>
   );
 };
 
