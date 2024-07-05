@@ -5,7 +5,7 @@ import { useSnackbar } from 'notistack';
 import { PATH } from '@/_constants';
 import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export const useSignUp = <T>(
   options?: Omit<UseMutationOptions<any, any, T>, 'mutationKey'>
