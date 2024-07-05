@@ -22,7 +22,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ClientQueryClientProvider>
-          <ClientNotistackProvider>{children}</ClientNotistackProvider>
+          <ClientNotistackProvider>
+            {children}
+            <div id="drawer-root"></div>
+            <div id="modal-root"></div>
+          </ClientNotistackProvider>
         </ClientQueryClientProvider>
       </body>
     </html>
