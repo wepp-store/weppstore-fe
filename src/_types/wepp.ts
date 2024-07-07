@@ -19,7 +19,7 @@ export interface IWepp {
   createdAt: string;
   updatedAt: string;
   categories: ICategory[];
-  logo: string;
+  logo: string | null;
   screenshots: WeppScreenshot[];
   version: string;
 }
