@@ -21,12 +21,3 @@ export const useCategories = () => {
     staleTime: Infinity,
   }) as UseQueryResult<ResponseType, AxiosError>;
 };
-
-//
-export const useCachedCategories = () => {
-  const queryClient = useQueryClient();
-  const categories = queryClient.getQueryData<ResponseType[]>([
-    PATH_API.CATEGORIES.ROOT,
-  ]);
-  return { categories };
-};
