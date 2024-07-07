@@ -11,6 +11,9 @@ export const PATH_API = {
     MINE: '/wepp/mine',
     UPLOAD: '/wepp/upload',
   },
+  CATEGORIES: {
+    ROOT: '/categories',
+  },
 };
 
 /**
