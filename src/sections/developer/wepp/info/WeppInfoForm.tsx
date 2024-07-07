@@ -1,22 +1,23 @@
 'use client';
 
+import { useCategories } from '@/_apis/queries/categories/categories';
 import {
   useWeppDetail,
   useUpdateWepp,
   useUploadWeppImage,
 } from '@/_apis/queries/wepp';
-import { IWepp } from '@/_types';
+import { ICategory, IWepp } from '@/_types';
 import { Card } from '@/components/card';
 import { FormProvider, RHFInput, RHFTextArea } from '@/components/hook-form';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
 type FieldValues = Omit<
   IWepp,
-  // TODO: 카테고리는 api 생성까지 임시로 omit
-  'id' | 'developerId' | 'developer' | 'categories' | 'createdAt' | 'updatedAt'
->;
+  'id' | 'developerId' | 'developer' | 'createdAt' | 'updatedAt' | 'categories'
+> & { categories: Omit<ICategory, 'description'>[] };
 
 const defaultValues: FieldValues = {
   url: '',
@@ -26,6 +27,7 @@ const defaultValues: FieldValues = {
   status: 'DRAFT',
   version: '0.0.0',
   screenshots: [],
+  categories: [],
 };
 
 const WeppInfoForm = () => {
@@ -33,13 +35,17 @@ const WeppInfoForm = () => {
 
   const { data, isFetched } = useWeppDetail<FieldValues>({ weppId });
 
+  const { data: categories } = useCategories();
+
   const patchWeppMutation = useUpdateWepp();
 
   const uploadImageMutation = useUploadWeppImage();
 
   const methods = useForm<FieldValues>({ defaultValues });
 
-  const { handleSubmit, setValue, reset } = methods;
+  const { handleSubmit, setValue, reset, watch } = methods;
+
+  const values = watch();
 
   const onSubmit = (data: FieldValues) => {
     patchWeppMutation.mutate(data);
@@ -54,7 +60,8 @@ const WeppInfoForm = () => {
       logo: data?.logo,
       status: data?.status,
       version: data?.version,
-      screenshots: data?.screenshots,
+      screenshots: data?.screenshots || [],
+      categories: data?.categories || [],
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFetched]);
@@ -112,16 +119,31 @@ const WeppInfoForm = () => {
               >
                 카테고리
               </label>
-              <select
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="category"
-              >
-                <option>게임</option>
-                <option>생산성</option>
-                <option>교육</option>
-                <option>엔터테인먼트</option>
-                <option>소셜 네트워킹</option>
-              </select>
+              <div className="flex gap-4">
+                {categories?.map((category) => (
+                  <label key={category.id}>
+                    <span>{category.name}</span>
+                    <input
+                      type="checkbox"
+                      checked={values.categories?.some(
+                        (c) => c.id === category.id
+                      )}
+                      onChange={(e) => {
+                        const isChecked = e.target.checked;
+                        const categories = values.categories;
+                        if (isChecked) {
+                          setValue('categories', [...categories, category]);
+                        } else {
+                          setValue(
+                            'categories',
+                            categories.filter((c) => c.id !== category.id)
+                          );
+                        }
+                      }}
+                    />
+                  </label>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -135,21 +157,33 @@ const WeppInfoForm = () => {
             >
               앱 아이콘
             </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="logo"
-              type="file"
-              accept="image/*"
-              onChange={(e: any) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                uploadImageMutation.mutate(file, {
-                  onSuccess: (data) => {
-                    setValue('logo', `http://localhost:8000${data.url}`);
-                  },
-                });
-              }}
-            />
+            <label>
+              <Image
+                src={data?.logo || ''}
+                alt="logo"
+                width={64}
+                height={64}
+                className="w-16 h-16 bg-gray-200 rounded-lg mb-2 self-center"
+                onError={(e) => {
+                  e.currentTarget.src = '/logo.svg';
+                }}
+              />
+              <input
+                className="hidden"
+                id="logo"
+                type="file"
+                accept="image/*"
+                onChange={(e: any) => {
+                  const file = e.target.files[0];
+                  if (!file) return;
+                  uploadImageMutation.mutate(file, {
+                    onSuccess: (data) => {
+                      setValue('logo', `http://localhost:8000${data.url}`);
+                    },
+                  });
+                }}
+              />
+            </label>
           </div>
           <div>
             <label
