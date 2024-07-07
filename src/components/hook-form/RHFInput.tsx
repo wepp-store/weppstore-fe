@@ -1,7 +1,10 @@
 import { useFormContext } from 'react-hook-form';
-import './style.scss';
-import { px } from '@/_utils';
+import styles from './style.module.scss';
+import { bindClassNames, px } from '@/_utils';
 import { CircleX } from 'lucide-react';
+
+// ----------------------------------------------------------------------
+const cx = bindClassNames(styles);
 // ----------------------------------------------------------------------
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -41,28 +44,32 @@ export default function RHFInput({
 
   if (readonly) {
     return (
-      <div className="RHFInput">
+      <div className={cx('RHFInput')}>
         <div>{watch(name)}</div>
       </div>
     );
   }
 
   return (
-    <div className="RHFInput">
+    <div className={cx('RHFInput')}>
       {label && (
-        <label className="RHFLabel" htmlFor={name}>
+        <label className={cx('label')} htmlFor={name}>
           {label}
-          {required && <span className="RHFRequired">*</span>}
+          {required && <span className={cx('required')}>*</span>}
         </label>
       )}
-      <input
-        style={isError ? { border: `${px(1)} solid rgb(255, 43, 43)` } : {}}
-        {...register(name, { required })}
-        {...other}
-      />
-      {inputValue && <CircleX className="RHFCloseIcon" onClick={handleClear} />}
+      <div className={cx('input')}>
+        <input
+          style={isError ? { border: `${px(1)} solid rgb(255, 43, 43)` } : {}}
+          {...register(name, { required })}
+          {...other}
+        />
+        {inputValue && (
+          <CircleX className={cx('closeIcon')} onClick={handleClear} />
+        )}
+      </div>
 
-      {isError && <p className="RHFHelperText">{errorMessage}</p>}
+      {isError && <p className={cx('helperText')}>{errorMessage}</p>}
     </div>
   );
 }

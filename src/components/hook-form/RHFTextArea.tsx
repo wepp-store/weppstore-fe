@@ -1,7 +1,10 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import './style.scss';
+import styles from './style.module.scss';
 import React from 'react';
-import { px } from '@/_utils';
+import { bindClassNames, px } from '@/_utils';
+
+// ----------------------------------------------------------------------
+const cx = bindClassNames(styles);
 // ----------------------------------------------------------------------
 
 interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -34,7 +37,7 @@ export default function RHFTextarea({
   const { control, watch } = useFormContext();
 
   if (readonly) {
-    return <div className="RHFTextarea">{watch(name)}</div>;
+    return <div className={cx('RHFTextarea')}>{watch(name)}</div>;
   }
   return (
     <Controller
@@ -46,11 +49,11 @@ export default function RHFTextarea({
         fieldState: { error },
         ...props
       }) => (
-        <div className="RHFTextarea">
+        <div className={cx('RHFTextarea')}>
           {label && (
-            <label className="RHFLabel" htmlFor={name}>
+            <label className={cx('label')} htmlFor={name}>
               {label}
-              {required && <span className="RHFRequired">*</span>}
+              {required && <span className={cx('label')}>*</span>}
             </label>
           )}
           <textarea

@@ -4,7 +4,6 @@
 .RHFInput,
 .RHFTextarea {
   width: 100%;
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: px(4);
@@ -12,6 +11,20 @@
   div {
     width: 100%;
     padding-block: px(8);
+  }
+
+  .label {
+    font-size: px(18);
+    font-weight: 600;
+    color: #333;
+    margin-bottom: px(4);
+  }
+
+  .input {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   input,
@@ -31,13 +44,22 @@
       color: #ddd;
     }
   }
-}
 
-.RHFCloseIcon {
-  position: absolute;
-  right: px(10);
-  top: px(8);
-  cursor: pointer;
+  .closeIcon {
+    position: absolute;
+    right: px(10);
+    cursor: pointer;
+  }
+
+  .helperText {
+    padding: 0;
+    color: red;
+    font-size: px(11);
+    font-weight: 600;
+    margin-top: px(6);
+    padding-left: px(8);
+    box-sizing: border-box;
+  }
 }
 
 .RHFTextarea {
@@ -56,14 +78,4 @@
     overflow: hidden;
     resize: none;
   }
-}
-
-.RHFHelperText {
-  padding: 0;
-  color: red;
-  font-size: px(11);
-  font-weight: 600;
-  margin-top: px(6);
-  padding-left: px(8);
-  box-sizing: border-box;
 }
