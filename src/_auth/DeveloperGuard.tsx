@@ -18,7 +18,7 @@ export default function DeveloperGuard({ children }: DeveloperGuardProps) {
   const [minimumLoadingTimePassed, setMinimumLoadingTimePassed] =
     React.useState(false);
 
-  const isDeveloper = data?.kind === 'DEVELOPER';
+  const isDeveloper = data?.kind === 'DEVELOPER' || data?.kind === 'ADMIN';
 
   React.useEffect(() => {
     // isLoading이 true일 때만 실행
