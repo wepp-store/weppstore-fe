@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.scss';
 import {
+  ClientNextUIProvider,
   ClientNotistackProvider,
   ClientQueryClientProvider,
 } from '@/_providers';
@@ -21,13 +22,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClientQueryClientProvider>
-          <ClientNotistackProvider>
-            {children}
-            <div id="drawer-root"></div>
-            <div id="modal-root"></div>
-          </ClientNotistackProvider>
-        </ClientQueryClientProvider>
+        <ClientNextUIProvider>
+          <ClientQueryClientProvider>
+            <ClientNotistackProvider>
+              {children}
+              <div id="drawer-root"></div>
+              <div id="modal-root"></div>
+            </ClientNotistackProvider>
+          </ClientQueryClientProvider>
+        </ClientNextUIProvider>
       </body>
     </html>
   );
