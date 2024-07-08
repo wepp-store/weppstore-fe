@@ -1,10 +1,10 @@
-import { WeppInfoForm, WeppInfoHeader } from '@/sections/developer/wepp';
+import { WeppInfoForm, WeppInfoBreadcrumbs } from '@/sections/developer/wepp';
 import React from 'react';
 
 const Page = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <WeppInfoHeader />
+    <div className="container mx-auto py-8">
+      <WeppInfoBreadcrumbs />
       <WeppInfoForm />
     </div>
   );
