@@ -10,14 +10,20 @@ import { IWepp } from '@/_types';
 
 type Props = {
   weppId?: string;
+  read?: boolean;
 } & Omit<UseQueryOptions, 'queryKey'>;
 
-export const useWeppDetail = ({ weppId, ...other }: Props) => {
+export const useWeppDetail = ({ weppId, read = false, ...other }: Props) => {
   return useQuery({
     queryKey: [PATH_API.WEPP.ROOT, weppId],
     queryFn: async () => {
       const response = await axiosInstance.get(
-        `${PATH_API.WEPP.ROOT}/${weppId}`
+        `${PATH_API.WEPP.ROOT}/${weppId}`,
+        {
+          headers: {
+            'X-WEPP-READ': read,
+          },
+        }
       );
       return response.data;
     },
