@@ -12,7 +12,7 @@ const DeveloperLayout: React.FC<Props> = ({ children }) => {
   return (
     <DeveloperGuard>
       <Header />
-      <main>{children}</main>
+      <main className="container mx-auto p-4">{children}</main>
       <Footer />
     </DeveloperGuard>
   );
