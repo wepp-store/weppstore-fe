@@ -1,4 +1,5 @@
 import {
+  WeppDashboardBreadcrumbs,
   WeppDashboardHeader,
   WeppDashboardInfo,
   WeppDashboardReviews,
@@ -8,6 +9,7 @@ import React from 'react';
 const WeppDetail = () => {
   return (
     <>
+      <WeppDashboardBreadcrumbs />
       <WeppDashboardHeader />
       <WeppDashboardInfo />
       <WeppDashboardReviews />
