@@ -5,4 +5,4 @@ export { default as WeppDashboardReviews } from './WeppDashboardReviews';
 
 // wepp info
 export { default as WeppInfoForm } from './info/WeppInfoForm';
-export { default as WeppInfoHeader } from './info/WeppInfoHeader';
+export { default as WeppInfoBreadcrumbs } from './info/WeppInfoBreadcrumbs';
