@@ -8,13 +8,20 @@ interface WeppScreenshot {
   order: number;
 }
 
+export type WeppStatus =
+  | 'DRAFT'
+  | 'RELEASED'
+  | 'DELETED'
+  | 'REJECTED'
+  | 'PENDING';
+
 export interface IWepp {
   id: number;
   developerId: number;
   developer: IUser;
   name: string;
   description: string;
-  status: 'DRAFT' | 'RELEASED' | 'DELETED' | 'REJECTED' | 'PENDING';
+  status: WeppStatus;
   url: string;
   createdAt: string;
   updatedAt: string;
