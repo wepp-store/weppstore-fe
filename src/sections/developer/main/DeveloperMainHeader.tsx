@@ -1,19 +1,29 @@
 'use client';
 import React from 'react';
-import { Button } from '@/components/button';
 import { Section } from '@/components/section';
-import { Modal } from '@/components/modal';
 import { FormProvider, RHFInput } from '@/components/hook-form';
 import { useForm } from 'react-hook-form';
 import { useCreateWepp } from '@/_apis/queries/wepp';
 import { IWepp } from '@/_types';
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from '@nextui-org/react';
+import { useAuth } from '@/_apis/queries/auth';
 
 type FieldValues = Pick<IWepp, 'name'>;
 
 const DeveloperMainHeader = () => {
+  const { data: me } = useAuth();
+
   const createMutation = useCreateWepp<FieldValues>();
 
-  const [openCreateModal, setOpenCreateModal] = React.useState(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const methods = useForm<FieldValues>();
 
@@ -34,33 +44,36 @@ const DeveloperMainHeader = () => {
           mb-4
           "
         >
-          Featured Apps
+          {me?.userName}님의 앱
         </h2>
-        <Button onClick={() => setOpenCreateModal(true)}>생성하기</Button>
+        <Button color="primary" onClick={onOpen}>
+          생성하기
+        </Button>
       </Section>
 
       {/* Modal */}
-      <Modal open={openCreateModal} onClose={() => setOpenCreateModal(false)}>
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Modal.Title>
-            <h2 className="text-2xl font-bold text-gray-800">
-              앱 이름을 입력해주세요.
-            </h2>
-          </Modal.Title>
-          <Modal.Content>
-            <RHFInput
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              name="name"
-              type="text"
-              placeholder="앱 이름을 입력해주세요."
-            />
-          </Modal.Content>
-          <Modal.Actions>
-            <Button type="submit" className="w-full bg-gray-600 text-white">
-              생성하기
-            </Button>
-          </Modal.Actions>
-        </FormProvider>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+        <ModalContent>
+          {(onClose) => (
+            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+              <ModalHeader className="flex flex-col gap-1">
+                앱 이름을 입력해주세요.
+              </ModalHeader>
+              <ModalBody>
+                <RHFInput
+                  name="name"
+                  type="text"
+                  placeholder="앱 이름을 입력해주세요."
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button type="submit" color="primary" onPress={onClose}>
+                  생성하기
+                </Button>
+              </ModalFooter>
+            </FormProvider>
+          )}
+        </ModalContent>
       </Modal>
     </>
   );
