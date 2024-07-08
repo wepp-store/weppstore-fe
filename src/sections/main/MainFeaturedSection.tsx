@@ -1,21 +1,22 @@
 'use client';
 import { IWepp } from '@/_types';
 import { Section } from '@/components/section';
+import { Button, Card } from '@nextui-org/react';
 import React from 'react';
 
 const FeaturedApp = ({ wepp }: { wepp: any }) => (
-  <div className="bg-white rounded-lg shadow-md p-4 flex">
+  <Card className="p-4 flex-row">
     <div className="w-24 h-24 bg-gray-200 rounded-lg mr-4"></div>
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between w-full">
       <div>
         <h3 className="font-semibold mb-1">{wepp.name}</h3>
         <p className="text-sm text-gray-500 mb-2">{wepp.description}</p>
       </div>
-      <button className="bg-blue-500 text-white text-sm font-semibold py-1 px-3 rounded self-start">
+      <Button color="primary" className="self-end">
         받기
-      </button>
+      </Button>
     </div>
-  </div>
+  </Card>
 );
 
 const MainFeaturedSection = () => {
