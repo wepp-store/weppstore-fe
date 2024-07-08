@@ -1,13 +1,19 @@
 'use client';
 
+import { useWeppDetail } from '@/_apis/queries/wepp';
+import { IWepp } from '@/_types';
+import { formatCategories, weppStatusToText } from '@/_utils';
 import { Card } from '@/components/card';
 import { Section } from '@/components/section';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
 const WeppDashboardInfo = () => {
   const pathname = usePathname();
+  const { id: weppId }: { id: string } = useParams();
+
+  const { data: wepp } = useWeppDetail({ weppId });
 
   return (
     <Section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -17,19 +23,19 @@ const WeppDashboardInfo = () => {
         <div className="space-y-2">
           <dl className="flex justify-between">
             <dt className="font-medium">앱 ID:</dt>
-            <dd>APP123456</dd>
+            <dd>{wepp?.id}</dd>
           </dl>
           <dl className="flex justify-between">
             <dt className="font-medium">현재 버전:</dt>
-            <dd>1.2.3</dd>
+            <dd>{wepp?.version}</dd>
           </dl>
           <dl className="flex justify-between">
             <dt className="font-medium">카테고리:</dt>
-            <dd>생산성</dd>
+            <dd>{formatCategories(wepp?.categories)}</dd>
           </dl>
           <dl className="flex justify-between">
             <dt className="font-medium">상태:</dt>
-            <dd className="text-green-500">승인됨</dd>
+            <dd className="text-green-500">{weppStatusToText(wepp?.status)}</dd>
           </dl>
         </div>
         <div className="w-full flex justify-end">
