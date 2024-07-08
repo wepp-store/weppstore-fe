@@ -9,9 +9,8 @@ const WeppInfoBreadcrumbs = () => {
   return (
     <CustomBreadcrumbs
       paths={[
-        { name: '홈', path: '/' },
-        { name: '개발자', path: '/developer' },
-        { name: '앱', path: `/developer/wepp/${id}` },
+        { name: '홈', path: '/developer' },
+        { name: '앱 대시보드', path: `/developer/wepp/${id}` },
         { name: '앱 정보', path: `/developer/wepp/${id}/info` },
       ]}
     />
