@@ -15,7 +15,7 @@ const WeppDetailScreenshots = ({ wepp }: Props) => {
 
   return (
     <Section className="mb-6">
-      <h3 className="text-lg font-semibold mb-2">미리보기</h3>
+      <h3 className="text-lg font-semibold mb-2">스크린샷</h3>
       <div className="flex space-x-4 overflow-x-auto">
         {screenshots.map((screenshot) => (
           <Image
