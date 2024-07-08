@@ -2,7 +2,7 @@ import { ICategory } from './category';
 import { IUser } from './user';
 
 interface WeppScreenshot {
-  id: number;
+  id?: number;
   url: string;
   style: string;
   order: number;
