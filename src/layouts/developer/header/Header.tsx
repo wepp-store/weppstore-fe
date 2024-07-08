@@ -2,43 +2,40 @@ import { SearchIcon } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import AccountPopover from './AccountPopover';
+import {
+  Link,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+} from '@nextui-org/react';
 
 const Header = () => {
   return (
-    <header
-      className="
-      fixed
-      top-0
-      start-0
-      w-full
-      flex
-      items-center
-      justify-between
-      p-4
-      shadow-md
-    "
-    >
-      <div
-        className="
-        flex
-        items-center
-        gap-2
-      "
-      >
+    <Navbar isBordered maxWidth="full">
+      <NavbarBrand>
         <Image src="/logo.svg" alt="wepp store logo" width={48} height={48} />
         <h1 className="text-xl font-semibold">Wepp Developer</h1>
-      </div>
-      <div
-        className="
-        flex
-        items-center
-        gap-4
-      "
-      >
+      </NavbarBrand>
+
+      {/* <NavbarContent className="hidden sm:flex gap-4 grow" justify="center">
+        <NavbarItem isActive>
+          <Link href="#" aria-current="page">
+            Customers
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
+      </NavbarContent> */}
+
+      <NavbarContent justify="end">
         <SearchIcon />
         <AccountPopover />
-      </div>
-    </header>
+      </NavbarContent>
+    </Navbar>
   );
 };
 
