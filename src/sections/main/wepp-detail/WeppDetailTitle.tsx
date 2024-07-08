@@ -2,7 +2,7 @@ import { IWepp } from '@/_types';
 import { formatCategories } from '@/_utils';
 import { Section } from '@/components/section';
 import { StarRating } from '@/components/star-rating';
-import { Button, Image } from '@nextui-org/react';
+import { Button, Divider, Image } from '@nextui-org/react';
 import React from 'react';
 
 interface Props {
@@ -32,10 +32,15 @@ const WeppDetailTitle = ({ wepp }: Props) => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center">
         <StarRating rating={4} />
         <Button color="primary">받기</Button>
       </div>
+
+      <Divider />
+
+      <h3 className="text-lg font-semibold mb-2">앱 설명</h3>
+      <p className="text-gray-700 mb-4">{wepp?.description}</p>
     </Section>
   );
 };
