@@ -12,8 +12,8 @@ const ClientSnackbarProvider = ({ children }: ClientSnackbarProviderProps) => {
   return (
     <SnackbarProvider
       anchorOrigin={{
-        vertical: 'top',
-        horizontal: 'center',
+        vertical: 'bottom',
+        horizontal: 'left',
       }}
       maxSnack={3}
       action={(key) => (
