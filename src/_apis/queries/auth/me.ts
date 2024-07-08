@@ -16,7 +16,7 @@ import { axiosInstance } from '../../axios';
 
 type Props = Omit<UseQueryOptions, 'queryKey'>;
 
-export const useAuth = <T>(params?: Props) => {
+export const useAuth = (params?: Props) => {
   return useQuery({
     queryKey: [PATH_API.AUTH.ME],
     queryFn: async () => {
@@ -50,7 +50,7 @@ export const useAuth = <T>(params?: Props) => {
     gcTime: Infinity,
     staleTime: Infinity,
     ...params,
-  }) as UseQueryResult<T, AxiosError>;
+  }) as UseQueryResult<IUser, AxiosError>;
 };
 
 //
