@@ -6,12 +6,13 @@ import {
 import { AxiosError } from 'axios';
 import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
+import { IWepp } from '@/_types';
 
 type Props = {
   weppId?: string;
 } & Omit<UseQueryOptions, 'queryKey'>;
 
-export const useWeppDetail = <T>({ weppId, ...other }: Props) => {
+export const useWeppDetail = ({ weppId, ...other }: Props) => {
   return useQuery({
     queryKey: [PATH_API.WEPP.ROOT, weppId],
     queryFn: async () => {
@@ -25,5 +26,5 @@ export const useWeppDetail = <T>({ weppId, ...other }: Props) => {
     staleTime: Infinity,
     enabled: !!weppId,
     ...other,
-  }) as UseQueryResult<T, AxiosError>;
+  }) as UseQueryResult<IWepp, AxiosError>;
 };
