@@ -29,4 +29,5 @@ export interface IWepp {
   logo: string | null;
   screenshots: WeppScreenshot[];
   version: string;
+  views: number;
 }
