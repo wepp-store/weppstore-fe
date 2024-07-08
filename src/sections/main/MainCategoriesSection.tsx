@@ -2,30 +2,31 @@
 
 import { useCategories } from '@/_apis/queries/categories/categories';
 import { Section } from '@/components/section';
+import { Button } from '@nextui-org/react';
 import React from 'react';
 
 const CategoryButton = ({
-  name,
+  children,
   onClick,
 }: {
-  name: string;
+  children: React.ReactNode;
   onClick: VoidFunction;
 }) => (
-  <button
-    onClick={onClick}
+  <Button
     className="
-      bg-gray-100
-      text-gray-800
-      text-sm
-      font-medium
-      py-2
-      px-4
-      rounded-full
-      hover:bg-gray-200
-      "
+    bg-gray-100
+    text-gray-800
+    text-sm
+    font-medium
+    py-2
+    px-4
+    rounded-full
+    hover:bg-gray-200
+  "
+    onClick={onClick}
   >
-    {name}
-  </button>
+    {children}
+  </Button>
 );
 
 const MainCategoriesSection = () => {
@@ -38,11 +39,12 @@ const MainCategoriesSection = () => {
         {data?.map((category) => (
           <CategoryButton
             key={category.id}
-            name={category.name}
             onClick={() => {
               console.log('clicked', category.id, category.name);
             }}
-          />
+          >
+            {category.name}
+          </CategoryButton>
         ))}
       </div>
     </Section>
