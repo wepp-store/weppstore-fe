@@ -1,7 +1,7 @@
 'use client';
 import { useWeppDetail } from '@/_apis/queries/wepp';
 import { useParams } from 'next/navigation';
-import React, { useState } from 'react';
+import React from 'react';
 import WeppDetailTitle from './WeppDetailTitle';
 import WeppDetailScreenshots from './WeppDetailScreenshots';
 import WeppDetailAdditionalInfo from './WeppDetailAdditionalInfo';
@@ -9,9 +9,10 @@ import WeppDetailReviews from './WeppDetailReviews';
 import WeppDetailSimilars from './WeppDetailSimilars';
 import WeppDetailUpdateHistories from './WeppDetailUpdateHistories';
 
+// 나중에 서버 사이드에서 pre fetch하기
 const WeppDetailScreen = () => {
   const { id: weppId }: { id: string } = useParams();
-  const { data: wepp } = useWeppDetail({ weppId });
+  const { data: wepp } = useWeppDetail({ weppId, read: true });
 
   return (
     <article className="flex flex-col gap-8">
