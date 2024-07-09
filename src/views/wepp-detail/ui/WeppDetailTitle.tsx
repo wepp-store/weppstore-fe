@@ -1,8 +1,8 @@
 import { IWepp } from '@/shared/types';
-import { formatCategories } from '@/shared/utils';
+import { formatCategories, installLink } from '@/shared/utils';
 import { Section } from '@/shared/ui/section';
 import { StarRating } from '@/shared/ui/star-rating';
-import { Button, Chip, Divider, Image } from '@nextui-org/react';
+import { Button, Chip, Divider, Image, Link } from '@nextui-org/react';
 import React from 'react';
 import { DesktopChip, MobileChip, TabletChip } from '@/entities/wepps';
 
@@ -12,6 +12,7 @@ interface Props {
 
 const WeppDetailTitle = ({ wepp }: Props) => {
   const {
+    url,
     logo,
     name,
     developer,
@@ -49,7 +50,9 @@ const WeppDetailTitle = ({ wepp }: Props) => {
           {isMobile && <MobileChip />}
           {isTablet && <TabletChip />}
         </div>
-        <Button color="primary">받기</Button>
+        <Button color="primary" as={Link} href={installLink(name, url, logo)}>
+          받기
+        </Button>
       </div>
 
       <Divider />
