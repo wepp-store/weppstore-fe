@@ -1,6 +1,6 @@
 import { Section } from '@/shared/ui/section';
 import { Button, Image } from '@nextui-org/react';
-import { Plus } from 'lucide-react';
+import { X, Plus } from 'lucide-react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { WeppField } from '../../types';
@@ -52,6 +52,15 @@ const UpdateWeppScreenshotsSection = () => {
       });
     };
 
+  const removeScreenshot = (index: number) => (e: any) => {
+    e.preventDefault();
+
+    setValue(
+      'screenshots',
+      screenshots.filter((_, i) => i !== index)
+    );
+  };
+
   return (
     <Section>
       <h2 className="text-xl font-semibold mb-4">스크린샷 (최대 5개)</h2>
@@ -73,11 +82,26 @@ const UpdateWeppScreenshotsSection = () => {
             />
           </label>
           {screenshots.map((screenshot, index) => (
-            <label key={index}>
+            <label key={index} className="relative">
               <Image
                 src={screenshot.url}
                 alt="screenshot"
                 className="w-40 h-72"
+              />
+              <X
+                onClick={removeScreenshot(index)}
+                size={24}
+                color="white"
+                className="
+                z-10
+                absolute
+                right-2
+                top-2
+                bg-gray-500
+                rounded-full
+                p-1
+                cursor-pointer
+              "
               />
               <input
                 className="hidden"
