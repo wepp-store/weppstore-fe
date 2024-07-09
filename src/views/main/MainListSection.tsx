@@ -31,7 +31,7 @@ const MainListSection = () => {
                   <WeppCard
                     key={wepp.id}
                     wepp={wepp}
-                    href={`wepp/${wepp.id}`}
+                    href={`wepps/${wepp.id}`}
                   />
                 ))}
               </React.Fragment>
