@@ -5,6 +5,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { WeppField } from '../../types';
 import { useUploadWeppImage } from '../../api';
+import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 
 const UpdateWeppScreenshotsSection = () => {
   const addInputRef = React.useRef<HTMLInputElement | null>(null);
@@ -61,14 +62,31 @@ const UpdateWeppScreenshotsSection = () => {
     );
   };
 
+  // dnd
+  const onDragEnd = (result: any) => {
+    if (!result.destination) return;
+
+    const reorderedScreenshots = Array.from(screenshots);
+    const [moved] = reorderedScreenshots.splice(result.source.index, 1);
+    reorderedScreenshots.splice(result.destination.index, 0, moved);
+
+    setValue(
+      'screenshots',
+      reorderedScreenshots.map((s, index) => ({
+        ...s,
+        order: index,
+      }))
+    );
+  };
+
   return (
     <Section>
       <h2 className="text-xl font-semibold mb-4">스크린샷 (최대 5개)</h2>
       <div className="mb-4">
-        <div className="flex gap-4">
+        <div className="flex gap-4 p-4 bg-gray-200 rounded-lg">
           <label>
             <Button
-              className="w-40 h-72 bg-gray-200 self-center"
+              className="w-40 h-72 bg-gray-100 self-center"
               onPress={() => addInputRef?.current?.click()}
             >
               <Plus />
@@ -81,38 +99,64 @@ const UpdateWeppScreenshotsSection = () => {
               onChange={addScreenshots}
             />
           </label>
-          {screenshots.map((screenshot, index) => (
-            <label key={index} className="relative">
-              <Image
-                src={screenshot.url}
-                alt="screenshot"
-                className="w-40 h-72"
-              />
-              <X
-                onClick={removeScreenshot(index)}
-                size={24}
-                color="white"
-                className="
-                z-10
-                absolute
-                right-2
-                top-2
-                bg-gray-500
-                rounded-full
-                p-1
-                cursor-pointer
-              "
-              />
-              <input
-                className="hidden"
-                id="screenshots"
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={updateScreenshot(index)}
-              />
-            </label>
-          ))}
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="screenshots" direction="horizontal">
+              {(provided) => (
+                <div
+                  className="flex gap-4"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {screenshots.map((screenshot, index) => (
+                    <Draggable
+                      key={screenshot.url}
+                      draggableId={screenshot.url}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <label
+                          className="relative"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <Image
+                            src={screenshot.url}
+                            alt="screenshot"
+                            className="w-40 h-72"
+                          />
+                          <X
+                            onClick={removeScreenshot(index)}
+                            size={24}
+                            color="white"
+                            className="
+                              z-10
+                              absolute
+                              right-2
+                              top-2
+                              bg-gray-500
+                              rounded-full
+                              p-1
+                              cursor-pointer
+                            "
+                          />
+                          <input
+                            className="hidden"
+                            id="screenshots"
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={updateScreenshot(index)}
+                          />
+                        </label>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
       </div>
     </Section>
