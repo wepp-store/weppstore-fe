@@ -1,5 +1,6 @@
 // ui
 export { default as LoginForm } from './ui/LoginForm';
+export { default as SignUpForm } from './ui/SignUpForm';
 
 // guards
 export { default as AuthGuard } from './guards/AuthGuard';

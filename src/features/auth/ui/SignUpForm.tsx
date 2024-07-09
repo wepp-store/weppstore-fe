@@ -1,6 +1,5 @@
 'use client';
-
-import { useSignIn } from '@/shared/apis/queries/auth';
+import { useSignUp } from '@/shared/apis/queries/auth';
 import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
 import {
   Link,
@@ -8,20 +7,19 @@ import {
   Button,
   Divider,
   CardBody,
-  CardFooter,
   CardHeader,
+  CardFooter,
 } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const methods = useForm();
-
   const { handleSubmit } = methods;
 
-  const signInMutation = useSignIn();
+  const signUpMutation = useSignUp();
 
   const onSubmit = (data: any) => {
-    signInMutation.mutate(data);
+    signUpMutation.mutate(data);
   };
 
   return (
@@ -32,10 +30,16 @@ const LoginForm = () => {
     >
       <Card className="max-w-full w-[340px]">
         <CardHeader className="justify-center">
-          <h1 className="text-3xl font-bold">Login</h1>
+          <h1 className="text-3xl font-bold">Sign Up</h1>
         </CardHeader>
         <Divider />
         <CardBody className="items-center gap-4 p-4">
+          <RHFInput
+            isRequired
+            name="userName"
+            label="user name"
+            placeholder="Enter your name"
+          />
           <RHFInput
             isRequired
             name="email"
@@ -51,16 +55,16 @@ const LoginForm = () => {
           />
 
           <p className="text-center text-small">
-            Need to create an account?{' '}
-            <Link size="sm" href="/sign-up">
-              SignUp
+            Already have an account?{' '}
+            <Link size="sm" href="/login">
+              Login
             </Link>
           </p>
         </CardBody>
 
         <CardFooter className="justify-end">
           <Button color="primary" type="submit" fullWidth>
-            Login
+            Sign Up
           </Button>
         </CardFooter>
       </Card>
@@ -68,4 +72,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

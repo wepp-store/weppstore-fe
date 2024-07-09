@@ -1,4 +1,4 @@
-import { SignUpForm } from '@/views/sign-up';
+import { SignUpForm } from '@/features/auth';
 
 const SignUpPage = () => {
   return (
