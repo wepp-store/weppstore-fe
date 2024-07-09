@@ -2,15 +2,25 @@ import { IWepp } from '@/shared/types';
 import { formatCategories } from '@/shared/utils';
 import { Section } from '@/shared/ui/section';
 import { StarRating } from '@/shared/ui/star-rating';
-import { Button, Divider, Image } from '@nextui-org/react';
+import { Button, Chip, Divider, Image } from '@nextui-org/react';
 import React from 'react';
+import { DesktopChip, MobileChip, TabletChip } from '@/entities/wepps';
 
 interface Props {
   wepp: IWepp | undefined;
 }
 
 const WeppDetailTitle = ({ wepp }: Props) => {
-  const { logo, name, developer, categories } = wepp || {};
+  const {
+    logo,
+    name,
+    developer,
+    categories,
+    // devices
+    isDesktop,
+    isMobile,
+    isTablet,
+  } = wepp || {};
 
   return (
     <Section className="flex flex-col gap-4">
@@ -29,11 +39,16 @@ const WeppDetailTitle = ({ wepp }: Props) => {
           <p className="text-sm text-gray-500">
             {formatCategories(categories)}
           </p>
+          <StarRating rating={4} />
         </div>
       </div>
 
       <div className="flex justify-between items-center">
-        <StarRating rating={4} />
+        <div className="flex gap-4">
+          {isDesktop && <DesktopChip />}
+          {isMobile && <MobileChip />}
+          {isTablet && <TabletChip />}
+        </div>
         <Button color="primary">받기</Button>
       </div>
 
