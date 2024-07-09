@@ -1,8 +1,7 @@
 'use client';
+import { DeveloperWeppCard } from '@/entities/developer';
 import { useMineWeppList } from '@/shared/apis/queries/wepp';
 import { Section } from '@/shared/ui/section';
-import { Card } from '@nextui-org/react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -18,11 +17,8 @@ const DeveloperMainList = () => {
     fetchNextPage,
   } = useMineWeppList();
 
-  const navigateToWeppDetail = (weppId: number) => {
-    push(`/developer/wepp/${weppId}`);
-  };
-
   const isNotData = !isLoading && !data?.pages[0]?.data?.length;
+
   return (
     <Section
       className="
@@ -38,20 +34,7 @@ const DeveloperMainList = () => {
         data?.pages.map((group, i) => (
           <React.Fragment key={i}>
             {group.data.map((wepp) => (
-              <Card key={wepp.id} onClick={() => navigateToWeppDetail(wepp.id)}>
-                <div className="flex items-center justify-between">
-                  <Image
-                    src={wepp.logo || ''}
-                    alt={wepp.name}
-                    width={48}
-                    height={48}
-                  />
-                  <div>
-                    <h3 className="text-lg font-semibold">{wepp.name}</h3>
-                    <p className="text-sm text-gray-500">{wepp.description}</p>
-                  </div>
-                </div>
-              </Card>
+              <DeveloperWeppCard key={wepp.id} wepp={wepp} />
             ))}
           </React.Fragment>
         ))}
