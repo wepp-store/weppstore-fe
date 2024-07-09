@@ -10,7 +10,7 @@ const DeveloperWeppCard = ({ wepp }: Props) => {
   const { id, logo, name, description } = wepp;
 
   return (
-    <Card as={Link} href={`/developer/wepp/${id}`}>
+    <Card as={Link} href={`/developer/wepp/${id}`} isPressable>
       <CardBody className="flex flex-row items-center justify-between">
         <Image src={logo || ''} alt={name} width={100} height={100} />
         <div className="mr-4">
