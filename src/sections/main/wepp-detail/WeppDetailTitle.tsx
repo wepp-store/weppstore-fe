@@ -1,7 +1,7 @@
-import { IWepp } from '@/_types';
-import { formatCategories } from '@/_utils';
-import { Section } from '@/components/section';
-import { StarRating } from '@/components/star-rating';
+import { IWepp } from '@/shared/types';
+import { formatCategories } from '@/shared/utils';
+import { Section } from '@/shared/ui/section';
+import { StarRating } from '@/shared/ui/star-rating';
 import { Button, Divider, Image } from '@nextui-org/react';
 import React from 'react';
 

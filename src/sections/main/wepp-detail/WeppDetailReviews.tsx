@@ -1,5 +1,5 @@
-import { Section } from '@/components/section';
-import { StarRating } from '@/components/star-rating';
+import { Section } from '@/shared/ui/section';
+import { StarRating } from '@/shared/ui/star-rating';
 import React from 'react';
 
 const Review = ({ review }: any) => (

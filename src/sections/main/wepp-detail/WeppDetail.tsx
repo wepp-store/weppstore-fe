@@ -1,5 +1,5 @@
 'use client';
-import { useWeppDetail } from '@/_apis/queries/wepp';
+import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { useParams } from 'next/navigation';
 import React from 'react';
 import WeppDetailTitle from './WeppDetailTitle';

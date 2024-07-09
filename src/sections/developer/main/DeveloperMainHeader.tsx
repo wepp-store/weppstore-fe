@@ -1,10 +1,9 @@
 'use client';
-import React from 'react';
-import { Section } from '@/components/section';
-import { FormProvider, RHFInput } from '@/components/hook-form';
-import { useForm } from 'react-hook-form';
-import { useCreateWepp } from '@/_apis/queries/wepp';
-import { IWepp } from '@/_types';
+import { useAuth } from '@/shared/apis/queries/auth';
+import { useCreateWepp } from '@/shared/apis/queries/wepp';
+import { IWepp } from '@/shared/types';
+import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
+import { Section } from '@/shared/ui/section';
 import {
   Button,
   Modal,
@@ -14,7 +13,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
-import { useAuth } from '@/_apis/queries/auth';
+import { useForm } from 'react-hook-form';
 
 type FieldValues = Pick<IWepp, 'name'>;
 

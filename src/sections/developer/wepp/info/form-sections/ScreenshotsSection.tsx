@@ -1,10 +1,10 @@
-import { useUploadWeppImage } from '@/_apis/queries/wepp';
+import { useUploadWeppImage } from '@/shared/apis/queries/wepp';
 import { Button, Image } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { WeppField } from '../types';
 import { Plus } from 'lucide-react';
-import { Section } from '@/components/section';
+import { Section } from '@/shared/ui/section';
 
 const ScreenshotsSection = () => {
   const addInputRef = React.useRef<HTMLInputElement | null>(null);

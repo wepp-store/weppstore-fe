@@ -1,10 +1,9 @@
-import styles from './page.module.css';
-import { MainLayout } from '@/layouts/main';
 import {
   MainCategoriesSection,
   MainFeaturedSection,
   MainListSection,
 } from '@/sections/main';
+import { MainLayout } from '@/shared/layouts/main';
 
 export default function Home() {
   return (

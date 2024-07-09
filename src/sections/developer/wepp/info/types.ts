@@ -1,4 +1,4 @@
-import { ICategory, IWepp } from '@/_types';
+import { ICategory, IWepp } from '@/shared/types';
 
 export type WeppField = Omit<
   IWepp,
