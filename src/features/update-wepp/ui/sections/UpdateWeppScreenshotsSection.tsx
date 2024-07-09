@@ -1,10 +1,7 @@
 import { Section } from '@/shared/ui/section';
-import { Button, Image } from '@nextui-org/react';
-import { X, Plus } from 'lucide-react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { WeppField } from '../../types';
-import { useUploadWeppImage } from '../../api';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
 import UpdateWeppScreenshot from '../UpdateWeppScreenshot';
 import AddWeppScreenshot from '../AddWeppScreenshot';
