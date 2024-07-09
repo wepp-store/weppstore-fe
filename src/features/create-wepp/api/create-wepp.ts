@@ -3,9 +3,9 @@
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
 import { useSnackbar } from 'notistack';
 import { PATH } from '@/shared/constants';
-import { PATH_API } from '../../path';
-import { axiosInstance } from '../../axios';
 import { useRouter } from 'next/navigation';
+import { axiosInstance } from '@/shared/apis/axios';
+import { PATH_API } from '@/shared/apis/path';
 
 export const useCreateWepp = <T>(
   options?: Omit<UseMutationOptions<any, any, T>, 'mutationKey'>
