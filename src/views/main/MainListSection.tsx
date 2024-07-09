@@ -1,6 +1,6 @@
 'use client';
 
-import { WeppCard } from '@/entities/wepp/index';
+import { WeppCard } from '@/entities/wepps/index';
 import { useWeppList } from '@/shared/apis/queries/wepp';
 import { Section } from '@/shared/ui/section';
 import React from 'react';
