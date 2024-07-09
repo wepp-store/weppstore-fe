@@ -1,9 +1,7 @@
 'use client';
 import { useSignIn } from '@/shared/apis/queries/auth';
-import { Button } from '@/shared/ui/button';
-import { Card } from '@/shared/ui/card';
 import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
-import React from 'react';
+import { Button, Card } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 
 const SignInFormSection = () => {

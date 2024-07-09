@@ -3,7 +3,7 @@ import {
   ClientNotistackProvider,
   ClientQueryClientProvider,
 } from '@/shared/providers';
-import '@/styles/globals.scss';
+import '@/shared/styles/globals.scss';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
