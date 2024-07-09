@@ -1,13 +1,14 @@
 'use client';
 import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { useParams } from 'next/navigation';
-import React from 'react';
-import WeppDetailTitle from './WeppDetailTitle';
-import WeppDetailScreenshots from './WeppDetailScreenshots';
-import WeppDetailAdditionalInfo from './WeppDetailAdditionalInfo';
-import WeppDetailReviews from './WeppDetailReviews';
-import WeppDetailSimilars from './WeppDetailSimilars';
-import WeppDetailUpdateHistories from './WeppDetailUpdateHistories';
+import {
+  WeppDetailTitle,
+  WeppDetailReviews,
+  WeppDetailSimilars,
+  WeppDetailScreenshots,
+  WeppDetailAdditionalInfo,
+  WeppDetailUpdateHistories,
+} from './ui';
 
 // 나중에 서버 사이드에서 pre fetch하기
 const WeppDetailScreen = () => {

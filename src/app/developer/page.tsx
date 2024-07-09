@@ -1,8 +1,4 @@
-import {
-  DeveloperMainList,
-  DeveloperMainHeader,
-} from '@/sections/developer/main';
-import React from 'react';
+import { DeveloperMainHeader, DeveloperMainList } from '@/views/developer/main';
 
 const DeveloperHome = () => {
   return (

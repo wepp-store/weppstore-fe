@@ -1,9 +1,9 @@
+import { MainLayout } from '@/shared/layouts/main';
 import {
   MainCategoriesSection,
   MainFeaturedSection,
   MainListSection,
-} from '@/sections/main';
-import { MainLayout } from '@/shared/layouts/main';
+} from '@/views/main';
 
 export default function Home() {
   return (

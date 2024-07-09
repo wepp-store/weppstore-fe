@@ -1,12 +1,12 @@
-import { useUploadWeppImage } from '@/shared/apis/queries/wepp';
+import { Section } from '@/shared/ui/section';
 import { Button, Image } from '@nextui-org/react';
+import { Plus } from 'lucide-react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { WeppField } from '../types';
-import { Plus } from 'lucide-react';
-import { Section } from '@/shared/ui/section';
+import { WeppField } from '../../types';
+import { useUploadWeppImage } from '../../api';
 
-const ScreenshotsSection = () => {
+const UpdateWeppScreenshotsSection = () => {
   const addInputRef = React.useRef<HTMLInputElement | null>(null);
 
   const { watch, setValue } = useFormContext<WeppField>();
@@ -95,4 +95,4 @@ const ScreenshotsSection = () => {
   );
 };
 
-export default ScreenshotsSection;
+export default UpdateWeppScreenshotsSection;

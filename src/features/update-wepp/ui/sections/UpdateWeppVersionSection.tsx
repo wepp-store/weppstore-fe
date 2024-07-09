@@ -2,7 +2,7 @@ import { RHFInput } from '@/shared/ui/hook-form';
 import { Section } from '@/shared/ui/section';
 import React from 'react';
 
-const VersionSection = () => {
+const UpdateWeppVersionSection = () => {
   return (
     <Section>
       <h2 className="text-xl font-semibold mb-4">버전 정보</h2>
@@ -15,4 +15,4 @@ const VersionSection = () => {
   );
 };
 
-export default VersionSection;
+export default UpdateWeppVersionSection;

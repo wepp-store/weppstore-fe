@@ -1,5 +1,4 @@
-import { SignUpForm } from '@/sections/sign-up';
-import React from 'react';
+import { SignUpForm } from '@/views/sign-up';
 
 const SignUpPage = () => {
   return (

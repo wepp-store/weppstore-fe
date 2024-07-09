@@ -1,5 +1,4 @@
-import { SignInFormSection } from '@/sections/sign-in';
-import React from 'react';
+import { SignInFormSection } from '@/views/sign-in';
 
 const SignIn = () => {
   return (

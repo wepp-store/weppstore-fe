@@ -1,11 +1,11 @@
-import { useUploadWeppImage } from '@/shared/apis/queries/wepp';
 import { RHFInput, RHFTextArea } from '@/shared/ui/hook-form';
 import { Section } from '@/shared/ui/section';
 import { Image } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useUploadWeppImage } from '../../api';
 
-const BasicInfoSection = () => {
+const UpdateWeppBasicInfoSection = () => {
   const { watch, setValue } = useFormContext();
 
   const uploadImageMutation = useUploadWeppImage();
@@ -75,4 +75,4 @@ const BasicInfoSection = () => {
   );
 };
 
-export default BasicInfoSection;
+export default UpdateWeppBasicInfoSection;

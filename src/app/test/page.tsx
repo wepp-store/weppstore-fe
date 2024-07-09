@@ -1,5 +1,4 @@
-import AppStoreHomeScreen from '@/sections/Test';
-import React from 'react';
+import AppStoreHomeScreen from '@/views/Test';
 
 const Page = () => {
   return <AppStoreHomeScreen />;
