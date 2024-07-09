@@ -1,8 +1,7 @@
-import WeppDetailScreen from '@/sections/main/wepp-detail/WeppDetail';
-import React from 'react';
+import { WeppDetailPage } from '@/views/wepp-detail';
 
-const WeppDetailPage = () => {
-  return <WeppDetailScreen />;
+const Page = () => {
+  return <WeppDetailPage />;
 };
 
-export default WeppDetailPage;
+export default Page;

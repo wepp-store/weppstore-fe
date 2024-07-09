@@ -3,8 +3,7 @@ import {
   WeppDashboardHeader,
   WeppDashboardInfo,
   WeppDashboardReviews,
-} from '@/sections/developer/wepp';
-import React from 'react';
+} from '@/views/developer/wepp-dashboard';
 
 const WeppDetail = () => {
   return (

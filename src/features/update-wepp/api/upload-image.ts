@@ -2,9 +2,9 @@
 
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
 import { useSnackbar } from 'notistack';
-import { PATH_API } from '../../path';
-import { axiosInstance } from '../../axios';
 import { useParams } from 'next/navigation';
+import { axiosInstance } from '@/shared/apis/axios';
+import { PATH_API } from '@/shared/apis/path';
 
 export const useUploadWeppImage = (
   options?: Omit<UseMutationOptions<any, any, File>, 'mutationKey'>

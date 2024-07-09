@@ -1,22 +1,19 @@
 'use client';
 
-import {
-  useWeppDetail,
-  useUpdateWepp,
-  useUploadWeppImage,
-} from '@/shared/apis/queries/wepp';
+import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { FormProvider } from '@/shared/ui/hook-form';
 import { useParams } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Card, CardBody, CardHeader, Divider } from '@nextui-org/react';
 import {
-  BasicInfoSection,
-  CategoriesSection,
-  ScreenshotsSection,
-  VersionSection,
-} from './form-sections';
-import { WeppField } from './types';
+  UpdateWeppVersionSection,
+  UpdateWeppBasicInfoSection,
+  UpdateWeppCategoriesSection,
+  UpdateWeppScreenshotsSection,
+} from './sections';
+import { WeppField } from '../types';
+import { useUpdateWepp } from '../api';
 
 const defaultValues: WeppField = {
   url: '',
@@ -83,13 +80,13 @@ const WeppInfoForm = () => {
         </CardHeader>
         <Divider />
         <CardBody className="p-4 gap-8">
-          <BasicInfoSection />
+          <UpdateWeppBasicInfoSection />
 
-          <CategoriesSection />
+          <UpdateWeppCategoriesSection />
 
-          <ScreenshotsSection />
+          <UpdateWeppScreenshotsSection />
 
-          <VersionSection />
+          <UpdateWeppVersionSection />
 
           <div className="mb-6">
             <label

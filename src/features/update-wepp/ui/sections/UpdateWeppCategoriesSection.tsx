@@ -4,9 +4,9 @@ import { Section } from '@/shared/ui/section';
 import { Checkbox, CheckboxGroup } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { WeppField } from '../types';
+import { WeppField } from '../../types';
 
-const CategoriesSection = () => {
+const UpdateWeppCategoriesSection = () => {
   const { watch, setValue } = useFormContext<WeppField>();
 
   const { data } = useCategories();
@@ -47,4 +47,4 @@ const CategoriesSection = () => {
   );
 };
 
-export default CategoriesSection;
+export default UpdateWeppCategoriesSection;
