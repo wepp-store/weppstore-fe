@@ -1,19 +1,8 @@
-import { MainLayout } from '@/shared/layouts/main';
-import {
-  MainCategoriesSection,
-  MainFeaturedSection,
-  MainListSection,
-} from '@/views/main';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <MainLayout>
-      {/* 추천 앱 */}
-      <MainFeaturedSection />
-      {/* 카테고리 */}
-      <MainCategoriesSection />
-      {/* 앱 리스트 */}
-      <MainListSection />
-    </MainLayout>
-  );
-}
+const Page = () => {
+  redirect('/wepps');
+  return null; // This won't be rendered since redirect happens before render
+};
+
+export default Page;
