@@ -14,27 +14,25 @@ const WeppCard = ({ wepp, href }: Props) => {
   const existCategories = categories && categories.length > 0;
 
   return (
-    <Link href={href}>
-      <Card>
-        <CardBody className="flex-row gap-4">
-          <Image
-            src={logo || ''}
-            alt="wepp icon"
-            width={200}
-            height={200}
-            radius="sm"
-            className="aspect-square"
-            fallbackSrc="https://via.placeholder.com/200x200"
-          />
-          <div className="flex flex-col justify-between w-full">
-            <h3 className="font-semibold text-base mb-1">{name}</h3>
-            <p className="text-gray-500 text-sm mb-2">
-              {existCategories && `${formatCategories(categories)} · `}4.5 ★
-            </p>
-          </div>
-        </CardBody>
-      </Card>
-    </Link>
+    <Card as={Link} href={href} isPressable>
+      <CardBody className="flex-row gap-4">
+        <Image
+          src={logo || ''}
+          alt="wepp icon"
+          width={200}
+          height={200}
+          radius="sm"
+          className="aspect-square"
+          fallbackSrc="https://via.placeholder.com/200x200"
+        />
+        <div className="flex flex-col justify-between w-full">
+          <h3 className="font-semibold text-base mb-1">{name}</h3>
+          <p className="text-gray-500 text-sm mb-2">
+            {existCategories && `${formatCategories(categories)} · `}4.5 ★
+          </p>
+        </div>
+      </CardBody>
+    </Card>
   );
 };
 
