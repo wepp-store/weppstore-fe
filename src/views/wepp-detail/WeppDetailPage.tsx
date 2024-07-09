@@ -13,7 +13,12 @@ import {
 // 나중에 서버 사이드에서 pre fetch하기
 const WeppDetailScreen = () => {
   const { id: weppId }: { id: string } = useParams();
-  const { data: wepp } = useWeppDetail({ weppId, read: true });
+  const { data: wepp } = useWeppDetail({
+    weppId,
+    read: true,
+    gcTime: Infinity,
+    staleTime: Infinity,
+  });
 
   return (
     <article className="flex flex-col gap-8">

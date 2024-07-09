@@ -27,9 +27,6 @@ export const useWeppDetail = ({ weppId, read = false, ...other }: Props) => {
       );
       return response.data;
     },
-    // 계속 가지고 있을 거임
-    gcTime: Infinity,
-    staleTime: Infinity,
     enabled: !!weppId,
     ...other,
   }) as UseQueryResult<IWepp, AxiosError>;
