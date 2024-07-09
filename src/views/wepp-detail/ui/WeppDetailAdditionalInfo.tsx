@@ -12,7 +12,6 @@ const WeppDetailAdditionalInfo = ({ wepp }: Props) => {
       <h3 className="text-lg font-semibold mb-2">추가 정보</h3>
       <ul className="text-sm text-gray-600">
         <li>버전: {wepp?.version}</li>
-        <li>호환성: ??</li>
         <li>언어: languages</li>
       </ul>
     </Section>
