@@ -69,7 +69,7 @@ const UpdateWeppScreenshotsSection = () => {
           <label>
             <Button
               className="w-40 h-72 bg-gray-200 self-center"
-              onClick={() => addInputRef?.current?.click()}
+              onPress={() => addInputRef?.current?.click()}
             >
               <Plus />
             </Button>
