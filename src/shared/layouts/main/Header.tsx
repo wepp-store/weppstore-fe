@@ -1,10 +1,10 @@
 'use client';
 import {
-  Link,
+  Tab,
+  Tabs,
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
 } from '@nextui-org/react';
 import Image from 'next/image';
 import AccountPopover from './AccountPopover';
@@ -14,9 +14,7 @@ import { usePathname } from 'next/navigation';
 const Header = () => {
   const pathname = usePathname();
 
-  const isActive = (path: string) => {
-    return pathname === path ? 'page' : undefined;
-  };
+  const key = '/' + pathname.split('/')[1];
 
   return (
     <Navbar isBordered maxWidth="full">
@@ -26,22 +24,21 @@ const Header = () => {
           <h1 className="text-xl font-semibold">Wepp Store</h1>
         </div>
 
-        <NavbarContent className="hidden sm:flex gap-4">
-          <NavbarItem isActive>
-            <Link
-              href="/apps"
-              color="foreground"
-              aria-current={isActive('/apps')}
-            >
-              앱
-            </Link>
-          </NavbarItem>
-          <NavbarItem>
-            <Link href="/games" aria-current={isActive('/games')}>
-              게임
-            </Link>
-          </NavbarItem>
-        </NavbarContent>
+        <Tabs
+          selectedKey={key}
+          variant="underlined"
+          aria-label="navigation"
+          color="primary"
+          classNames={{
+            tabList: 'gap-6 p-0 border-b',
+            // cursor: 'w-full bg-[#22d3ee]',
+            tab: 'max-w-fit h-16 text-lg',
+            // tabContent: 'group-data-[selected=true]:text-[#06b6d4]',
+          }}
+        >
+          <Tab key="/wepps" title="앱" href="/wepps" />
+          <Tab key="/games" title="게임" href="/games" />
+        </Tabs>
       </NavbarBrand>
 
       <NavbarContent justify="end">
