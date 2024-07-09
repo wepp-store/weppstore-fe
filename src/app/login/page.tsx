@@ -1,11 +1,7 @@
-import { SignInFormSection } from '@/views/sign-in';
+import { LoginForm } from '@/features/auth';
 
 const SignIn = () => {
-  return (
-    <div>
-      <SignInFormSection />
-    </div>
-  );
+  return <LoginForm />;
 };
 
 export default SignIn;
