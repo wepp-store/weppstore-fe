@@ -7,6 +7,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Card, CardBody, CardHeader, Divider } from '@nextui-org/react';
 import {
+  UpdateWeppDevicesSection,
   UpdateWeppVersionSection,
   UpdateWeppBasicInfoSection,
   UpdateWeppCategoriesSection,
@@ -24,6 +25,9 @@ const defaultValues: WeppField = {
   version: '0.0.0',
   screenshots: [],
   categories: [],
+  isDesktop: true,
+  isMobile: false,
+  isTablet: false,
 };
 
 const WeppInfoForm = () => {
@@ -84,11 +88,13 @@ const WeppInfoForm = () => {
 
           <UpdateWeppCategoriesSection />
 
+          <UpdateWeppDevicesSection />
+
           <UpdateWeppScreenshotsSection />
 
           <UpdateWeppVersionSection />
 
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="privacyPolicyUrl"
@@ -101,7 +107,7 @@ const WeppInfoForm = () => {
               type="url"
               placeholder="https://example.com/privacy-policy"
             />
-          </div>
+          </div> */}
         </CardBody>
       </Card>
     </FormProvider>
