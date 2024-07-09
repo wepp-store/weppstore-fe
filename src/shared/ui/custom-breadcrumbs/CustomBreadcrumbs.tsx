@@ -15,6 +15,7 @@ export default function CustomBreadcrumbs({ paths }: Props) {
       underline="active"
       onAction={(key) => push(key as string)}
       className="mb-4"
+      itemClasses={{ item: 'text-lg' }}
     >
       {paths.map(({ path, name }) => (
         <BreadcrumbItem key={path} isCurrent={pathname === path}>
