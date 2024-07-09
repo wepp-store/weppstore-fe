@@ -23,7 +23,7 @@ const CategoryButton = ({
     rounded-full
     hover:bg-gray-200
   "
-    onClick={onClick}
+    onPress={onClick}
   >
     {children}
   </Button>

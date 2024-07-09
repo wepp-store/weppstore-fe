@@ -32,7 +32,7 @@ const CreateWeppButton = () => {
 
   return (
     <>
-      <Button color="primary" onClick={onOpen}>
+      <Button color="primary" onPress={onOpen}>
         생성하기
       </Button>
 
