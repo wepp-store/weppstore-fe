@@ -1,16 +1,20 @@
 import { IWepp } from '@/shared/types';
 import { formatCategories } from '@/shared/utils';
-import { Button, Card, CardBody, Image } from '@nextui-org/react';
+import { Card, CardBody, Image } from '@nextui-org/react';
 import Link from 'next/link';
-import React from 'react';
 
-const WeppCard = ({ wepp }: { wepp: IWepp }) => {
+interface Props {
+  wepp: IWepp;
+  href: string;
+}
+
+const WeppCard = ({ wepp, href }: Props) => {
   const { name, description, screenshots, logo, categories } = wepp;
 
   const existCategories = categories && categories.length > 0;
 
   return (
-    <Link href={`/wepp/${wepp.id}`}>
+    <Link href={href}>
       <Card>
         <CardBody className="flex-row gap-4">
           <Image

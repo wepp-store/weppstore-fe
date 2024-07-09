@@ -1,14 +1,7 @@
-import { SearchIcon } from 'lucide-react';
+import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/react';
 import Image from 'next/image';
-import React from 'react';
 import AccountPopover from './AccountPopover';
-import {
-  Link,
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-} from '@nextui-org/react';
+import SearchInput from './SearchInput';
 
 const Header = () => {
   return (
@@ -32,7 +25,7 @@ const Header = () => {
       </NavbarContent> */}
 
       <NavbarContent justify="end">
-        <SearchIcon />
+        <SearchInput />
         <AccountPopover />
       </NavbarContent>
     </Navbar>

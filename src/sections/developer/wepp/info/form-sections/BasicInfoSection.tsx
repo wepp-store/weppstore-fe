@@ -51,6 +51,7 @@ const BasicInfoSection = () => {
               width={200}
               className="aspect-square border border-gray-200"
               radius="full"
+              fallbackSrc="https://via.placeholder.com/200x200"
             />
             <input
               className="hidden"

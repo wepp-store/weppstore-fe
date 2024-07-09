@@ -1,14 +1,10 @@
 import React from 'react';
-import styles from './styles.module.scss';
-import { bindClassNames } from '@/shared/utils/styles';
 
 type Props = React.HTMLAttributes<HTMLDivElement>;
 
-const cx = bindClassNames(styles);
-
 const Section: React.FC<Props> = ({ children, className = '', ...other }) => {
   return (
-    <section className={`${cx('section')} ${className}`} {...other}>
+    <section className={`p-4 ${className}`} {...other}>
       {children}
     </section>
   );

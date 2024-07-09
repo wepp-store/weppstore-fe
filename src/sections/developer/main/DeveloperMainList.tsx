@@ -1,7 +1,7 @@
 'use client';
 import { useMineWeppList } from '@/shared/apis/queries/wepp';
-import { Card } from '@/shared/ui/card';
 import { Section } from '@/shared/ui/section';
+import { Card } from '@nextui-org/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';

@@ -1,9 +1,9 @@
 'use client';
 
+import { WeppCard } from '@/entities/wepp/index';
 import { useWeppList } from '@/shared/apis/queries/wepp';
 import { Section } from '@/shared/ui/section';
 import React from 'react';
-import { WeppCard } from './components';
 
 const MainListSection = () => {
   const {
@@ -28,7 +28,11 @@ const MainListSection = () => {
             data?.pages.map((group, i) => (
               <React.Fragment key={i}>
                 {group.data.map((wepp) => (
-                  <WeppCard key={wepp.id} wepp={wepp} />
+                  <WeppCard
+                    key={wepp.id}
+                    wepp={wepp}
+                    href={`wepp/${wepp.id}`}
+                  />
                 ))}
               </React.Fragment>
             ))}
