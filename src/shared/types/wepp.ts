@@ -30,4 +30,7 @@ export interface IWepp {
   screenshots: WeppScreenshot[];
   version: string;
   views: number;
+  isDesktop: boolean;
+  isTablet: boolean;
+  isMobile: boolean;
 }
