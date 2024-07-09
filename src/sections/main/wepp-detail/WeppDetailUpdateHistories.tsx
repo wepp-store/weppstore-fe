@@ -1,4 +1,4 @@
-import { Section } from '@/components/section';
+import { Section } from '@/shared/ui/section';
 import React from 'react';
 
 const WeppDetailUpdateHistories = () => {

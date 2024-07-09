@@ -1,5 +1,5 @@
-import { RHFInput } from '@/components/hook-form';
-import { Section } from '@/components/section';
+import { RHFInput } from '@/shared/ui/hook-form';
+import { Section } from '@/shared/ui/section';
 import React from 'react';
 
 const VersionSection = () => {

@@ -4,8 +4,8 @@ import {
   useWeppDetail,
   useUpdateWepp,
   useUploadWeppImage,
-} from '@/_apis/queries/wepp';
-import { FormProvider } from '@/components/hook-form';
+} from '@/shared/apis/queries/wepp';
+import { FormProvider } from '@/shared/ui/hook-form';
 import { useParams } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';

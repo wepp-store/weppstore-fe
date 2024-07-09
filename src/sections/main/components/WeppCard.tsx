@@ -1,5 +1,5 @@
-import { IWepp } from '@/_types';
-import { formatCategories } from '@/_utils';
+import { IWepp } from '@/shared/types';
+import { formatCategories } from '@/shared/utils';
 import { Button, Card, CardBody, Image } from '@nextui-org/react';
 import Link from 'next/link';
 import React from 'react';

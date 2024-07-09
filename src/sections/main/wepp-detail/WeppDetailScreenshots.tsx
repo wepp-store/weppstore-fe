@@ -1,5 +1,5 @@
-import { IWepp } from '@/_types';
-import { Section } from '@/components/section';
+import { IWepp } from '@/shared/types';
+import { Section } from '@/shared/ui/section';
 import { Image } from '@nextui-org/react';
 import React from 'react';
 

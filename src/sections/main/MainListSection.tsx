@@ -1,7 +1,7 @@
 'use client';
 
-import { useWeppList } from '@/_apis/queries/wepp';
-import { Section } from '@/components/section';
+import { useWeppList } from '@/shared/apis/queries/wepp';
+import { Section } from '@/shared/ui/section';
 import React from 'react';
 import { WeppCard } from './components';
 

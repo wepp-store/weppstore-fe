@@ -1,6 +1,6 @@
-import { useCategories } from '@/_apis/queries/categories/categories';
-import { IWepp, ICategory } from '@/_types';
-import { Section } from '@/components/section';
+import { useCategories } from '@/shared/apis/queries/categories/categories';
+import { IWepp, ICategory } from '@/shared/types';
+import { Section } from '@/shared/ui/section';
 import { Checkbox, CheckboxGroup } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';

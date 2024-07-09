@@ -1,4 +1,4 @@
-import { MainLayout } from '@/layouts/main';
+import { MainLayout } from '@/shared/layouts/main';
 import React from 'react';
 
 interface Props {

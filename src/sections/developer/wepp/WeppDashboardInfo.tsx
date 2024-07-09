@@ -1,8 +1,8 @@
 'use client';
 
-import { useWeppDetail } from '@/_apis/queries/wepp';
-import { formatCategories, weppStatusToText } from '@/_utils';
-import { Section } from '@/components/section';
+import { useWeppDetail } from '@/shared/apis/queries/wepp';
+import { formatCategories, weppStatusToText } from '@/shared/utils';
+import { Section } from '@/shared/ui/section';
 import {
   Button,
   Card,

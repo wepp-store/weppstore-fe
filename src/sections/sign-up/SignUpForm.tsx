@@ -1,8 +1,8 @@
 'use client';
-import { useSignUp } from '@/_apis/queries/auth';
-import { Button } from '@/components/button';
-import { Card } from '@/components/card';
-import { FormProvider, RHFInput } from '@/components/hook-form';
+import { useSignUp } from '@/shared/apis/queries/auth';
+import { Button } from '@/shared/ui/button';
+import { Card } from '@/shared/ui/card';
+import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 

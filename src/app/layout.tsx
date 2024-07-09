@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import '@/styles/globals.scss';
 import {
   ClientNextUIProvider,
   ClientNotistackProvider,
   ClientQueryClientProvider,
-} from '@/_providers';
+} from '@/shared/providers';
+import '@/styles/globals.scss';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
 

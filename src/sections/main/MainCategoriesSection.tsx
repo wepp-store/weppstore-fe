@@ -1,7 +1,7 @@
 'use client';
 
-import { useCategories } from '@/_apis/queries/categories/categories';
-import { Section } from '@/components/section';
+import { useCategories } from '@/shared/apis/queries/categories/categories';
+import { Section } from '@/shared/ui/section';
 import { Button } from '@nextui-org/react';
 import React from 'react';
 

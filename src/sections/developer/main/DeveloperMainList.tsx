@@ -1,7 +1,7 @@
 'use client';
-import { useMineWeppList } from '@/_apis/queries/wepp';
-import { Card } from '@/components/card';
-import { Section } from '@/components/section';
+import { useMineWeppList } from '@/shared/apis/queries/wepp';
+import { Card } from '@/shared/ui/card';
+import { Section } from '@/shared/ui/section';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';

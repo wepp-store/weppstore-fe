@@ -1,6 +1,6 @@
 'use client';
 
-import { CustomBreadcrumbs } from '@/components/custom-breadcrumbs';
+import { CustomBreadcrumbs } from '@/shared/ui/custom-breadcrumbs';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
