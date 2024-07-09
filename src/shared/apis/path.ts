@@ -4,6 +4,7 @@ export const PATH_API = {
     ME: '/auth/me',
     SIGN_IN: '/auth/sign-in',
     SIGN_UP: '/auth/sign-up',
+    SIGN_OUT: '/auth/sign-out',
     REFRESH_TOKEN: '/auth/refresh',
   },
   WEPP: {
