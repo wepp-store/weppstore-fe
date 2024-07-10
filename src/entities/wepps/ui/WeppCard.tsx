@@ -18,12 +18,12 @@ const WeppCard = ({ wepp, href }: Props) => {
       <CardBody className="flex-row gap-4">
         <Image
           src={logo || ''}
-          alt="wepp icon"
-          width={100}
-          height={100}
+          alt={`${name} logo`}
+          width={56}
+          height={56}
           radius="sm"
-          className="aspect-square"
-          fallbackSrc="https://via.placeholder.com/100x100"
+          className="aspect-square w-[56px] min-w-[56px] h-[56px] object-cover"
+          fallbackSrc="/no-image.svg"
         />
         <div className="flex flex-col justify-between w-full">
           <h3 className="font-semibold text-base mb-1">{name}</h3>
