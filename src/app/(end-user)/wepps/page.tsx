@@ -1,10 +1,20 @@
+import { weppListOptions } from '@/shared/apis/queries/wepp';
 import {
-  MainCategoriesSection,
-  MainFeaturedSection,
   MainListSection,
+  MainFeaturedSection,
+  MainCategoriesSection,
 } from '@/views/main';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 
-export default function Home() {
+export default async function Home() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchInfiniteQuery(weppListOptions);
+
   return (
     <>
       {/* 추천 앱 */}
@@ -12,7 +22,9 @@ export default function Home() {
       {/* 카테고리 */}
       <MainCategoriesSection />
       {/* 앱 리스트 */}
-      <MainListSection />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <MainListSection />
+      </HydrationBoundary>
     </>
   );
 }
