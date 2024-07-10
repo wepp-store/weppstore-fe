@@ -19,11 +19,11 @@ const WeppCard = ({ wepp, href }: Props) => {
         <Image
           src={logo || ''}
           alt="wepp icon"
-          width={200}
-          height={200}
+          width={100}
+          height={100}
           radius="sm"
           className="aspect-square"
-          fallbackSrc="https://via.placeholder.com/200x200"
+          fallbackSrc="https://via.placeholder.com/100x100"
         />
         <div className="flex flex-col justify-between w-full">
           <h3 className="font-semibold text-base mb-1">{name}</h3>
