@@ -1,12 +1,12 @@
 'use client';
 
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { axiosInstance } from '../../axios';
-import { PATH_API } from '../../path';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/navigation';
 import { PATH } from '@/shared/constants';
 import { removeSession } from '@/features/auth';
+import { axiosInstance } from '@/shared/apis/axios';
+import { PATH_API } from '@/shared/apis/path';
 
 export const useSignOut = (
   options?: Omit<UseMutationOptions<any, any>, 'mutationKey'>
@@ -15,7 +15,6 @@ export const useSignOut = (
   const { enqueueSnackbar } = useSnackbar();
 
   return useMutation({
-    mutationKey: [PATH_API.AUTH.SIGN_OUT],
     mutationFn: async () => {
       const response = await axiosInstance.post(PATH_API.AUTH.SIGN_OUT);
       return response.data;

@@ -9,6 +9,7 @@ import {
 import { IWepp } from '@/shared/types';
 import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
+import { weppKeys } from './query-key-factory';
 
 interface ResponseType {
   data: IWepp[];
@@ -25,7 +26,7 @@ type Props = Omit<
 
 export const useMineWeppList = (props?: Props) => {
   return useInfiniteQuery({
-    queryKey: [PATH_API.WEPP.MINE],
+    queryKey: weppKeys.mine,
     queryFn: async ({ pageParam: page }) => {
       const response = await axiosInstance.get(PATH_API.WEPP.MINE, {
         params: { page, size: 20 },

@@ -7,8 +7,8 @@ import { localStorageAvailable } from '@/shared/utils';
 import {
   useQuery,
   useQueryClient,
-  UseQueryOptions,
   UseQueryResult,
+  UseQueryOptions,
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { axiosInstance } from '../../axios';
@@ -51,11 +51,4 @@ export const useAuth = (params?: Props) => {
     staleTime: Infinity,
     ...params,
   }) as UseQueryResult<IUser, AxiosError>;
-};
-
-//
-export const useCachedUser = () => {
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData<IUser>([PATH_API.AUTH.ME]);
-  return { user };
 };
