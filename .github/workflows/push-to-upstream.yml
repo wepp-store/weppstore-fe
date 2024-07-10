@@ -22,4 +22,4 @@ jobs:
         env:
           UPSTREAM_TOKEN: ${{ secrets.UPSTREAM_TOKEN }}
         run: |
-          git push https://ryxxn:${{ secrets.UPSTREAM_TOKEN }}@github.com/ryxxn/weppstore-fe.git main
+          git push https://ryxxn:${UPSTREAM_TOKEN}@github.com/ryxxn/weppstore-fe.git main
