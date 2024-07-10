@@ -20,7 +20,7 @@ export const useSignUp = <T>(
     },
     onSuccess: () => {
       enqueueSnackbar('회원가입이 완료되었습니다.', { variant: 'success' });
-      router.push(PATH.AUTH.SIGN_IN);
+      router.push(PATH.AUTH.LOGIN);
     },
     onError: (error) => {
       enqueueSnackbar(error?.message, { variant: 'error' });
