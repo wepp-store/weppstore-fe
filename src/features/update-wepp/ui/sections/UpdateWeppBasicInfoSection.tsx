@@ -46,12 +46,13 @@ const UpdateWeppBasicInfoSection = () => {
         <div className="flex-1 flex justify-center">
           <label>
             <Image
+              isZoomed
               src={logo}
               alt="logo"
               width={200}
               className="aspect-square border border-gray-200"
               radius="full"
-              fallbackSrc="https://via.placeholder.com/200x200"
+              fallbackSrc="/no-image.svg"
             />
             <input
               className="hidden"
