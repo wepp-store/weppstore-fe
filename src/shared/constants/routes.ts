@@ -1,6 +1,6 @@
 export const PATH = {
   AUTH: {
-    SIGN_IN: 'sign-in',
+    LOGIN: 'login',
     SIGN_UP: 'sign-up',
   },
   MAIN: {

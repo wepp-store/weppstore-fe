@@ -16,7 +16,7 @@ const AccountPopover = () => {
   const handleLogout = async () => {
     try {
       // logout();
-      router.replace(PATH.AUTH.SIGN_IN);
+      router.replace(PATH.AUTH.LOGIN);
     } catch (error) {
       console.error(error);
       enqueueSnackbar('Unable to logout!', { variant: 'error' });
