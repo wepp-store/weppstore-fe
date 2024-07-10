@@ -15,12 +15,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name "ryxxn"
-          git config --global user.email "ryoon50@gmail.com"
-
-      - name: Print debug info
-        run: |
-          echo "UPSTREAM_TOKEN is set to: ${{ secrets.UPSTREAM_TOKEN }}"
+          git config --global user.name "박도륜"
+          git config --global user.email "88328436+ryxxn@users.noreply.github.com"
 
       - name: Push to upstream
         env:
