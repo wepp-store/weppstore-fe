@@ -18,15 +18,6 @@ jobs:
           git config --global user.name "ryxxn"
           git config --global user.email "ryoon50@gmail.com"
 
-      - name: Check if remote exists
-        run: |
-          if git remote get-url upstream; then
-            echo "Remote 'upstream' already exists"
-          else
-            git remote add upstream https://ryxxn:${{ secrets.UPSTREAM_TOKEN }}@github.com/ryxxn/weppstore-fe.git
-          fi
-
       - name: Push to upstream
-        env:
-          UPSTREAM_TOKEN: ${{ secrets.UPSTREAM_TOKEN }}
-        run: git push upstream main
+        run: |
+          git push https://ryxxn:${{ secrets.UPSTREAM_TOKEN }}@github.com/ryxxn/weppstore-fe.git main
