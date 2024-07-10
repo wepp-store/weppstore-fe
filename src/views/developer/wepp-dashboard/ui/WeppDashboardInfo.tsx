@@ -4,13 +4,13 @@ import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { formatCategories, weppStatusToText } from '@/shared/utils';
 import { Section } from '@/shared/ui/section';
 import {
-  Button,
+  Link,
   Card,
+  Button,
+  Divider,
   CardBody,
   CardFooter,
   CardHeader,
-  Divider,
-  Link,
 } from '@nextui-org/react';
 import { useParams, usePathname } from 'next/navigation';
 import React from 'react';
