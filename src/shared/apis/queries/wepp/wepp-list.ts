@@ -1,5 +1,3 @@
-'use client';
-
 import {
   InfiniteData,
   useInfiniteQuery,
@@ -24,21 +22,25 @@ type Props = Omit<
   'queryKey' | 'initialPageParam' | 'getNextPageParam'
 >;
 
+export const weppListOptions: UseInfiniteQueryOptions = {
+  queryKey: weppKeys.all,
+  queryFn: async ({ pageParam: page }) => {
+    const response = await axiosInstance.get(PATH_API.WEPP.ROOT, {
+      params: { page, size: 20 },
+    });
+    return response.data;
+  },
+  initialPageParam: 1,
+  getNextPageParam: (lastData: any, _allData: any) => {
+    const isEnd = lastData?.page === lastData?.totalPages;
+    return isEnd ? undefined : lastData?.page + 1;
+  },
+  // keepPreviousData: true,
+};
+
 export const useWeppList = (props?: Props) => {
   return useInfiniteQuery({
-    queryKey: weppKeys.all,
-    queryFn: async ({ pageParam: page }) => {
-      const response = await axiosInstance.get(PATH_API.WEPP.ROOT, {
-        params: { page, size: 20 },
-      });
-      return response.data;
-    },
+    ...weppListOptions,
     ...props,
-    initialPageParam: 1,
-    getNextPageParam: (lastData: any, _allData) => {
-      const isEnd = lastData?.page === lastData?.totalPages;
-      return isEnd ? undefined : lastData?.page + 1;
-    },
-    // keepPreviousData: true,
   }) as UseInfiniteQueryResult<InfiniteData<ResponseType>, any>;
 };
