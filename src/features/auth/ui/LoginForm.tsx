@@ -4,11 +4,11 @@ import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
 import {
   Link,
   Card,
-  Button,
   Divider,
   CardBody,
   CardFooter,
   CardHeader,
+  Button,
 } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 import { useSignIn } from '../api';
@@ -59,8 +59,13 @@ const LoginForm = () => {
         </CardBody>
 
         <CardFooter className="justify-end">
-          <Button color="primary" type="submit" fullWidth>
-            Login
+          <Button
+            color="primary"
+            type="submit"
+            fullWidth
+            isLoading={signInMutation.isPending}
+          >
+            {signInMutation.isPending || 'Login'}
           </Button>
         </CardFooter>
       </Card>
