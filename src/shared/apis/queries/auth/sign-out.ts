@@ -21,7 +21,7 @@ export const useSignOut = (
     },
     onSuccess: () => {
       removeSession();
-      replace(PATH.AUTH.SIGN_IN);
+      replace(PATH.AUTH.LOGIN);
       window.location.reload();
     },
     onError: (error) => {
