@@ -23,27 +23,30 @@ const UpdateWeppScreenshot = forwardRef(function UpdateWeppScreenshot(
 
   const updateScreenshot =
     (order: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (!file) return;
+      const files = e.target.files;
+      if (!files?.length) return;
 
-      uploadImageMutation.mutate(file, {
+      uploadImageMutation.mutate(files[0], {
         onSuccess: (data) => {
           setValue(`screenshots.${order}`, {
             order,
             style: '',
             url: `http://localhost:8000${data.url}`,
           });
+
           e.target.value = '';
         },
       });
     };
 
-  const removeScreenshot = (index: number) => (e: any) => {
+  const removeScreenshot = (order: number) => (e: any) => {
     e.preventDefault();
 
     setValue(
       'screenshots',
-      screenshots.filter((_, i) => i !== index)
+      screenshots
+        .filter((s) => s.order !== order)
+        .map((s, i) => ({ ...s, order: i }))
     );
   };
 
@@ -83,7 +86,6 @@ const UpdateWeppScreenshot = forwardRef(function UpdateWeppScreenshot(
         id="screenshots"
         type="file"
         accept="image/*"
-        multiple
         onChange={updateScreenshot(order)}
       />
     </label>
