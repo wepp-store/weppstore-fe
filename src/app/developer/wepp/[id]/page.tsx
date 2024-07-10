@@ -1,8 +1,8 @@
 import {
-  WeppDashboardBreadcrumbs,
-  WeppDashboardHeader,
   WeppDashboardInfo,
+  WeppDashboardHeader,
   WeppDashboardReviews,
+  WeppDashboardBreadcrumbs,
 } from '@/views/developer/wepp-dashboard';
 
 const WeppDetail = () => {
