@@ -1,0 +1,27 @@
+name: Push to Upstream
+
+# main push마다
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push_to_upstream:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "ryxxn"
+          git config --global user.email "ryoon50@gmail.com"
+
+      - name: Push to upstream
+        env:
+          UPSTREAM_TOKEN: ${{ secrets.UPSTREAM_TOKEN }}
+        run: |
+          git remote add upstream https://ryxxn:${{ secrets.UPSTREAM_TOKEN }}@github.com/ryxxn/weppstore-fe.git
+          git push upstream main
