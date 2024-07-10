@@ -1,35 +1,50 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useUploadWeppImage } from '../api';
+import { useUploadWeppImages } from '../api';
 import { WeppField } from '../types';
 import { Button } from '@nextui-org/react';
 import { Plus } from 'lucide-react';
+import { useSnackbar } from 'notistack';
 
 const AddWeppScreenshot = () => {
   const addInputRef = React.useRef<HTMLInputElement | null>(null);
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const { setValue, watch } = useFormContext<WeppField>();
 
-  const uploadImageMutation = useUploadWeppImage();
+  const uploadImagesMutation = useUploadWeppImages();
 
   const screenshots = watch('screenshots');
 
   const addScreenshots = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const files = e.target.files;
+    if (!files) return;
 
-    if (!file) return;
-    e.target.value = '';
+    const currentCount = screenshots.length;
+    const addedCount = files.length;
 
-    uploadImageMutation.mutate(file, {
-      onSuccess: (data) => {
+    if (currentCount + addedCount > 5) {
+      enqueueSnackbar('스크린샷은 최대 5개까지만 추가할 수 있습니다.', {
+        variant: 'error',
+      });
+      return;
+    }
+
+    const lastIndex = currentCount;
+
+    uploadImagesMutation.mutate(files, {
+      onSuccess: (data: { url: string }[]) => {
         setValue(`screenshots`, [
           ...screenshots,
-          {
-            order: 0,
+          ...data.map((d, i) => ({
+            order: lastIndex + i,
             style: '',
-            url: `http://localhost:8000${data.url}`,
-          },
+            url: `http://localhost:8000${d.url}`,
+          })),
         ]);
+
+        e.target.value = '';
       },
     });
   };
@@ -47,6 +62,7 @@ const AddWeppScreenshot = () => {
         className="hidden"
         type="file"
         accept="image/*"
+        multiple
         onChange={addScreenshots}
       />
     </label>
