@@ -7,15 +7,16 @@ import { AxiosError } from 'axios';
 import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
 import { IWepp } from '@/shared/types';
+import { weppKeys } from './query-key-factory';
 
 type Props = {
-  weppId?: string;
+  weppId: string;
   read?: boolean;
 } & Omit<UseQueryOptions, 'queryKey'>;
 
 export const useWeppDetail = ({ weppId, read = false, ...other }: Props) => {
   return useQuery({
-    queryKey: [PATH_API.WEPP.ROOT, weppId],
+    queryKey: weppKeys.detail(weppId),
     queryFn: async () => {
       const response = await axiosInstance.get(
         `${PATH_API.WEPP.ROOT}/${weppId}`,
