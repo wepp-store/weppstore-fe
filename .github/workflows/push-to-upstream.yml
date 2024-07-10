@@ -18,6 +18,12 @@ jobs:
           git config --global user.name "ryxxn"
           git config --global user.email "ryoon50@gmail.com"
 
+      - name: Print debug info
+        run: |
+          echo "UPSTREAM_TOKEN is set to: ${{ secrets.UPSTREAM_TOKEN }}"
+
       - name: Push to upstream
+        env:
+          UPSTREAM_TOKEN: ${{ secrets.UPSTREAM_TOKEN }}
         run: |
           git push https://ryxxn:${{ secrets.UPSTREAM_TOKEN }}@github.com/ryxxn/weppstore-fe.git main
