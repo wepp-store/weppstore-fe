@@ -1,6 +1,5 @@
 'use client';
 
-import { useSignIn } from '@/shared/apis/queries/auth';
 import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
 import {
   Link,
@@ -12,6 +11,7 @@ import {
   CardHeader,
 } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
+import { useSignIn } from '../api';
 
 const LoginForm = () => {
   const methods = useForm();
