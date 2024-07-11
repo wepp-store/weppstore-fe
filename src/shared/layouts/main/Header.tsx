@@ -29,6 +29,7 @@ const Header = () => {
           variant="underlined"
           aria-label="navigation"
           color="primary"
+          className="hidden sm:flex"
           classNames={{
             tabList: 'gap-6 p-0 border-b',
             // cursor: 'w-full bg-[#22d3ee]',
