@@ -1,16 +1,18 @@
 'use client';
 
-import { UseMutationOptions, useMutation } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useSnackbar } from 'notistack';
 import { useParams } from 'next/navigation';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import { resizeImage } from '@/shared/utils/resize-image';
 
 type FileType = 'logo' | 'screenshots';
 
 const upload = async (file: File, weppId: string, type: FileType) => {
   const formData = new FormData();
-  formData.append('file', file);
+  const resizedFile = await resizeImage(file);
+  formData.append('file', resizedFile);
 
   const response = await axiosInstance.post<{ url: string }>(
     `${PATH_API.WEPP.UPLOAD}/${weppId}/${type}`,
