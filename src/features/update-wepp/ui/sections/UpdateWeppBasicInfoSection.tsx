@@ -8,7 +8,7 @@ import { useUploadWeppImage } from '../../api';
 const UpdateWeppBasicInfoSection = () => {
   const { watch, setValue } = useFormContext();
 
-  const uploadImageMutation = useUploadWeppImage();
+  const uploadImageMutation = useUploadWeppImage({ type: 'logo' });
 
   const logo = watch('logo');
 
@@ -18,7 +18,9 @@ const UpdateWeppBasicInfoSection = () => {
 
     uploadImageMutation.mutate(file, {
       onSuccess: (data) => {
-        setValue('logo', `http://localhost:8000${data.url}`);
+        setValue('logo', data.url);
+      },
+      onSettled: () => {
         e.target.value = '';
       },
     });

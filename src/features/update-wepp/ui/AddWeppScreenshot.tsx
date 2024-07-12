@@ -13,7 +13,7 @@ const AddWeppScreenshot = () => {
 
   const { setValue, watch } = useFormContext<WeppField>();
 
-  const uploadImagesMutation = useUploadWeppImages();
+  const uploadImagesMutation = useUploadWeppImages({ type: 'screenshots' });
 
   const screenshots = watch('screenshots');
 
@@ -40,7 +40,7 @@ const AddWeppScreenshot = () => {
           ...data.map((d, i) => ({
             order: lastIndex + i,
             style: '',
-            url: `http://localhost:8000${d.url}`,
+            url: d.url,
           })),
         ]);
 
