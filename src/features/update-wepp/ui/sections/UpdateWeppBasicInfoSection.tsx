@@ -30,7 +30,7 @@ const UpdateWeppBasicInfoSection = () => {
     <Section className="flex flex-col gap-4">
       <h2 className="text-xl font-semibold mb-4">기본 정보</h2>
 
-      <div className="flex sm:flex-col-reverse md:flex-row">
+      <div className="flex flex-col-reverse md:flex-row">
         <div className="flex-1 flex flex-col gap-4">
           <RHFInput
             name="name"
@@ -45,26 +45,24 @@ const UpdateWeppBasicInfoSection = () => {
             placeholder="앱 URL"
           />
         </div>
-        <div className="flex-1 flex justify-center">
-          <label>
-            <Image
-              isZoomed
-              src={logo}
-              alt="logo"
-              width={200}
-              className="aspect-square border border-gray-200"
-              radius="full"
-              fallbackSrc="/no-image.svg"
-            />
-            <input
-              className="hidden"
-              id="logo"
-              type="file"
-              accept="image/*"
-              onChange={onUploadLogo}
-            />
-          </label>
-        </div>
+        <label className="flex-1 flex justify-center">
+          <Image
+            isZoomed
+            src={logo}
+            alt="logo"
+            width={200}
+            className="aspect-square border border-gray-200"
+            radius="full"
+            fallbackSrc="/no-image.svg"
+          />
+          <input
+            className="hidden"
+            id="logo"
+            type="file"
+            accept="image/*"
+            onChange={onUploadLogo}
+          />
+        </label>
       </div>
 
       <RHFTextArea
