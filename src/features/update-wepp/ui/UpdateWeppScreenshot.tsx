@@ -13,7 +13,7 @@ const UpdateWeppScreenshot = forwardRef(function UpdateWeppScreenshot(
   { screenshot, ...other }: Props,
   ref: any
 ) {
-  const uploadImageMutation = useUploadWeppImage();
+  const uploadImageMutation = useUploadWeppImage({ type: 'screenshots' });
 
   const { watch, setValue } = useFormContext<WeppField>();
 
@@ -31,7 +31,7 @@ const UpdateWeppScreenshot = forwardRef(function UpdateWeppScreenshot(
           setValue(`screenshots.${order}`, {
             order,
             style: '',
-            url: `http://localhost:8000${data.url}`,
+            url: data.url,
           });
 
           e.target.value = '';
