@@ -21,7 +21,7 @@ const WeppDetailScreen = () => {
   });
 
   return (
-    <article className="flex flex-col gap-8">
+    <article className="flex flex-col gap-2">
       <WeppDetailTitle wepp={wepp} />
 
       <WeppDetailScreenshots wepp={wepp} />
