@@ -1,4 +1,5 @@
 'use client';
+import DeleteWeppButton from '@/features/delete-wepp/ui/DeleteWeppButton';
 import { PATH_API } from '@/shared/apis/path';
 import { IWepp } from '@/shared/types';
 import { useQueryClient } from '@tanstack/react-query';
@@ -14,11 +15,13 @@ const WeppDashboardHeader = () => {
   const wepp = queryClient.getQueryData<IWepp>(queryKey);
 
   return (
-    <div className="container mx-auto p-4">
-      <header>
+    <div className="container mx-auto py-4">
+      <header className="flex justify-between">
         <h1 className="text-3xl font-bold text-gray-800">
           {wepp?.name} 대시보드
         </h1>
+
+        <DeleteWeppButton />
       </header>
     </div>
   );
