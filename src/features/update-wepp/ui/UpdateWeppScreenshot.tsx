@@ -55,12 +55,8 @@ const UpdateWeppScreenshot = forwardRef(function UpdateWeppScreenshot(
       <Image
         src={url}
         alt="screenshot"
-        width={160}
         height={288}
         className="
-          w-40
-          min-w-40
-          max-w-40
           h-72
           min-h-72
           max-h-72
