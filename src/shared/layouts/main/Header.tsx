@@ -7,7 +7,6 @@ import {
   NavbarContent,
 } from '@nextui-org/react';
 import Image from 'next/image';
-import AccountPopover from './AccountPopover';
 import SearchInput from './SearchInput';
 import { usePathname } from 'next/navigation';
 
@@ -44,7 +43,6 @@ const Header = () => {
 
       <NavbarContent justify="end">
         <SearchInput />
-        <AccountPopover />
       </NavbarContent>
     </Navbar>
   );

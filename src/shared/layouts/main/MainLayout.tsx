@@ -11,7 +11,9 @@ const MainLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <Header />
-      <main className="container mx-auto p-4 flex-grow">{children}</main>
+      <main className="flex-grow p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+        {children}
+      </main>
       <Footer />
     </>
   );
