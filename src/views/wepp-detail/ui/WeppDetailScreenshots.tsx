@@ -27,7 +27,13 @@ const WeppDetailScreenshots = ({ wepp }: Props) => {
               src={screenshot.url}
               alt={`screenshot ${screenshot.order}`}
               radius="lg"
-              className="flex-shrink-0 w-40 h-72 bg-gray-200"
+              className="
+                flex-shrink-0
+                bg-gray-200
+                h-80
+                min-h-80
+                max-h-80
+              "
             />
           ))}
         </div>
