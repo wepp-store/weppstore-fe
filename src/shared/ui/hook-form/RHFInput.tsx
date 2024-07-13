@@ -3,10 +3,9 @@ import { Input, InputProps } from '@nextui-org/react';
 
 interface Props extends InputProps {
   name: string;
-  loading?: boolean;
 }
 
-export default function RHFInput({ name, loading = false, ...other }: Props) {
+export default function RHFInput({ name, isReadOnly, ...other }: Props) {
   const { control, setValue } = useFormContext();
 
   return (
@@ -15,9 +14,11 @@ export default function RHFInput({ name, loading = false, ...other }: Props) {
       control={control}
       render={({ field }) => (
         <Input
-          isClearable
           labelPlacement="outside"
-          onClear={() => setValue(name, '')}
+          // TODO: isReadOnly일 때 clear 버튼이 보이지 않도록 nextui에 요청
+          isClearable={!isReadOnly}
+          onClear={!isReadOnly ? () => setValue(name, '') : undefined}
+          isReadOnly={isReadOnly}
           {...field}
           {...other}
         />
