@@ -13,54 +13,25 @@ import {
   UpdateWeppCategoriesSection,
   UpdateWeppScreenshotsSection,
 } from './sections';
-import { WeppField } from '../types';
 import { useUpdateWepp } from '../api';
-
-const defaultValues: WeppField = {
-  url: '',
-  name: '',
-  description: '',
-  logo: '',
-  status: 'DRAFT',
-  version: '0.0.0',
-  screenshots: [],
-  categories: [],
-  isDesktop: true,
-  isMobile: false,
-  isTablet: false,
-};
+import { convertUpdateWeppForm } from '../utils';
+import { IWepp } from '@/shared/types';
+import { WeppField } from '../types';
 
 const WeppInfoForm = () => {
   const { id: weppId }: { id: string } = useParams();
 
-  const { data, isFetched } = useWeppDetail({ weppId });
+  const { data } = useWeppDetail({ weppId });
 
-  const patchWeppMutation = useUpdateWepp();
+  const patchWeppMutation = useUpdateWepp<WeppField>();
 
-  const methods = useForm<WeppField>({ defaultValues });
+  const methods = useForm<IWepp>({ defaultValues: data });
 
-  const { handleSubmit, setValue, reset, watch } = methods;
+  const { handleSubmit } = methods;
 
-  const values = watch();
-
-  const onSubmit = (data: WeppField) => {
-    patchWeppMutation.mutate(data);
+  const onSubmit = (data: IWepp) => {
+    patchWeppMutation.mutate(convertUpdateWeppForm(data));
   };
-
-  React.useEffect(() => {
-    if (!isFetched) return;
-    reset({
-      name: data?.name,
-      url: data?.url,
-      description: data?.description,
-      logo: data?.logo,
-      status: data?.status,
-      version: data?.version,
-      screenshots: data?.screenshots || [],
-      categories: data?.categories || [],
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFetched]);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

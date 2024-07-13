@@ -4,13 +4,14 @@ import { Image } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useUploadWeppImage } from '../../api';
+import { VerifyWeppButton } from '@/features/verify-wepp';
 
 const UpdateWeppBasicInfoSection = () => {
   const { watch, setValue } = useFormContext();
 
   const uploadImageMutation = useUploadWeppImage({ type: 'logo' });
 
-  const logo = watch('logo');
+  const { logo, isVerified } = watch();
 
   const onUploadLogo = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -38,13 +39,27 @@ const UpdateWeppBasicInfoSection = () => {
             type="text"
             placeholder="앱 이름"
           />
-          <RHFInput
-            name="url"
-            label="앱 URL"
-            type="text"
-            placeholder="앱 URL"
-          />
+          <div className="flex flex-col gap-1">
+            <div className="flex gap-4 items-end">
+              <RHFInput
+                name="url"
+                label="앱 URL"
+                type="text"
+                placeholder="앱 URL"
+                isReadOnly={isVerified}
+              />
+              <VerifyWeppButton />
+            </div>
+
+            {isVerified ? (
+              <p className="text-sm text-green-500">인증이 완료되었습니다.</p>
+            ) : (
+              <p className="text-sm text-red-500">도메인 인증을 해주세요.</p>
+            )}
+          </div>
         </div>
+
+        {/* Logo */}
         <label className="flex-1 flex justify-center">
           <Image
             isZoomed
