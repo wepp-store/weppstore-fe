@@ -10,6 +10,7 @@ export const PATH_API = {
   WEPP: {
     ROOT: '/wepp',
     MINE: '/wepp/mine',
+    VERIFY: '/wepp/verify',
     UPLOAD: '/wepp/upload',
   },
   CATEGORIES: {
