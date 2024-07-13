@@ -33,4 +33,5 @@ export interface IWepp {
   isDesktop: boolean;
   isTablet: boolean;
   isMobile: boolean;
+  isVerified: boolean;
 }
