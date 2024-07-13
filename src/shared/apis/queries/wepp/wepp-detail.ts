@@ -14,21 +14,29 @@ type Props = {
   read?: boolean;
 } & Omit<UseQueryOptions, 'queryKey'>;
 
+export const weppDetailOptions = ({
+  weppId,
+  read = false,
+  ...other
+}: Props): UseQueryOptions => ({
+  queryKey: weppKeys.detail(weppId),
+  queryFn: async () => {
+    const response = await axiosInstance.get(
+      `${PATH_API.WEPP.ROOT}/${weppId}`,
+      {
+        headers: {
+          'X-WEPP-READ': read,
+        },
+      }
+    );
+    return response.data;
+  },
+  enabled: !!weppId,
+  ...other,
+});
+
 export const useWeppDetail = ({ weppId, read = false, ...other }: Props) => {
-  return useQuery({
-    queryKey: weppKeys.detail(weppId),
-    queryFn: async () => {
-      const response = await axiosInstance.get(
-        `${PATH_API.WEPP.ROOT}/${weppId}`,
-        {
-          headers: {
-            'X-WEPP-READ': read,
-          },
-        }
-      );
-      return response.data;
-    },
-    enabled: !!weppId,
-    ...other,
-  }) as UseQueryResult<IWepp, AxiosError>;
+  return useQuery(
+    weppDetailOptions({ weppId, read, ...other })
+  ) as UseQueryResult<IWepp, AxiosError>;
 };
