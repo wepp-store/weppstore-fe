@@ -1,12 +1,16 @@
 import { ICategory, IWepp } from '@/shared/types';
 
-export type WeppField = Omit<
+export type WeppField = Pick<
   IWepp,
-  | 'id'
-  | 'developerId'
-  | 'developer'
-  | 'createdAt'
-  | 'updatedAt'
+  | 'url'
+  | 'name'
+  | 'description'
+  | 'logo'
+  | 'status'
+  | 'version'
+  | 'screenshots'
   | 'categories'
-  | 'views'
+  | 'isDesktop'
+  | 'isMobile'
+  | 'isTablet'
 > & { categories: Omit<ICategory, 'description'>[] };
