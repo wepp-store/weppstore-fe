@@ -1,9 +1,5 @@
 import { weppListOptions } from '@/shared/apis/queries/wepp';
-import {
-  MainListSection,
-  MainFeaturedSection,
-  MainCategoriesSection,
-} from '@/views/main';
+import { MainPage } from '@/views/main';
 import {
   dehydrate,
   HydrationBoundary,
@@ -17,13 +13,8 @@ export default async function Home() {
 
   return (
     <>
-      {/* 추천 앱 */}
-      <MainFeaturedSection />
-      {/* 카테고리 */}
-      <MainCategoriesSection />
-      {/* 앱 리스트 */}
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <MainListSection />
+        <MainPage />
       </HydrationBoundary>
     </>
   );

@@ -1,1 +1,1 @@
-export { default as DeveloperLayout } from './DeveloperLayout';
+export { default as DeveloperLayout } from './developer-layout';

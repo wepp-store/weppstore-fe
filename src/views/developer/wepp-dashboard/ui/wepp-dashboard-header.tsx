@@ -1,5 +1,5 @@
 'use client';
-import DeleteWeppButton from '@/features/delete-wepp/ui/DeleteWeppButton';
+import { DeleteWeppButton } from '@/features/delete-wepp';
 import { PATH_API } from '@/shared/apis/path';
 import { IWepp } from '@/shared/types';
 import { useQueryClient } from '@tanstack/react-query';

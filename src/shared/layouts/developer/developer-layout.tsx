@@ -1,8 +1,8 @@
 'use client';
 import { DeveloperGuard } from '@/features/auth';
 import React from 'react';
-import Footer from './Footer';
-import Header from './Header';
+import Header from './developer-layout-header';
+import Footer from './developer-layout-footer';
 
 interface Props {
   children: React.ReactNode;

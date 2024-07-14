@@ -1,2 +1,2 @@
-export { default as WeppCard } from './ui/WeppCard';
-export * from './ui/DevicesChip';
+export * from './ui/devices-chip';
+export { default as WeppCard } from './ui/wepp-card';

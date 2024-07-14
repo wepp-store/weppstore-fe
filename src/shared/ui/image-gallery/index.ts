@@ -1,2 +1,2 @@
-export { default as ImageGallery } from './ImageGallery';
+export { default as ImageGallery } from './image-gallery';
 export * from './types';

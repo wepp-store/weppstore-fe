@@ -1,7 +1,7 @@
 import { SearchIcon } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
-import AccountPopover from './AccountPopover';
+import AccountPopover from './account-popover';
 import {
   Link,
   Navbar,

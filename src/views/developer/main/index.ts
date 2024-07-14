@@ -1,2 +1,2 @@
-export { default as DeveloperMainList } from './DeveloperMainList';
-export { default as DeveloperMainHeader } from './DeveloperMainHeader';
+export { default as DeveloperMainList } from './developer-main-list';
+export { default as DeveloperMainHeader } from './developer-main-header';

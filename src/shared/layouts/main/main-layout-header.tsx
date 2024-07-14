@@ -7,7 +7,7 @@ import {
   NavbarContent,
 } from '@nextui-org/react';
 import Image from 'next/image';
-import SearchInput from './SearchInput';
+import SearchInput from './search-input';
 import { usePathname } from 'next/navigation';
 
 const Header = () => {

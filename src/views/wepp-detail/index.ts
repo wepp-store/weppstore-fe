@@ -1,1 +1,1 @@
-export { default as WeppDetailPage } from './WeppDetailPage';
+export { default as WeppDetailPage } from './wepp-detail-page';

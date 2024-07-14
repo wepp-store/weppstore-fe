@@ -1,19 +1,7 @@
-import {
-  WeppDashboardInfo,
-  WeppDashboardHeader,
-  WeppDashboardReviews,
-  WeppDashboardBreadcrumbs,
-} from '@/views/developer/wepp-dashboard';
+import { WeppDashboardPage } from '@/views/developer/wepp-dashboard';
 
 const WeppDetail = () => {
-  return (
-    <>
-      <WeppDashboardBreadcrumbs />
-      <WeppDashboardHeader />
-      <WeppDashboardInfo />
-      <WeppDashboardReviews />
-    </>
-  );
+  return <WeppDashboardPage />;
 };
 
 export default WeppDetail;

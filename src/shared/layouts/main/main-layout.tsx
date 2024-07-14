@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
-import Footer from './Footer';
-import Header from './Header';
+import Footer from './main-layout-footer';
+import Header from './main-layout-header';
 
 interface Props {
   children: React.ReactNode;

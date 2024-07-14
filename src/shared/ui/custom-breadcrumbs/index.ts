@@ -1,1 +1,1 @@
-export { default as CustomBreadcrumbs } from './CustomBreadcrumbs';
+export { default as CustomBreadcrumbs } from './custom-breadcrumbs';

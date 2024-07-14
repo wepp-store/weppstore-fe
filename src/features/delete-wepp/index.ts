@@ -1,1 +1,1 @@
-export { default as DeleteWeppButton } from './ui/DeleteWeppButton';
+export { default as DeleteWeppButton } from './ui/delete-wepp-button';

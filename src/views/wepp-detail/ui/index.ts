@@ -1,6 +1,6 @@
-export { default as WeppDetailTitle } from './WeppDetailTitle';
-export { default as WeppDetailReviews } from './WeppDetailReviews';
-export { default as WeppDetailSimilars } from './WeppDetailSimilars';
-export { default as WeppDetailScreenshots } from './WeppDetailScreenshots';
-export { default as WeppDetailAdditionalInfo } from './WeppDetailAdditionalInfo';
-export { default as WeppDetailUpdateHistories } from './WeppDetailUpdateHistories';
+export { default as WeppDetailTitle } from './wepp-detail-title';
+export { default as WeppDetailReviews } from './wepp-detail-reviews';
+export { default as WeppDetailSimilars } from './wepp-detail-similars';
+export { default as WeppDetailScreenshots } from './wepp-detail-screenshots';
+export { default as WeppDetailAdditionalInfo } from './wepp-detail-additional-info';
+export { default as WeppDetailUpdateHistories } from './wepp-detail-update-histories';

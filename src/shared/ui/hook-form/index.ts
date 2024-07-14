@@ -1,3 +1,3 @@
-export { default as RHFInput } from './RHFInput';
-export { default as RHFTextArea } from './RHFTextArea';
-export { default as FormProvider } from './FormProvider';
+export { default as RHFInput } from './rhf-input';
+export { default as RHFTextArea } from './rhf-textArea';
+export { default as FormProvider } from './form-provider';
