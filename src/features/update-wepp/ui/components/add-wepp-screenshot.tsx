@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useUploadWeppImages } from '../api';
-import { WeppField } from '../types';
+import { useUploadWeppImages } from '../../api';
+import { WeppField } from '../../types';
 import { Button } from '@nextui-org/react';
 import { Plus } from 'lucide-react';
 import { useSnackbar } from 'notistack';

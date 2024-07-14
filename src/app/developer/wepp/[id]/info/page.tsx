@@ -1,12 +1,24 @@
-import { UpdateWeppForm } from '@/features/update-wepp';
-import { WeppInfoBreadcrumbs } from '@/views/developer/wepp-info';
+import { weppDetailOptions } from '@/shared/apis/queries/wepp';
+import { WeppInfoPage } from '@/views/developer/wepp-info';
+import {
+  dehydrate,
+  QueryClient,
+  HydrationBoundary,
+} from '@tanstack/react-query';
 
-const Page = () => {
+const Page = async ({ params }: { params: { id: string } }) => {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery(
+    weppDetailOptions({
+      weppId: params.id,
+    })
+  );
+
   return (
-    <>
-      <WeppInfoBreadcrumbs />
-      <UpdateWeppForm />
-    </>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <WeppInfoPage />
+    </HydrationBoundary>
   );
 };
 

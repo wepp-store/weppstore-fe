@@ -7,7 +7,11 @@ import { useFormContext } from 'react-hook-form';
 import { WeppField } from '../../types';
 
 const UpdateWeppCategoriesSection = () => {
-  const { watch, setValue } = useFormContext<WeppField>();
+  const {
+    watch,
+    setValue,
+    formState: { errors },
+  } = useFormContext<WeppField>();
 
   const { data } = useCategories();
 
@@ -25,6 +29,8 @@ const UpdateWeppCategoriesSection = () => {
       }
     };
 
+  const error = errors.categories;
+
   return (
     <Section>
       <h2 className="text-xl font-semibold mb-4">카테고리</h2>
@@ -40,6 +46,12 @@ const UpdateWeppCategoriesSection = () => {
           </Checkbox>
         ))}
       </div>
+
+      {error && (
+        <div data-slot="error-message" className="text-tiny text-danger mt-2">
+          {error.message}
+        </div>
+      )}
     </Section>
   );
 };

@@ -6,64 +6,36 @@ import { useParams } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Card, CardBody, CardHeader, Divider } from '@nextui-org/react';
+import { IWepp } from '@/shared/types';
 import {
   UpdateWeppDevicesSection,
   UpdateWeppVersionSection,
   UpdateWeppBasicInfoSection,
   UpdateWeppCategoriesSection,
   UpdateWeppScreenshotsSection,
-} from './sections';
+} from './form-sections';
 import { WeppField } from '../types';
 import { useUpdateWepp } from '../api';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { convertUpdateWeppForm, weppSchema } from '../utils';
+import { SubmitWeppButton } from './components';
 
-const defaultValues: WeppField = {
-  url: '',
-  name: '',
-  description: '',
-  logo: '',
-  status: 'DRAFT',
-  version: '0.0.0',
-  screenshots: [],
-  categories: [],
-  isDesktop: true,
-  isMobile: false,
-  isTablet: false,
-};
-
-const WeppInfoForm = () => {
+const UpdateWeppForm = () => {
   const { id: weppId }: { id: string } = useParams();
 
-  const { data, isFetched } = useWeppDetail({ weppId });
+  const { data } = useWeppDetail({ weppId });
 
-  const patchWeppMutation = useUpdateWepp();
+  const patchWeppMutation = useUpdateWepp<WeppField>();
 
-  const methods = useForm<WeppField>({ defaultValues });
+  const methods = useForm<IWepp>({
+    defaultValues: data,
+    resolver: yupResolver(weppSchema) as any,
+  });
 
-  const { handleSubmit, setValue, reset, watch } = methods;
-
-  const values = watch();
-
-  const onSubmit = (data: WeppField) => {
-    patchWeppMutation.mutate(data);
-  };
-
-  React.useEffect(() => {
-    if (!isFetched) return;
-    reset({
-      name: data?.name,
-      url: data?.url,
-      description: data?.description,
-      logo: data?.logo,
-      status: data?.status,
-      version: data?.version,
-      screenshots: data?.screenshots || [],
-      categories: data?.categories || [],
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFetched]);
+  const { watch } = methods;
 
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider methods={methods}>
       <Card>
         <CardHeader className="flex justify-between items-center p-4">
           <h1 className="text-3xl font-bold text-gray-800">앱 정보</h1>
@@ -72,14 +44,14 @@ const WeppInfoForm = () => {
             <Button
               color="primary"
               variant="bordered"
-              type="submit"
-              // type="button"
+              isLoading={patchWeppMutation.isPending}
+              onPress={() =>
+                patchWeppMutation.mutate(convertUpdateWeppForm(watch()))
+              }
             >
-              임시 저장
+              {patchWeppMutation.isPending || '임시 저장'}
             </Button>
-            <Button color="primary" type="submit">
-              앱 제출
-            </Button>
+            <SubmitWeppButton />
           </div>
         </CardHeader>
         <Divider />
@@ -114,4 +86,4 @@ const WeppInfoForm = () => {
   );
 };
 
-export default WeppInfoForm;
+export default UpdateWeppForm;

@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { WeppField } from '../types';
-import { useUploadWeppImage } from '../api';
+import { WeppField } from '../../types';
+import { useUploadWeppImage } from '../../api';
 import { X } from 'lucide-react';
 import { Image } from '@nextui-org/react';
 
