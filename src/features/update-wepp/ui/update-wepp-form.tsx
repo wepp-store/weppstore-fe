@@ -6,35 +6,36 @@ import { useParams } from 'next/navigation';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Button, Card, CardBody, CardHeader, Divider } from '@nextui-org/react';
+import { IWepp } from '@/shared/types';
 import {
   UpdateWeppDevicesSection,
   UpdateWeppVersionSection,
   UpdateWeppBasicInfoSection,
   UpdateWeppCategoriesSection,
   UpdateWeppScreenshotsSection,
-} from './sections';
-import { useUpdateWepp } from '../api';
-import { convertUpdateWeppForm } from '../utils';
-import { IWepp } from '@/shared/types';
+} from './form-sections';
 import { WeppField } from '../types';
+import { useUpdateWepp } from '../api';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { convertUpdateWeppForm, weppSchema } from '../utils';
+import { SubmitWeppButton } from './components';
 
-const WeppInfoForm = () => {
+const UpdateWeppForm = () => {
   const { id: weppId }: { id: string } = useParams();
 
   const { data } = useWeppDetail({ weppId });
 
   const patchWeppMutation = useUpdateWepp<WeppField>();
 
-  const methods = useForm<IWepp>({ defaultValues: data });
+  const methods = useForm<IWepp>({
+    defaultValues: data,
+    resolver: yupResolver(weppSchema) as any,
+  });
 
-  const { handleSubmit } = methods;
-
-  const onSubmit = (data: IWepp) => {
-    patchWeppMutation.mutate(convertUpdateWeppForm(data));
-  };
+  const { watch } = methods;
 
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider methods={methods}>
       <Card>
         <CardHeader className="flex justify-between items-center p-4">
           <h1 className="text-3xl font-bold text-gray-800">앱 정보</h1>
@@ -43,14 +44,14 @@ const WeppInfoForm = () => {
             <Button
               color="primary"
               variant="bordered"
-              type="submit"
-              // type="button"
+              isLoading={patchWeppMutation.isPending}
+              onPress={() =>
+                patchWeppMutation.mutate(convertUpdateWeppForm(watch()))
+              }
             >
-              임시 저장
+              {patchWeppMutation.isPending || '임시 저장'}
             </Button>
-            <Button color="primary" type="submit">
-              앱 제출
-            </Button>
+            <SubmitWeppButton />
           </div>
         </CardHeader>
         <Divider />
@@ -85,4 +86,4 @@ const WeppInfoForm = () => {
   );
 };
 
-export default WeppInfoForm;
+export default UpdateWeppForm;

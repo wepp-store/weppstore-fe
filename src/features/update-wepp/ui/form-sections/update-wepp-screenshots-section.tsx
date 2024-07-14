@@ -3,8 +3,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { WeppField } from '../../types';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
-import UpdateWeppScreenshot from '../UpdateWeppScreenshot';
-import AddWeppScreenshot from '../AddWeppScreenshot';
+import { AddWeppScreenshot, UpdateWeppScreenshot } from '../components';
 
 const UpdateWeppScreenshotsSection = () => {
   const { watch, setValue } = useFormContext<WeppField>();
