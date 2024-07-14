@@ -4,7 +4,12 @@ import { Image } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useUploadWeppImage } from '../../api';
-import { VerifyWeppButton } from '@/features/verify-wepp';
+import {
+  VerifyWeppButton,
+  WeppUrlChangeButton,
+  DomainOwnershipInfoButton,
+} from '../components';
+import { Callout } from '@/shared/ui/callout';
 
 const UpdateWeppBasicInfoSection = () => {
   const { watch, setValue } = useFormContext();
@@ -29,6 +34,10 @@ const UpdateWeppBasicInfoSection = () => {
 
   return (
     <Section className="flex flex-col gap-4">
+      {!isVerified && (
+        <Callout color="danger">도메인 소유권을 인증해주세요.</Callout>
+      )}
+
       <h2 className="text-xl font-semibold mb-4">기본 정보</h2>
 
       <div className="flex flex-col-reverse md:flex-row">
@@ -39,7 +48,7 @@ const UpdateWeppBasicInfoSection = () => {
             type="text"
             placeholder="앱 이름"
           />
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-4">
             <div className="flex gap-4 items-end">
               <RHFInput
                 name="url"
@@ -48,36 +57,36 @@ const UpdateWeppBasicInfoSection = () => {
                 placeholder="앱 URL"
                 isReadOnly={isVerified}
               />
-              <VerifyWeppButton />
+              {isVerified ? <WeppUrlChangeButton /> : <VerifyWeppButton />}
             </div>
 
-            {isVerified ? (
-              <p className="text-sm text-green-500">인증이 완료되었습니다.</p>
-            ) : (
-              <p className="text-sm text-red-500">도메인 인증을 해주세요.</p>
-            )}
+            <div className="flex justify-end">
+              <DomainOwnershipInfoButton />
+            </div>
           </div>
         </div>
 
         {/* Logo */}
-        <label className="flex-1 flex justify-center">
-          <Image
-            isZoomed
-            src={logo}
-            alt="logo"
-            width={200}
-            className="aspect-square border border-gray-200"
-            radius="full"
-            fallbackSrc="/no-image.svg"
-          />
-          <input
-            className="hidden"
-            id="logo"
-            type="file"
-            accept="image/*"
-            onChange={onUploadLogo}
-          />
-        </label>
+        <div className="flex-1 flex justify-center">
+          <label>
+            <Image
+              isZoomed
+              src={logo}
+              alt="logo"
+              width={200}
+              className="aspect-square border border-gray-200"
+              radius="full"
+              fallbackSrc="/no-image.svg"
+            />
+            <input
+              className="hidden"
+              id="logo"
+              type="file"
+              accept="image/*"
+              onChange={onUploadLogo}
+            />
+          </label>
+        </div>
       </div>
 
       <RHFTextArea

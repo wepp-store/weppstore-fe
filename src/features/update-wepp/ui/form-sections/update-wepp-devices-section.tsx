@@ -6,7 +6,11 @@ import { WeppField } from '../../types';
 import { Monitor, Smartphone, Tablet } from 'lucide-react';
 
 const UpdateWeppDevicesSection = () => {
-  const { watch, setValue } = useFormContext<WeppField>();
+  const {
+    watch,
+    setValue,
+    formState: { errors },
+  } = useFormContext<WeppField>();
 
   const values = watch();
 
@@ -16,6 +20,9 @@ const UpdateWeppDevicesSection = () => {
     (name: 'isDesktop' | 'isMobile' | 'isTablet') => (isSelected: boolean) => {
       setValue(name, isSelected);
     };
+
+  // @ts-ignore
+  const error = errors.devices;
 
   return (
     <Section>
@@ -41,6 +48,12 @@ const UpdateWeppDevicesSection = () => {
           </div>
         </Checkbox>
       </div>
+
+      {error && (
+        <div data-slot="error-message" className="text-tiny text-danger mt-2">
+          {error.message}
+        </div>
+      )}
     </Section>
   );
 };

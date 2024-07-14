@@ -8,10 +8,12 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import React from 'react';
-import { useVerifyWepp } from '../api';
+import { useVerifyWepp } from '../../api';
 import { useSnackbar } from 'notistack';
 import { useFormContext } from 'react-hook-form';
 import { installLink } from '@/shared/utils';
+import { Monitor, Smartphone, Tablet } from 'lucide-react';
+import { Callout } from '@/shared/ui/callout';
 
 const VerifyWeppButton = () => {
   const { watch, setValue } = useFormContext();
@@ -47,31 +49,26 @@ const VerifyWeppButton = () => {
 
   return (
     <>
-      {isVerified ? (
-        <Button color="warning" variant="bordered">
-          변경하기
-        </Button>
-      ) : (
-        <Button color="primary" onPress={onOpenModal}>
-          인증하기
-        </Button>
-      )}
+      <Button color="primary" onPress={onOpenModal}>
+        인증하기
+      </Button>
 
       {/* verify confirm modal */}
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        size="5xl"
+        size="4xl"
         hideCloseButton
+        scrollBehavior="inside"
       >
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="justify-between">
-                <div>앱 인증 절차</div>
+                <div>도메인 소유권을 인증하시겠습니까?</div>
 
                 <Button
-                  color="danger"
+                  color="primary"
                   onPress={handleVerify}
                   isLoading={isPending}
                   disabled={isVerified}
@@ -79,14 +76,25 @@ const VerifyWeppButton = () => {
                   인증하기
                 </Button>
               </ModalHeader>
-              <ModalBody className="items-center">
-                <iframe
-                  src={verifyLink}
-                  className="container h-[calc(100vh-20rem)]"
-                />
+              <ModalBody className="gap-8 items-center">
+                <Callout color="warning" className="w-full">
+                  <div>
+                    미리보기 화면에 앱 설치 프롬프트가 표시되지 않나요?{' '}
+                    {/* TODO */}
+                    <span className="underline">
+                      앱 URL이 redirection되지는 않는지 확인해주세요!
+                    </span>
+                  </div>
+                </Callout>
+                <div className="rounded-[24px] border-[12px]">
+                  <iframe
+                    src={verifyLink}
+                    className={`container rounded-[12px] w-[340px] h-[604px]`}
+                  />
+                </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="primary" variant="flat" onPress={onClose}>
+                <Button variant="light" onPress={onClose}>
                   닫기
                 </Button>
               </ModalFooter>
