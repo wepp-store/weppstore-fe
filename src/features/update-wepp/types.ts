@@ -9,7 +9,6 @@ export type WeppField = Pick<
   | 'status'
   | 'version'
   | 'screenshots'
-  | 'categories'
   | 'isDesktop'
   | 'isMobile'
   | 'isTablet'
