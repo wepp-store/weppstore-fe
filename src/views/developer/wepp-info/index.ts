@@ -1,1 +1,1 @@
-export { default as WeppInfoBreadcrumbs } from './ui/WeppInfoBreadcrumbs';
+export { default as WeppInfoPage } from './ui/wepp-info-page';
