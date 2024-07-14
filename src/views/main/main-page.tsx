@@ -7,9 +7,9 @@ const MainPage = () => {
   return (
     <>
       {/* 추천 앱 */}
-      <MainFeaturedSection />
+      {/* <MainFeaturedSection /> */}
       {/* 카테고리 */}
-      <MainCategoriesSection />
+      {/* <MainCategoriesSection /> */}
       {/* 앱 리스트 */}
       <MainListSection />
     </>

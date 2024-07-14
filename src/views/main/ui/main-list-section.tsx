@@ -20,8 +20,6 @@ const MainListSection = () => {
   return (
     <>
       <Section>
-        <h2 className="text-xl font-semibold mb-4">인기 앱</h2>
-
         <div
           className="
           grid
@@ -29,7 +27,7 @@ const MainListSection = () => {
           grid-cols-1
           sm:grid-cols-2
           md:grid-cols-3
-          lg:grid-cols-4
+          xl:grid-cols-4
           "
         >
           {isNotData && <>등록된 앱이 없습니다.</>}
