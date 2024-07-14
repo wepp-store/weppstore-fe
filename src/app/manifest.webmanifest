@@ -2,8 +2,7 @@
   "theme_color": "#000000",
   "background_color": "#000000",
   "display": "browser",
-  "scope": "/",
-  "start_url": "https://weppstore.com",
+  "start_url": "/wepps",
   "name": "Wepp Store",
   "short_name": "Wepp Store",
   "icons": [
