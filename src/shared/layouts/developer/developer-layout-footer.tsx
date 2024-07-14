@@ -15,6 +15,7 @@ const Footer = () => {
         <div className="flex space-x-4">
           <Link
             href="https://www.instagram.com/wepp.store?igsh=cmw5M3N5ZTZpczNw"
+            target="_blank"
             className="text-gray-800"
           >
             <Instagram
@@ -24,7 +25,11 @@ const Footer = () => {
               aria-hidden="true"
             />
           </Link>
-          <Link href="https://github.com/ryxxn" className="text-gray-800">
+          <Link
+            href="https://github.com/ryxxn"
+            target="_blank"
+            className="text-gray-800"
+          >
             <Github
               className="w-6 h-6"
               fill="currentColor"
@@ -32,7 +37,7 @@ const Footer = () => {
               aria-hidden="true"
             />
           </Link>
-          <Link href="#" className="text-gray-800">
+          <Link href="#" target="_blank" className="text-gray-800">
             <Twitter
               className="w-6 h-6"
               fill="currentColor"
