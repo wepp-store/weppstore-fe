@@ -41,7 +41,7 @@ const Header = () => {
         </Tabs>
       </NavbarBrand>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="hidden sm:flex">
         <SearchInput />
       </NavbarContent>
     </Navbar>
