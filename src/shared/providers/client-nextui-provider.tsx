@@ -6,9 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export default function ClientNextUIProvider({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: React.PropsWithChildren) {
   const { push } = useRouter();
 
   return (

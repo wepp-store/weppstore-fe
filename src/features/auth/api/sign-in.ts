@@ -11,7 +11,7 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { usePathname, useRouter } from 'next/navigation';
-import { useSnackbar } from 'notistack';
+import toast from 'react-hot-toast';
 
 export const useSignIn = <T>(
   options?: Omit<UseMutationOptions<any, any, T>, 'mutationKey'>
@@ -19,7 +19,6 @@ export const useSignIn = <T>(
   const pathname = usePathname();
   const { replace } = useRouter();
   const queryClient = useQueryClient();
-  const { enqueueSnackbar } = useSnackbar();
 
   return useMutation({
     mutationFn: async (payload: T) => {
@@ -48,7 +47,7 @@ export const useSignIn = <T>(
       replace('/');
     },
     onError: (error) => {
-      enqueueSnackbar(error?.message, { variant: 'error' });
+      toast.error(error?.message);
     },
     ...options,
   });

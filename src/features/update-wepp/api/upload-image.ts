@@ -1,11 +1,11 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
-import { useSnackbar } from 'notistack';
 import { useParams } from 'next/navigation';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
 import { resizeImage } from '@/shared/utils/resize-image';
+import toast from 'react-hot-toast';
 
 type FileType = 'logo' | 'screenshots';
 
@@ -28,7 +28,6 @@ const upload = async (file: File, weppId: string, type: FileType) => {
 
 export const useUploadWeppImage = ({ type }: { type: FileType }) => {
   const { id: weppId }: { id: string } = useParams();
-  const { enqueueSnackbar } = useSnackbar();
 
   return useMutation({
     mutationFn: async (file: File) => {
@@ -37,14 +36,13 @@ export const useUploadWeppImage = ({ type }: { type: FileType }) => {
       return upload(file, weppId, type);
     },
     onError: (error) => {
-      enqueueSnackbar(error?.message, { variant: 'error' });
+      toast.error(error?.message);
     },
   });
 };
 
 export const useUploadWeppImages = ({ type }: { type: FileType }) => {
   const { id: weppId }: { id: string } = useParams();
-  const { enqueueSnackbar } = useSnackbar();
 
   return useMutation({
     mutationFn: async (files: FileList) => {
@@ -57,7 +55,7 @@ export const useUploadWeppImages = ({ type }: { type: FileType }) => {
       return response;
     },
     onError: (error) => {
-      enqueueSnackbar(error?.message, { variant: 'error' });
+      toast.error(error?.message);
     },
   });
 };

@@ -1,15 +1,14 @@
 'use client';
 
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { useSnackbar } from 'notistack';
 import { useParams } from 'next/navigation';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import toast from 'react-hot-toast';
 
 export const useVerifyWepp = (
   options?: Omit<UseMutationOptions<any, any, string>, 'mutationKey'>
 ) => {
-  const { enqueueSnackbar } = useSnackbar();
   const { id: weppId }: { id: string } = useParams();
 
   return useMutation({
@@ -21,7 +20,7 @@ export const useVerifyWepp = (
       return response.data;
     },
     onError: (error) => {
-      enqueueSnackbar(error?.message, { variant: 'error' });
+      toast.error(error?.message);
     },
     ...options,
   });

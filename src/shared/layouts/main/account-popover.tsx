@@ -7,11 +7,10 @@ import {
   DropdownTrigger,
 } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
-import { useSnackbar } from 'notistack';
+import toast from 'react-hot-toast';
 
 const AccountPopover = () => {
   const router = useRouter();
-  const { enqueueSnackbar } = useSnackbar();
 
   const handleLogout = async () => {
     try {
@@ -19,7 +18,7 @@ const AccountPopover = () => {
       router.replace(PATH.AUTH.LOGIN);
     } catch (error) {
       console.error(error);
-      enqueueSnackbar('Unable to logout!', { variant: 'error' });
+      toast.error('Unable to logout!');
     }
   };
 

@@ -1,16 +1,15 @@
 'use client';
 
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
-import { useSnackbar } from 'notistack';
 import { PATH } from '@/shared/constants';
 import { useRouter } from 'next/navigation';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import toast from 'react-hot-toast';
 
 export const useSignUp = <T>(
   options?: Omit<UseMutationOptions<any, any, T>, 'mutationKey'>
 ) => {
-  const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
 
   return useMutation({
@@ -19,11 +18,11 @@ export const useSignUp = <T>(
       return response.data;
     },
     onSuccess: () => {
-      enqueueSnackbar('회원가입이 완료되었습니다.', { variant: 'success' });
+      toast.success('회원가입이 완료되었습니다.');
       router.push(PATH.AUTH.LOGIN);
     },
     onError: (error) => {
-      enqueueSnackbar(error?.message, { variant: 'error' });
+      toast.error(error?.message);
     },
     ...options,
   });

@@ -1,15 +1,14 @@
 'use client';
 
 import { UseMutationOptions, useMutation } from '@tanstack/react-query';
-import { useSnackbar } from 'notistack';
 import { useParams } from 'next/navigation';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import toast from 'react-hot-toast';
 
 export const useUpdateWepp = <T>(
   options?: Omit<UseMutationOptions<any, any, T>, 'mutationKey'>
 ) => {
-  const { enqueueSnackbar } = useSnackbar();
   const { id: weppId }: { id: string } = useParams();
 
   return useMutation({
@@ -21,11 +20,11 @@ export const useUpdateWepp = <T>(
       return response.data;
     },
     onSuccess: () => {
-      enqueueSnackbar('앱 수정 완료', { variant: 'success' });
+      toast.success('앱 수정 완료');
       // router.push(PATH.DEVELOPER.WEPP);
     },
     onError: (error) => {
-      enqueueSnackbar(error?.message, { variant: 'error' });
+      toast.error(error?.message);
     },
     ...options,
   });

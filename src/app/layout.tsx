@@ -1,6 +1,6 @@
 import {
+  ClientToastProvider,
   ClientNextUIProvider,
-  ClientNotistackProvider,
   ClientQueryClientProvider,
 } from '@/shared/providers';
 import '@/shared/styles/globals.scss';
@@ -61,11 +61,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <ClientNextUIProvider>
           <ClientQueryClientProvider>
-            <ClientNotistackProvider>
+            <ClientToastProvider>
               {children}
               <div id="drawer-root"></div>
               <div id="modal-root"></div>
-            </ClientNotistackProvider>
+            </ClientToastProvider>
           </ClientQueryClientProvider>
         </ClientNextUIProvider>
       </body>

@@ -4,12 +4,10 @@ import { useUploadWeppImages } from '../../api';
 import { WeppField } from '../../types';
 import { Button } from '@nextui-org/react';
 import { Plus } from 'lucide-react';
-import { useSnackbar } from 'notistack';
+import toast from 'react-hot-toast';
 
 const AddWeppScreenshot = () => {
   const addInputRef = React.useRef<HTMLInputElement | null>(null);
-
-  const { enqueueSnackbar } = useSnackbar();
 
   const { setValue, watch } = useFormContext<WeppField>();
 
@@ -25,9 +23,7 @@ const AddWeppScreenshot = () => {
     const addedCount = files.length;
 
     if (currentCount + addedCount > 5) {
-      enqueueSnackbar('스크린샷은 최대 5개까지만 추가할 수 있습니다.', {
-        variant: 'error',
-      });
+      toast.error('스크린샷은 최대 5개까지만 추가할 수 있습니다.');
       return;
     }
 

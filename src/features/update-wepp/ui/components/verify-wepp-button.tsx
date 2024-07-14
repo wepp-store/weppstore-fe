@@ -9,15 +9,14 @@ import {
 } from '@nextui-org/react';
 import React from 'react';
 import { useVerifyWepp } from '../../api';
-import { useSnackbar } from 'notistack';
 import { useFormContext } from 'react-hook-form';
 import { installLink } from '@/shared/utils';
 import { Monitor, Smartphone, Tablet } from 'lucide-react';
 import { Callout } from '@/shared/ui/callout';
+import toast from 'react-hot-toast';
 
 const VerifyWeppButton = () => {
   const { watch, setValue } = useFormContext();
-  const { enqueueSnackbar } = useSnackbar();
 
   const { url, logo, name, isVerified } = watch();
 
@@ -27,7 +26,7 @@ const VerifyWeppButton = () => {
 
   const onOpenModal = () => {
     if (verifyLink === '#') {
-      enqueueSnackbar('URL 및 로고를 입력해주세요.', { variant: 'error' });
+      toast.error('URL 및 로고를 입력해주세요.');
       return;
     }
 
@@ -38,7 +37,7 @@ const VerifyWeppButton = () => {
     const url = new URL(verifyLink).origin;
     mutate(url, {
       onSuccess: () => {
-        enqueueSnackbar('앱 인증이 완료되었습니다.', { variant: 'success' });
+        toast.success('앱 인증이 완료되었습니다.');
         // optimistic update
         setValue('isVerified', true);
       },

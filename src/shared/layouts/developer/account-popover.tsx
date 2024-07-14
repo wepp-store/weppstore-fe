@@ -15,7 +15,6 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
-import { useSnackbar } from 'notistack';
 
 const AccountPopover = () => {
   const router = useRouter();

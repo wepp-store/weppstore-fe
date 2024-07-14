@@ -1,18 +1,17 @@
 'use client';
 
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/navigation';
 import { PATH } from '@/shared/constants';
 import { removeSession } from '@/features/auth';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import toast from 'react-hot-toast';
 
 export const useSignOut = (
   options?: Omit<UseMutationOptions<any, any>, 'mutationKey'>
 ) => {
   const { replace } = useRouter();
-  const { enqueueSnackbar } = useSnackbar();
 
   return useMutation({
     mutationFn: async () => {
@@ -25,7 +24,7 @@ export const useSignOut = (
       window.location.reload();
     },
     onError: (error) => {
-      enqueueSnackbar(error?.message, { variant: 'error' });
+      toast.error(error?.message);
     },
     ...options,
   });
