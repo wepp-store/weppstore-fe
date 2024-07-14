@@ -19,10 +19,10 @@ const WeppCard = ({ wepp, href }: Props) => {
         <Image
           src={logo || ''}
           alt={`${name} logo`}
-          width={56}
-          height={56}
+          width={72}
+          height={72}
           radius="sm"
-          className="aspect-square w-[56px] min-w-[56px] h-[56px] object-cover"
+          className="aspect-square w-[72px] min-w-[72px] h-[72px] object-cover"
           fallbackSrc="/no-image.svg"
         />
         <div className="flex flex-col justify-between w-full">
