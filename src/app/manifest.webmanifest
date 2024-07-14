@@ -1,7 +1,7 @@
 {
   "theme_color": "#000000",
   "background_color": "#000000",
-  "display": "browser",
+  "display": "fullscreen",
   "start_url": "/wepps",
   "name": "Wepp Store",
   "short_name": "Wepp Store",
