@@ -1,6 +1,5 @@
-import { UpdateWeppForm } from '@/features/update-wepp';
 import { weppDetailOptions } from '@/shared/apis/queries/wepp';
-import { WeppInfoBreadcrumbs } from '@/views/developer/wepp-info';
+import { WeppInfoPage } from '@/views/developer/wepp-info';
 import {
   dehydrate,
   QueryClient,
@@ -18,8 +17,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <WeppInfoBreadcrumbs />
-      <UpdateWeppForm />
+      <WeppInfoPage />
     </HydrationBoundary>
   );
 };
