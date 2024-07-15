@@ -4,7 +4,7 @@ import {
   ClientQueryClientProvider,
 } from '@/shared/providers';
 import '@/shared/styles/globals.scss';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -49,6 +49,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'cyan' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
 };
 
 export default function RootLayout({
