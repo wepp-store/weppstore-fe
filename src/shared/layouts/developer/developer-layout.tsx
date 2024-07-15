@@ -1,5 +1,4 @@
 'use client';
-import { DeveloperGuard } from '@/features/auth';
 import React from 'react';
 import Header from './developer-layout-header';
 import Footer from './developer-layout-footer';
@@ -10,7 +9,7 @@ interface Props {
 
 const DeveloperLayout: React.FC<Props> = ({ children }) => {
   return (
-    <DeveloperGuard>
+    <>
       <Header />
       <main
         className="
@@ -27,7 +26,7 @@ const DeveloperLayout: React.FC<Props> = ({ children }) => {
         {children}
       </main>
       <Footer />
-    </DeveloperGuard>
+    </>
   );
 };
 
