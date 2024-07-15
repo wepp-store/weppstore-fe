@@ -3,8 +3,8 @@ import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { useParams } from 'next/navigation';
 import {
   WeppDetailTitle,
-  WeppDetailReviews,
   WeppDetailSimilars,
+  WeppDetailComments,
   WeppDetailScreenshots,
   WeppDetailAdditionalInfo,
   WeppDetailUpdateHistories,
@@ -28,14 +28,12 @@ const WeppDetailScreen = () => {
 
       <WeppDetailAdditionalInfo wepp={wepp} />
 
-      <WeppDetailReviews />
+      <WeppDetailComments />
 
-      <WeppDetailUpdateHistories />
-
-      <WeppDetailUpdateHistories />
+      {/* <WeppDetailUpdateHistories /> */}
 
       {/* 비슷한 앱 추천 */}
-      <WeppDetailSimilars />
+      {/* <WeppDetailSimilars /> */}
     </article>
   );
 };
