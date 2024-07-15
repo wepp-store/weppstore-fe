@@ -7,11 +7,7 @@ const Footer = () => {
     <footer>
       <Divider />
 
-      <div className="px-8 py-8 flex justify-between items-center gap-8">
-        <div className="text-center">
-          <p>&copy; 2024 Wepp Store. All rights reserved.</p>
-        </div>
-
+      <div className="px-8 py-6 flex justify-end items-center gap-8">
         <div className="flex space-x-4">
           <Link
             href="https://www.instagram.com/wepp.store?igsh=cmw5M3N5ZTZpczNw"

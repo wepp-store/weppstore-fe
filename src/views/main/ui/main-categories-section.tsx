@@ -34,7 +34,6 @@ const MainCategoriesSection = () => {
 
   return (
     <Section className="mb-8">
-      <h2 className="text-xl font-semibold mb-4">카테고리</h2>
       <div className="flex flex-wrap gap-2">
         {data?.map((category) => (
           <CategoryButton

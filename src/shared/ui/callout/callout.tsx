@@ -1,6 +1,6 @@
+import { cn } from '@nextui-org/theme';
 import { CircleCheckBig, Info, TriangleAlert } from 'lucide-react';
 import React from 'react';
-import { twMerge } from 'tailwind-merge';
 
 type ColorType =
   | 'default'
@@ -64,7 +64,7 @@ const Callout: React.FC<CalloutProps> = ({
 
   return (
     <div
-      className={twMerge(`border-1 p-4 rounded-lg ${typeStyles}`, className)}
+      className={cn(`border-1 p-4 rounded-lg ${typeStyles}`, className)}
       role="alert"
     >
       <div className="flex gap-4">
