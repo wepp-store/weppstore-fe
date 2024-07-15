@@ -1,24 +1,22 @@
 'use client';
 
-//
 import { useAuth } from '@/shared/apis/queries/auth';
-import { IUser } from '@/shared/types';
 import SignIn from '@/app/login/page';
 import React from 'react';
 
 // ----------------------------------------------------------------------
 
-type DeveloperGuardProps = {
+type AdminAuthGuardProps = {
   children: React.ReactNode;
 };
 
-export default function DeveloperGuard({ children }: DeveloperGuardProps) {
+export default function AdminAuthGuard({ children }: AdminAuthGuardProps) {
   const { isLoading, data, isError: isNotFoundUser } = useAuth();
 
   const [minimumLoadingTimePassed, setMinimumLoadingTimePassed] =
     React.useState(false);
 
-  const isDeveloper = data?.kind === 'DEVELOPER' || data?.kind === 'ADMIN';
+  const isAdmin = data?.kind === 'ADMIN';
 
   React.useEffect(() => {
     // isLoading이 true일 때만 실행
@@ -45,9 +43,9 @@ export default function DeveloperGuard({ children }: DeveloperGuardProps) {
     return <SignIn />;
   }
 
-  if (!isDeveloper) {
+  if (!isAdmin) {
     // TODO: fix this message
-    return <div>개발자 전용 페이지입니다.</div>;
+    return <div>관리자 전용 페이지입니다.</div>;
   }
 
   return <> {children} </>;
