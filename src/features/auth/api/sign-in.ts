@@ -3,6 +3,7 @@
 import { jwtDecode, setSession } from '@/features/auth/utils';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import { authKeys } from '@/shared/apis/queries/auth/query-key-factory';
 import { PATH } from '@/shared/constants';
 import { IUser } from '@/shared/types';
 import {
@@ -33,17 +34,12 @@ export const useSignIn = <T>(
     onSuccess: (token) => {
       const user: IUser = jwtDecode(token.accessToken);
 
-      queryClient.setQueryData([PATH_API.AUTH.ME], user);
+      queryClient.setQueryData(authKeys.session, user);
 
       const isLoginPage = pathname.replaceAll('/', '') === PATH.AUTH.LOGIN;
       if (!isLoginPage) return;
 
-      if (user.kind === 'DEVELOPER') {
-        replace(`/${PATH.DEVELOPER.MAIN}`);
-        return;
-      }
-
-      // TODO: user & admin route
+      // TODO: admin route
       replace('/');
     },
     onError: (error) => {

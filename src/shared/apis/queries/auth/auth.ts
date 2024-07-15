@@ -12,12 +12,13 @@ import {
 import { AxiosError } from 'axios';
 import { axiosInstance } from '../../axios';
 import { PATH_API } from '../../path';
+import { authKeys } from './query-key-factory';
 
 type Props = Omit<UseQueryOptions, 'queryKey'>;
 
 export const useAuth = (params?: Props) => {
   return useQuery({
-    queryKey: [PATH_API.AUTH.ME],
+    queryKey: authKeys.session,
     queryFn: async () => {
       if (!localStorageAvailable()) {
         throw new Error('Error! 인증 정보를 가져올 수 없음');
