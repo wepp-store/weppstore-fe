@@ -6,6 +6,7 @@ export const PATH_API = {
     SIGN_UP: '/auth/sign-up',
     SIGN_OUT: '/auth/sign-out',
     REFRESH_TOKEN: '/auth/refresh',
+    UPLOAD_PROFILE: '/auth/upload-profile',
   },
   WEPP: {
     ROOT: '/wepp',
