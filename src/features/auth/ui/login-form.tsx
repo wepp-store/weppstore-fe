@@ -39,19 +39,19 @@ const LoginForm = () => {
           <RHFInput
             isRequired
             name="email"
-            label="Name"
+            label="이메일"
             placeholder="Enter your email"
           />
           <RHFInput
             isRequired
             name="password"
-            label="password"
+            label="비밀번호"
             placeholder="Enter your password"
             type="password"
           />
 
           <p className="text-center text-small">
-            Need to create an account?{' '}
+            계정이 없으신가요?{' '}
             <Link size="sm" href="/sign-up">
               SignUp
             </Link>
