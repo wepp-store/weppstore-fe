@@ -15,6 +15,9 @@ export const PATH_API = {
     UPLOAD: '/wepp/upload',
     CLEAR_URL: '/wepp/clear-url',
   },
+  COMMENT: {
+    ROOT: '/comments',
+  },
   CATEGORIES: {
     ROOT: '/categories',
   },
