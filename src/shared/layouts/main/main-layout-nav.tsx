@@ -1,22 +1,8 @@
 import React from 'react';
-import {
-  Image,
-  Listbox,
-  ListboxItem,
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  useDisclosure,
-  Modal,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-} from '@nextui-org/react';
+import { Image, Button, Listbox, ListboxItem } from '@nextui-org/react';
 import { Gamepad2, LayoutGrid, Menu, User } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useSignOut } from '@/shared/apis/queries/auth';
+import { LayoutDropdownMenu } from '../ui';
 
 const MainLayoutNav = () => {
   const pathname = usePathname();
@@ -25,10 +11,6 @@ const MainLayoutNav = () => {
 
   const selectedClasses = (path: string) =>
     key.has(path) ? 'bg-gray-100' : 'text-default-500';
-
-  const { isOpen, onOpenChange, onClose } = useDisclosure();
-
-  const signOutMutation = useSignOut();
 
   return (
     <>
@@ -58,7 +40,6 @@ const MainLayoutNav = () => {
             Wepp Store
           </h1>
         </div>
-
         <Listbox
           selectedKeys={key}
           variant="flat"
@@ -105,55 +86,22 @@ const MainLayoutNav = () => {
             <span className="text-base pl-4 hidden lg:inline">프로필</span>
           </ListboxItem>
         </Listbox>
-
         {/* 더보기 */}
-        <Dropdown>
-          <DropdownTrigger>
-            <Button
-              isIconOnly
-              variant="light"
-              className="flex gap-4 w-full justify-start p-2"
-              data-hover="false"
-            >
-              <Menu />
-              <span className="text-base pl-2 hidden lg:inline">더보기</span>
-            </Button>
-          </DropdownTrigger>
-          <DropdownMenu aria-label="Dropdown add menu" variant="solid">
-            <DropdownItem key="new" href="/developer">
-              개발자 센터
-            </DropdownItem>
-            <DropdownItem
-              key="delete"
-              className="text-danger"
-              color="danger"
-              onPress={onOpenChange}
-            >
-              로그아웃
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-
+        <LayoutDropdownMenu>
+          <Button
+            isIconOnly
+            variant="light"
+            className="flex gap-4 w-full justify-start p-2"
+            data-hover="false"
+          >
+            <Menu />
+            <span className="text-base pl-2 hidden lg:inline">더보기</span>
+          </Button>
+        </LayoutDropdownMenu>
         {/* <p className="text-xs self-end hidden lg:inline">
         &copy; 2024 Wepp Store. All rights reserved.
       </p> */}
       </nav>
-      {/* sign out modal */}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          <ModalHeader className="justify-center mt-4">
-            정말 로그아웃하시겠습니까?
-          </ModalHeader>
-          <ModalFooter>
-            <Button color="danger" variant="light" onPress={onClose}>
-              아니요
-            </Button>
-            <Button color="primary" onPress={() => signOutMutation.mutate()}>
-              네, 로그아웃할래요.
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </>
   );
 };

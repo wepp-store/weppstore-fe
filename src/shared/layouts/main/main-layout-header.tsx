@@ -1,12 +1,21 @@
 'use client';
-import { Navbar, NavbarContent, NavbarItem, Link } from '@nextui-org/react';
+import {
+  Link,
+  Button,
+  Navbar,
+  NavbarItem,
+  NavbarContent,
+} from '@nextui-org/react';
 import { Github, Instagram, Twitter } from '@/shared/assets/icons';
+import { LayoutDropdownMenu } from '../ui';
+import { Menu } from 'lucide-react';
 
 const Header = () => {
   return (
     <Navbar maxWidth="full">
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
+      {/* desktop */}
+      <NavbarContent justify="end" className="hidden sm:flex">
+        <NavbarItem>
           <Link
             href="https://www.instagram.com/wepp.store?igsh=cmw5M3N5ZTZpczNw"
             target="_blank"
@@ -43,6 +52,22 @@ const Header = () => {
               aria-hidden="true"
             />
           </Link>
+        </NavbarItem>
+      </NavbarContent>
+
+      {/* mobile */}
+      <NavbarContent justify="end" className="sm:hidden">
+        <NavbarItem>
+          <LayoutDropdownMenu>
+            <Button
+              isIconOnly
+              variant="light"
+              className="flex w-full justify-end"
+              data-hover="false"
+            >
+              <Menu />
+            </Button>
+          </LayoutDropdownMenu>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
