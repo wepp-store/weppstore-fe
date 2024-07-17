@@ -4,6 +4,7 @@
 import { useAuth } from '@/shared/apis/queries/auth';
 import SignIn from '@/app/login/page';
 import React from 'react';
+import { CircularProgress } from '@nextui-org/react';
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +16,11 @@ export default function AuthGuard({ children }: AuthGuardProps) {
   const { isLoading, isError: isNotFoundUser } = useAuth();
 
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return (
+      <div className="m-auto">
+        <CircularProgress />
+      </div>
+    );
   }
 
   if (isNotFoundUser) {
