@@ -30,7 +30,12 @@ const WeppDetailScreen = () => {
   return (
     <article className="flex flex-col gap-2">
       <header className="px-4 pt-4">
-        <ChevronLeft size={24} onClick={back} />
+        <ChevronLeft
+          size={24}
+          onClick={back}
+          role="button"
+          aria-label="뒤로가기"
+        />
       </header>
 
       <WeppDetailTitle wepp={wepp} />
