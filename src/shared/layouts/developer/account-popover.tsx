@@ -1,27 +1,27 @@
 import { useAuth, useSignOut } from '@/shared/apis/queries/auth';
 import { PATH } from '@/shared/constants';
 import {
+  Link,
   Avatar,
   Button,
+  Skeleton,
+  // dropdown
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  // modal
   Modal,
-  ModalBody,
-  ModalContent,
   ModalFooter,
   ModalHeader,
+  ModalContent,
   useDisclosure,
 } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
 
 const AccountPopover = () => {
-  const router = useRouter();
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const { data: me } = useAuth();
+  const { data: me, isLoading } = useAuth();
 
   const signOutMutation = useSignOut();
 
@@ -33,18 +33,29 @@ const AccountPopover = () => {
     }
   };
 
+  if (isLoading) {
+    return <Skeleton className="flex rounded-full w-8 h-8" />;
+  }
+
+  if (!me) {
+    return (
+      <Button as={Link} href={PATH.AUTH.LOGIN} color="primary">
+        로그인
+      </Button>
+    );
+  }
+
   return (
     <>
-      <Dropdown placement="bottom-end" backdrop="blur">
+      <Dropdown placement="bottom-end">
         <DropdownTrigger>
           <Avatar
             isBordered
             as="button"
-            className="transition-transform"
-            color="secondary"
-            name="Jason Hughes"
+            radius="lg"
+            name={me?.userName}
             size="sm"
-            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+            src={me?.profileUrl || './no-image.svg'}
           />
         </DropdownTrigger>
         <DropdownMenu
@@ -52,15 +63,11 @@ const AccountPopover = () => {
           variant="flat"
           onAction={onAction}
         >
-          <DropdownItem key="profile" className="h-14 gap-2">
-            <p className="font-semibold">Signed in as</p>
-            <p className="font-semibold">{me?.email}</p>
-          </DropdownItem>
-          <DropdownItem key="settings" showDivider>
-            My Settings
+          <DropdownItem key="developer" href="/wepps">
+            스토어로 이동하기
           </DropdownItem>
           <DropdownItem key="logout" color="danger">
-            Log Out
+            로그아웃
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

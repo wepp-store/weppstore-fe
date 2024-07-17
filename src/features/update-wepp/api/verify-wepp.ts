@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 export const useVerifyWepp = (
   options?: Omit<UseMutationOptions<any, any, string>, 'mutationKey'>
 ) => {
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   return useMutation({
     mutationFn: async (url: string) => {

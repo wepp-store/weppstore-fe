@@ -36,7 +36,7 @@ export const useSignIn = <T>(
 
       queryClient.setQueryData(authKeys.session, user);
 
-      const isLoginPage = pathname.replaceAll('/', '') === PATH.AUTH.LOGIN;
+      const isLoginPage = pathname === PATH.AUTH.LOGIN;
       if (!isLoginPage) return;
 
       // TODO: admin route

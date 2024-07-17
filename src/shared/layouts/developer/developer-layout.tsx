@@ -1,7 +1,9 @@
 'use client';
 import React from 'react';
 import Header from './developer-layout-header';
-import Footer from './developer-layout-footer';
+import DeveloperLayoutNav from './developer-layout-nav';
+import { cn } from '@nextui-org/theme';
+import DeveloperLayoutNavBottom from './developer-layout-nav-bottom';
 
 interface Props {
   children: React.ReactNode;
@@ -9,24 +11,24 @@ interface Props {
 
 const DeveloperLayout: React.FC<Props> = ({ children }) => {
   return (
-    <>
-      <Header />
-      <main
-        className="
-          container
-          mx-auto
-          flex-grow
-          p-4
-          sm:p-6
-          md:p-8
-          lg:p-10
-          xl:p-12
-        "
-      >
-        {children}
-      </main>
-      <Footer />
-    </>
+    <div className="flex w-full h-dvh">
+      <DeveloperLayoutNav />
+      <div className="flex flex-col w-full grow">
+        <Header />
+        <main
+          className={cn(
+            'flex flex-col',
+            'overflow-y-auto',
+            'box-border',
+            'flex-grow',
+            'pb-4'
+          )}
+        >
+          {children}
+        </main>
+        <DeveloperLayoutNavBottom />
+      </div>
+    </div>
   );
 };
 

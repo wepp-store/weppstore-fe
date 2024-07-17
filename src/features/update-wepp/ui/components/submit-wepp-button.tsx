@@ -21,7 +21,7 @@ import { weppKeys } from '@/shared/apis/queries/wepp';
 const SubmitWeppButton = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   const { isOpen, onOpenChange, onClose } = useDisclosure();
 
@@ -32,7 +32,7 @@ const SubmitWeppButton = () => {
       queryClient.invalidateQueries({
         queryKey: weppKeys.detail(weppId),
       });
-      router.replace(`/${PATH.DEVELOPER.WEPP}/${weppId}`);
+      router.replace(`${PATH.DEVELOPER.WEPP}/${weppId}`);
     },
   };
 

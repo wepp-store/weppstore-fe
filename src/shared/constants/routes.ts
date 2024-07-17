@@ -1,13 +1,15 @@
 export const PATH = {
   AUTH: {
-    LOGIN: 'login',
-    SIGN_UP: 'sign-up',
+    LOGIN: '/login',
+    SIGN_UP: '/sign-up',
   },
   MAIN: {
-    HOME: '/',
+    WEPPS: '/wepps',
+    GAME: '/games',
+    PROFILE: '/profile',
   },
   DEVELOPER: {
-    MAIN: 'developer',
-    WEPP: 'developer/wepp',
+    MAIN: '/developer',
+    WEPP: '/developer/wepp',
   },
 };

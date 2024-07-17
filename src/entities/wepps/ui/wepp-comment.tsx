@@ -17,7 +17,7 @@ const WeppComment = ({ comment }: Props) => {
           name={user.userName}
           description={user.email}
           avatarProps={{
-            src: '/no-image.svg',
+            src: user.profileUrl || '/no-image.svg',
           }}
         />
       </div>

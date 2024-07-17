@@ -6,12 +6,12 @@ import {
   HydrationBoundary,
 } from '@tanstack/react-query';
 
-const Page = async ({ params }: { params: { id: string } }) => {
+const Page = async ({ params }: { params: { weppId: string } }) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(
     weppDetailOptions({
-      weppId: params.id,
+      weppId: params.weppId,
     })
   );
 

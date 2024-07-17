@@ -5,6 +5,7 @@ import { StarRating } from '@/shared/ui/star-rating';
 import { Button, Chip, Divider, Image, Link } from '@nextui-org/react';
 import React from 'react';
 import { DesktopChip, MobileChip, TabletChip } from '@/entities/wepps';
+import { Heart, MessageCircle } from 'lucide-react';
 
 interface Props {
   wepp: IWepp | undefined;
@@ -21,6 +22,7 @@ const WeppDetailTitle = ({ wepp }: Props) => {
     isDesktop,
     isMobile,
     isTablet,
+    _count,
   } = wepp || {};
 
   return (
@@ -40,7 +42,22 @@ const WeppDetailTitle = ({ wepp }: Props) => {
           <p className="text-sm text-gray-500">
             {formatCategories(categories)}
           </p>
-          <StarRating rating={4} />
+          <div className="flex gap-2">
+            <span
+              className="flex items-center gap-1 text-gray-500"
+              aria-label="좋아요 수"
+            >
+              <Heart size={16} />
+              {_count?.likes || 0}
+            </span>
+            <span
+              className="flex items-center gap-1 text-gray-500"
+              aria-label="댓글 수"
+            >
+              <MessageCircle size={16} />
+              {_count?.comments || 0}
+            </span>
+          </div>
         </div>
       </div>
 

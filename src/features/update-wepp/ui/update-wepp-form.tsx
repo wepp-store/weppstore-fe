@@ -21,7 +21,7 @@ import { convertUpdateWeppForm, weppSchema } from '../utils';
 import { SubmitWeppButton } from './components';
 
 const UpdateWeppForm = () => {
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   const { data } = useWeppDetail({ weppId });
 

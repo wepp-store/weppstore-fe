@@ -17,7 +17,7 @@ type Payload = { content: string };
 export const useCreateWeppComment = (
   options?: Omit<UseMutationOptions<any, any, Payload>, 'mutationKey'>
 ) => {
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
   const { data: user } = useAuth();
 
   const queryClient = useQueryClient();

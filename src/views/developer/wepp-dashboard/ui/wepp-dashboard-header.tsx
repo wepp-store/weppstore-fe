@@ -2,12 +2,13 @@
 import { DeleteWeppButton } from '@/features/delete-wepp';
 import { PATH_API } from '@/shared/apis/path';
 import { IWepp } from '@/shared/types';
+import { Section } from '@/shared/ui/section';
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
 const WeppDashboardHeader = () => {
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   const queryClient = useQueryClient();
   const queryKey = [PATH_API.WEPP.ROOT, weppId];
@@ -15,7 +16,7 @@ const WeppDashboardHeader = () => {
   const wepp = queryClient.getQueryData<IWepp>(queryKey);
 
   return (
-    <div className="container mx-auto py-4">
+    <Section>
       <header className="flex justify-between">
         <h1 className="text-3xl font-bold text-gray-800">
           {wepp?.name} 대시보드
@@ -23,7 +24,7 @@ const WeppDashboardHeader = () => {
 
         <DeleteWeppButton />
       </header>
-    </div>
+    </Section>
   );
 };
 

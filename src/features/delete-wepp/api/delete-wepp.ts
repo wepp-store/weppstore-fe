@@ -11,7 +11,7 @@ export const useDeleteWepp = <T>(
   options?: Omit<UseMutationOptions<any, any>, 'mutationKey'>
 ) => {
   const { replace } = useRouter();
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   return useMutation({
     mutationFn: async () => {
@@ -22,7 +22,7 @@ export const useDeleteWepp = <T>(
     },
     onSuccess: () => {
       toast.success('앱 삭제가 완료되었습니다.');
-      replace(`/${PATH.DEVELOPER.WEPP}`);
+      replace(PATH.DEVELOPER.WEPP);
     },
     onError: (error) => {
       toast.error(error?.message);

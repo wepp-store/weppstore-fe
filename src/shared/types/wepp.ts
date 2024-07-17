@@ -34,4 +34,8 @@ export interface IWepp {
   isTablet: boolean;
   isMobile: boolean;
   isVerified: boolean;
+  _count?: {
+    comments: number;
+    likes: number;
+  };
 }

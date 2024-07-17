@@ -27,7 +27,7 @@ const upload = async (file: File, weppId: string, type: FileType) => {
 };
 
 export const useUploadWeppImage = ({ type }: { type: FileType }) => {
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   return useMutation({
     mutationFn: async (file: File) => {
@@ -42,7 +42,7 @@ export const useUploadWeppImage = ({ type }: { type: FileType }) => {
 };
 
 export const useUploadWeppImages = ({ type }: { type: FileType }) => {
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   return useMutation({
     mutationFn: async (files: FileList) => {

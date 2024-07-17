@@ -1,6 +1,6 @@
 'use client';
 
-import { isValidToken, jwtDecode, setSession } from '@/features/auth/utils';
+import { isValidToken, setSession } from '@/features/auth/utils';
 import { REFRESH_TOKEN_KEY } from '@/shared/constants';
 import { IUser } from '@/shared/types';
 import { localStorageAvailable } from '@/shared/utils';
@@ -29,32 +29,20 @@ export const useAuth = (params?: Props) => {
         throw new Error('Error! refresh 토큰 만료');
       }
 
-      let accessToken = null;
+      let user = null;
 
       if (!axiosInstance.defaults.headers.common.Authorization) {
-        const tokenResponse = await axiosInstance.post(
-          PATH_API.AUTH.REFRESH_TOKEN,
-          {
-            refreshToken,
-          }
-        );
+        const response = await axiosInstance.post(PATH_API.AUTH.REFRESH_TOKEN, {
+          refreshToken,
+        });
 
-        accessToken = tokenResponse.data.accessToken;
+        const accessToken = response.data.accessToken;
+        user = response.data.user;
 
         setSession({ accessToken, refreshToken });
       }
 
-      // const response = await axiosInstance.get(PATH_API.AUTH.ME);
-
-      const { sub, kind, email, status, userName } = jwtDecode(accessToken);
-
-      return {
-        id: sub,
-        kind,
-        email,
-        status,
-        userName,
-      };
+      return user;
     },
     // 계속 가지고 있을 거임
     gcTime: Infinity,

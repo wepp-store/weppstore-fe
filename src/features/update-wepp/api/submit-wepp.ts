@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 export const useSubmitWepp = <T>(
   options?: Omit<UseMutationOptions<any, any, T>, 'mutationKey'>
 ) => {
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   return useMutation({
     mutationFn: async (payload: T) => {

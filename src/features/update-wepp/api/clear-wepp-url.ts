@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 export const useClearWeppUrl = (
   options?: Omit<UseMutationOptions<any, any>, 'mutationKey'>
 ) => {
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   return useMutation({
     mutationFn: async () => {

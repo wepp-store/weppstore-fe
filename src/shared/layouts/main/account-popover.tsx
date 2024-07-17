@@ -1,60 +1,109 @@
+import { useAuth, useSignOut } from '@/shared/apis/queries/auth';
 import { PATH } from '@/shared/constants';
 import {
+  Link,
   Avatar,
+  Button,
+  Skeleton,
+  // dropdown
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  // modal
+  Modal,
+  ModalFooter,
+  ModalHeader,
+  ModalContent,
+  useDisclosure,
 } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
-import toast from 'react-hot-toast';
 
 const AccountPopover = () => {
-  const router = useRouter();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const handleLogout = async () => {
-    try {
-      // logout();
-      router.replace(PATH.AUTH.LOGIN);
-    } catch (error) {
-      console.error(error);
-      toast.error('Unable to logout!');
+  const { data: me, isLoading } = useAuth();
+
+  const signOutMutation = useSignOut();
+
+  const onAction = (key: React.Key) => {
+    if (key === 'settings') {
+      // router.push('');
+    } else if (key === 'logout') {
+      onOpen();
     }
   };
 
-  const handleClickItem = (path: string) => {
-    router.push(path);
-  };
+  if (isLoading) {
+    return <Skeleton className="flex rounded-full w-8 h-8" />;
+  }
+
+  if (!me) {
+    return (
+      <Button as={Link} href={PATH.AUTH.LOGIN} color="primary">
+        로그인
+      </Button>
+    );
+  }
 
   return (
-    <Dropdown placement="bottom-end">
-      <DropdownTrigger>
-        <Avatar
-          isBordered
-          as="button"
-          className="transition-transform"
-          color="secondary"
-          name="Jason Hughes"
-          size="sm"
-          src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-        />
-      </DropdownTrigger>
-      <DropdownMenu aria-label="Profile Actions" variant="flat">
-        <DropdownItem key="profile" className="h-14 gap-2">
-          <p className="font-semibold">Signed in as</p>
-          <p className="font-semibold">zoey@example.com</p>
-        </DropdownItem>
-        <DropdownItem key="settings">My Settings</DropdownItem>
-        <DropdownItem key="team_settings">Team Settings</DropdownItem>
-        <DropdownItem key="analytics">Analytics</DropdownItem>
-        <DropdownItem key="system">System</DropdownItem>
-        <DropdownItem key="configurations">Configurations</DropdownItem>
-        <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-        <DropdownItem key="logout" color="danger">
-          Log Out
-        </DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
+    <>
+      <Dropdown placement="bottom-end">
+        <DropdownTrigger>
+          <Avatar
+            isBordered
+            as="button"
+            radius="lg"
+            name={me?.userName}
+            size="sm"
+            src={me?.profileUrl || './no-image.svg'}
+          />
+        </DropdownTrigger>
+        <DropdownMenu
+          aria-label="Avatar Actions"
+          variant="flat"
+          onAction={onAction}
+        >
+          <DropdownItem
+            key="profile"
+            className="h-14 gap-2"
+            showDivider
+            href="/profile"
+          >
+            <p className="font-semibold">{me?.userName}님 프로필 보기</p>
+          </DropdownItem>
+          <DropdownItem key="developer" href="/developer">
+            개발자 센터
+          </DropdownItem>
+          <DropdownItem key="logout" color="danger">
+            로그아웃
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+
+      {/* sign out modal */}
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="justify-center mt-4">
+                정말 로그아웃하시겠습니까?
+              </ModalHeader>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  아니요
+                </Button>
+                <Button
+                  color="primary"
+                  onPress={() => signOutMutation.mutate()}
+                >
+                  네, 로그아웃할래요.
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 

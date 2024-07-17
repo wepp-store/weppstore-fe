@@ -33,7 +33,7 @@ const MainCategoriesSection = () => {
   const { data } = useCategories();
 
   return (
-    <Section className="mb-8">
+    <Section>
       <div className="flex flex-wrap gap-2">
         {data?.map((category) => (
           <CategoryButton

@@ -46,10 +46,10 @@ export const weppCommentsOptions = (
 });
 
 export const useWeppComments = (props?: Props) => {
-  const { id } = useParams();
+  const { weppId } = useParams();
 
   return useInfiniteQuery({
-    ...weppCommentsOptions(id as string),
+    ...weppCommentsOptions(weppId as string),
     ...props,
   }) as UseInfiniteQueryResult<InfiniteData<ResponseType>, any>;
 };

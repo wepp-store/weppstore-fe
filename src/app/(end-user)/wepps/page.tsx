@@ -2,8 +2,8 @@ import { weppListOptions } from '@/shared/apis/queries/wepp';
 import { MainPage } from '@/views/main';
 import {
   dehydrate,
-  HydrationBoundary,
   QueryClient,
+  HydrationBoundary,
 } from '@tanstack/react-query';
 
 export default async function Home() {

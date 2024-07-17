@@ -17,7 +17,7 @@ import React from 'react';
 
 const WeppDashboardInfo = () => {
   const pathname = usePathname();
-  const { id: weppId }: { id: string } = useParams();
+  const { weppId }: { weppId: string } = useParams();
 
   const { data: wepp } = useWeppDetail({ weppId });
 
