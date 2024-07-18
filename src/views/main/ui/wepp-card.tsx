@@ -1,6 +1,7 @@
 import { IWepp } from '@/shared/types';
 import { formatCategories } from '@/shared/utils';
 import { Card, CardBody, Image } from '@nextui-org/react';
+import { Heart, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const WeppCard = ({ wepp, href }: Props) => {
-  const { name, description, screenshots, logo, categories } = wepp;
+  const { name, logo, categories, _count } = wepp;
 
   const existCategories = categories && categories.length > 0;
 
@@ -25,11 +26,27 @@ const WeppCard = ({ wepp, href }: Props) => {
           className="aspect-square w-[72px] min-w-[72px] h-[72px] object-cover"
           fallbackSrc="/no-image.svg"
         />
-        <div className="flex flex-col justify-between w-full">
-          <h3 className="font-semibold text-base mb-1">{name}</h3>
-          <p className="text-gray-500 text-sm mb-2">
-            {existCategories && `${formatCategories(categories)} · `}4.5 ★
+        <div className="w-full flex flex-col justify-between gap-1">
+          <h3 className="font-semibold text-base">{name}</h3>
+          <p className="text-gray-500 text-sm">
+            {existCategories && formatCategories(categories)}
           </p>
+          <div className="flex gap-2 text-gray-500 text-sm">
+            <span
+              className="flex items-center gap-1 text-gray-500"
+              aria-label="좋아요 수"
+            >
+              <Heart size={12} />
+              {_count?.likes || 0}
+            </span>
+            <span
+              className="flex items-center gap-1 text-gray-500"
+              aria-label="댓글 수"
+            >
+              <MessageCircle size={12} />
+              {_count?.comments || 0}
+            </span>
+          </div>
         </div>
       </CardBody>
     </Card>
