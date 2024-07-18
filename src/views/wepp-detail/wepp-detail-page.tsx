@@ -8,7 +8,7 @@ import {
   WeppDetailScreenshots,
   WeppDetailAdditionalInfo,
   WeppDetailUpdateHistories,
-} from './ui';
+} from './sections';
 import { useAuth } from '@/shared/apis/queries/auth';
 import { Link } from '@nextui-org/react';
 import { Section } from '@/shared/ui/section';
