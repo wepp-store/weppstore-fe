@@ -2,7 +2,7 @@
 
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
-import { PATH } from '@/shared/constants';
+import { PATH, REFRESH_TOKEN_KEY } from '@/shared/constants';
 import { removeSession } from '@/features/auth';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
@@ -15,7 +15,11 @@ export const useSignOut = (
 
   return useMutation({
     mutationFn: async () => {
-      const response = await axiosInstance.post(PATH_API.AUTH.SIGN_OUT);
+      const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY!);
+
+      const response = await axiosInstance.post(PATH_API.AUTH.SIGN_OUT, {
+        refreshToken,
+      });
       return response.data;
     },
     onSuccess: () => {
