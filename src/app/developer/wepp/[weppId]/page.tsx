@@ -1,4 +1,4 @@
-import { WeppDashboardPage } from '@/views/developer/wepp-dashboard';
+import { WeppDashboardPage } from '@/views/(developer)/wepp-dashboard';
 
 const WeppDetail = () => {
   return <WeppDashboardPage />;

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Image, Listbox, ListboxItem } from '@nextui-org/react';
-import { LayoutGrid } from 'lucide-react';
+import { LayoutGrid, Wrench } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { PATH } from '@/shared/constants';
 
 const DeveloperLayoutNav = () => {
   const pathname = usePathname();
@@ -51,9 +52,9 @@ const DeveloperLayoutNav = () => {
           hideSelectedIcon
         >
           <ListboxItem
-            key="/developer"
-            href="/developer"
-            className={selectedClasses('/developer')}
+            key={PATH.DEVELOPER.MAIN}
+            href={PATH.DEVELOPER.MAIN}
+            className={selectedClasses(PATH.DEVELOPER.MAIN)}
             classNames={{
               base: 'gap-0',
             }}
@@ -62,13 +63,13 @@ const DeveloperLayoutNav = () => {
             <span className="text-base pl-4 hidden lg:inline">내 앱</span>
           </ListboxItem>
           <ListboxItem
-            key="/make"
-            href="/make"
-            className={selectedClasses('/make')}
+            key={PATH.DEVELOPER.MAKE_PWA}
+            href={PATH.DEVELOPER.MAKE_PWA}
+            className={selectedClasses(PATH.DEVELOPER.MAKE_PWA)}
             classNames={{
               base: 'gap-0',
             }}
-            startContent={<LayoutGrid className="w-6 h-6" />}
+            startContent={<Wrench className="w-6 h-6" />}
           >
             <span className="text-base pl-4 hidden lg:inline">PWA 만들기</span>
           </ListboxItem>

@@ -1,5 +1,5 @@
 import { weppDetailOptions } from '@/shared/apis/queries/wepp';
-import { WeppInfoPage } from '@/views/developer/wepp-info';
+import { WeppInfoPage } from '@/views/(developer)/wepp-info';
 import {
   dehydrate,
   QueryClient,

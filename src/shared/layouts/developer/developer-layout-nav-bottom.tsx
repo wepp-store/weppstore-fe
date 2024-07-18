@@ -1,3 +1,4 @@
+import { PATH } from '@/shared/constants';
 import { Gamepad2, LayoutGrid, User, Wrench } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -14,7 +15,7 @@ const DeveloperLayoutNavBottom = () => {
         </Link>
 
         <Link
-          href="/developer/make"
+          href={PATH.DEVELOPER.MAKE_PWA}
           className="flex justify-center items-center"
         >
           <Wrench />
