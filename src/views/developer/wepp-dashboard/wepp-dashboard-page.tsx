@@ -3,7 +3,7 @@ import {
   WeppDashboardHeader,
   WeppDashboardReviews,
   WeppDashboardBreadcrumbs,
-} from './ui';
+} from './sections';
 
 const WeppDashboardPage = () => {
   return (

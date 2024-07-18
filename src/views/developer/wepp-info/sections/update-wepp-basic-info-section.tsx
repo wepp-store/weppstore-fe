@@ -3,12 +3,12 @@ import { Section } from '@/shared/ui/section';
 import { Image } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useUploadWeppImage } from '../../api';
+import { useUploadWeppImage } from '../api';
 import {
   VerifyWeppButton,
   WeppUrlChangeButton,
   DomainOwnershipInfoButton,
-} from '../components';
+} from '../ui';
 import { Callout } from '@/shared/ui/callout';
 
 const UpdateWeppBasicInfoSection = () => {

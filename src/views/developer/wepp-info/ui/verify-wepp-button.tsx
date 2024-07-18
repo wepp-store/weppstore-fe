@@ -8,7 +8,7 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import React from 'react';
-import { useVerifyWepp } from '../../api';
+import { useVerifyWepp } from '../api';
 import { useFormContext } from 'react-hook-form';
 import { installLink } from '@/shared/utils';
 import { Monitor, Smartphone, Tablet } from 'lucide-react';

@@ -10,13 +10,12 @@ import {
 } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useSubmitWepp, useUpdateWepp } from '../../api';
-import { WeppField } from '../../types';
-import { convertUpdateWeppForm } from '../../utils';
+import { useSubmitWepp, useUpdateWepp } from '../api';
 import { useParams, useRouter } from 'next/navigation';
 import { PATH } from '@/shared/constants';
 import { useQueryClient } from '@tanstack/react-query';
 import { weppKeys } from '@/shared/apis/queries/wepp';
+import { convertUpdateWeppForm, type WeppField } from '../lib';
 
 const SubmitWeppButton = () => {
   const router = useRouter();

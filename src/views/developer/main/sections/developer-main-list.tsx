@@ -1,9 +1,9 @@
 'use client';
-import { DeveloperWeppCard } from '@/entities/developer';
 import { useMineWeppList } from '@/shared/apis/queries/wepp';
 import { Section } from '@/shared/ui/section';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { DeveloperWeppCard } from '../ui';
 
 const DeveloperMainList = () => {
   const { push } = useRouter();

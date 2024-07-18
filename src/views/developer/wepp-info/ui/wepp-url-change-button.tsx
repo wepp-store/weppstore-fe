@@ -9,7 +9,7 @@ import {
 } from '@nextui-org/react';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { useClearWeppUrl } from '../../api';
+import { useClearWeppUrl } from '../api';
 
 const WeppUrlChangeButton = () => {
   const { setValue } = useFormContext();

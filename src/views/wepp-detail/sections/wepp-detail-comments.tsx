@@ -1,8 +1,8 @@
-import { WeppComment } from '@/entities/wepps';
 import { CreateWeppCommentField } from '@/features/create-wepp-comment';
 import { useWeppComments } from '@/shared/apis/queries/wepp/wepp-comments';
 import { Section } from '@/shared/ui/section';
 import React from 'react';
+import { WeppComment } from '../ui';
 
 const WeppDetailComments = () => {
   const {

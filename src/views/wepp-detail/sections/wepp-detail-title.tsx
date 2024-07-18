@@ -4,8 +4,8 @@ import { Section } from '@/shared/ui/section';
 import { StarRating } from '@/shared/ui/star-rating';
 import { Button, Chip, Divider, Image, Link } from '@nextui-org/react';
 import React from 'react';
-import { DesktopChip, MobileChip, TabletChip } from '@/entities/wepps';
 import { Heart, MessageCircle } from 'lucide-react';
+import { DesktopChip, MobileChip, TabletChip } from '../ui';
 
 interface Props {
   wepp: IWepp | undefined;

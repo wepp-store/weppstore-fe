@@ -1,9 +1,9 @@
 import { Section } from '@/shared/ui/section';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { WeppField } from '../../types';
 import { DragDropContext, Draggable, Droppable } from '@hello-pangea/dnd';
-import { AddWeppScreenshot, UpdateWeppScreenshot } from '../components';
+import { type WeppField } from '../lib';
+import { AddWeppScreenshot, UpdateWeppScreenshot } from '../ui';
 
 const UpdateWeppScreenshotsSection = () => {
   const { watch, setValue } = useFormContext<WeppField>();

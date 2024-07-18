@@ -1,12 +1,7 @@
-import { DeveloperMainHeader, DeveloperMainList } from '@/views/developer/main';
+import { DeveloperMainPage } from '@/views/developer/main';
 
 const DeveloperHome = () => {
-  return (
-    <>
-      <DeveloperMainHeader />
-      <DeveloperMainList />
-    </>
-  );
+  return <DeveloperMainPage />;
 };
 
 export default DeveloperHome;
