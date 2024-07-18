@@ -1,16 +1,25 @@
 import React from 'react';
 import { Image, Listbox, ListboxItem } from '@nextui-org/react';
-import { LayoutGrid, Wrench } from 'lucide-react';
+import { LayoutGrid } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { PATH } from '@/shared/constants';
 
 const DeveloperLayoutNav = () => {
   const pathname = usePathname();
 
-  const key = new Set(['/' + pathname.split('/')[1]]);
+  const isActive = (path: string) => {
+    const pathKey = path.split('/')[2];
+    const pathnameKey = pathname.split('/')[2];
 
-  const selectedClasses = (path: string) =>
-    key.has(path) ? 'bg-gray-100' : 'text-default-500';
+    if (!pathKey && pathnameKey === 'wepp') {
+      return true;
+    }
+    return pathKey === pathnameKey;
+  };
+
+  const selectedClasses = (path: string) => {
+    return isActive(path) ? 'bg-gray-100' : 'text-default-500';
+  };
 
   return (
     <>
@@ -41,7 +50,7 @@ const DeveloperLayoutNav = () => {
           </h1>
         </div>
         <Listbox
-          selectedKeys={key}
+          selectedKeys={[pathname]}
           variant="flat"
           selectionMode="single"
           aria-label="navigation menu"
@@ -69,7 +78,7 @@ const DeveloperLayoutNav = () => {
             classNames={{
               base: 'gap-0',
             }}
-            startContent={<Wrench className="w-6 h-6" />}
+            startContent={<LayoutGrid className="w-6 h-6" />}
           >
             <span className="text-base pl-4 hidden lg:inline">PWA 만들기</span>
           </ListboxItem>
