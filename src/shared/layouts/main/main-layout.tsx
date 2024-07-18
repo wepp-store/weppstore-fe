@@ -20,6 +20,7 @@ const MainLayout: React.FC<Props> = ({ children }: React.PropsWithChildren) => {
           'overflow-y-auto',
           'box-border',
           'flex-grow',
+          'pt-2',
           'pb-4'
         )}
       >
