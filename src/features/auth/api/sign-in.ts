@@ -1,15 +1,14 @@
 'use client';
 
-import { jwtDecode, setSession } from '@/features/auth/utils';
+import { setSession } from '@/features/auth/utils';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
 import { authKeys } from '@/shared/apis/queries/auth/query-key-factory';
 import { PATH } from '@/shared/constants';
-import { IUser } from '@/shared/types';
 import {
   useMutation,
-  UseMutationOptions,
   useQueryClient,
+  UseMutationOptions,
 } from '@tanstack/react-query';
 import { usePathname, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
@@ -25,15 +24,13 @@ export const useSignIn = <T>(
     mutationFn: async (payload: T) => {
       const response = await axiosInstance.post(PATH_API.AUTH.SIGN_IN, payload);
 
-      const token = response.data;
+      const { user, ...token } = response.data;
 
       setSession(token);
 
-      return token;
+      return user;
     },
-    onSuccess: (token) => {
-      const user: IUser = jwtDecode(token.accessToken);
-
+    onSuccess: (user) => {
       queryClient.setQueryData(authKeys.session, user);
 
       const isLoginPage = pathname === PATH.AUTH.LOGIN;
