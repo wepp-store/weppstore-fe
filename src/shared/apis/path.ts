@@ -2,7 +2,7 @@ export const PATH_API = {
   // auth
   AUTH: {
     ME: '/auth/me',
-    SESSION: '/auth/session',
+    PROFILE: '/auth/profile',
     SIGN_IN: '/auth/sign-in',
     SIGN_UP: '/auth/sign-up',
     SIGN_OUT: '/auth/sign-out',
