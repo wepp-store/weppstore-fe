@@ -12,26 +12,28 @@ interface Props {
 
 export default function CodeView({ code, language = 'tsx' }: Props) {
   return (
-    <Highlight code={code} language={language} theme={themes.vsDark}>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre
-          translate="no"
-          className={cn(
-            'relative rounded-lg p-6 text-sm bg-gray-800 text-white overflow-x-auto',
-            className
-          )}
-          style={style}
-        >
-          <CopyButton code={code} style={{ padding: '2px' }} />
-          {tokens.map((line, i) => (
-            <div {...getLineProps({ line, key: i })} key={i}>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })} key={key} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
+    <div className="relative">
+      <CopyButton code={code} />
+      <Highlight code={code} language={language} theme={themes.vsDark}>
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre
+            translate="no"
+            className={cn(
+              'rounded-lg p-6 text-sm bg-gray-800 text-white overflow-x-auto',
+              className
+            )}
+            style={style}
+          >
+            {tokens.map((line, i) => (
+              <div {...getLineProps({ line, key: i })} key={i}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })} key={key} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
+    </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef } from 'react';
 import { Check, Copy } from 'lucide-react';
+import { cn } from '@nextui-org/theme';
 
 const copyToClipboard = (str: string) => {
   return navigator.clipboard.writeText(str);
@@ -13,9 +14,10 @@ interface Props
     HTMLButtonElement
   > {
   code: string;
+  className?: string;
 }
 
-export default function CopyButton({ code, ...other }: Props) {
+export default function CopyButton({ code, className, ...other }: Props) {
   const [isCopied, setIsCopied] = useState(false);
   const timer = useRef<any>(null);
 
@@ -31,11 +33,14 @@ export default function CopyButton({ code, ...other }: Props) {
     <button
       type="button"
       aria-label="code copy"
-      className="absolute top-2 right-2 p-1 rounded-md bg-gray-800 text-white"
+      className={cn(
+        'absolute top-4 right-4 p-1 rounded-md bg-gray-800 text-white',
+        className
+      )}
       onClick={handleCopy}
       {...other}
     >
-      {isCopied ? <Check /> : <Copy />}
+      {isCopied ? <Check size={16} /> : <Copy size={16} />}
     </button>
   );
 }
