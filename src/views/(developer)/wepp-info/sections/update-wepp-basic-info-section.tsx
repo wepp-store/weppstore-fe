@@ -68,7 +68,7 @@ const UpdateWeppBasicInfoSection = () => {
 
         {/* Logo */}
         <div className="flex-1 flex justify-center">
-          <label>
+          <label htmlFor="wepp_logo">
             <Image
               isZoomed
               src={logo}
@@ -80,7 +80,7 @@ const UpdateWeppBasicInfoSection = () => {
             />
             <input
               className="hidden"
-              id="logo"
+              id="wepp_logo"
               type="file"
               accept="image/*"
               onChange={onUploadLogo}
