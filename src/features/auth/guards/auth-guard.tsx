@@ -2,9 +2,10 @@
 
 //
 import { useAuth } from '@/shared/apis/queries/auth';
-import SignIn from '@/app/login/page';
 import React from 'react';
 import { CircularProgress } from '@nextui-org/react';
+import { redirect, usePathname } from 'next/navigation';
+import { PATH } from '@/shared/constants';
 
 // ----------------------------------------------------------------------
 
@@ -13,18 +14,18 @@ type AuthGuardProps = {
 };
 
 export default function AuthGuard({ children }: AuthGuardProps) {
-  const { isLoading, isError: isNotFoundUser } = useAuth();
+  const { isLoading, isError: isNotFoundUser, data } = useAuth();
+
+  const pathname = usePathname();
 
   if (isLoading) {
-    return (
-      <div className="m-auto">
-        <CircularProgress />
-      </div>
-    );
+    <div className="m-auto">
+      <CircularProgress />
+    </div>;
   }
 
-  if (isNotFoundUser) {
-    return <SignIn />;
+  if (isNotFoundUser || !data) {
+    return redirect(`${PATH.AUTH.LOGIN}?redirect=${pathname}`);
   }
 
   return <> {children} </>;
