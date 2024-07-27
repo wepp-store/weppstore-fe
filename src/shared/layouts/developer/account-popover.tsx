@@ -17,8 +17,11 @@ import {
   ModalContent,
   useDisclosure,
 } from '@nextui-org/react';
+import { usePathname } from 'next/navigation';
 
 const AccountPopover = () => {
+  const pathname = usePathname();
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const { data: me, isLoading } = useAuth();
@@ -39,7 +42,11 @@ const AccountPopover = () => {
 
   if (!me) {
     return (
-      <Button as={Link} href={PATH.AUTH.LOGIN} color="primary">
+      <Button
+        as={Link}
+        href={`${PATH.AUTH.LOGIN}?redirect=${pathname}`}
+        color="primary"
+      >
         로그인
       </Button>
     );

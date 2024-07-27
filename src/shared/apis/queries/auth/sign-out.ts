@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 export const useSignOut = (
   options?: Omit<UseMutationOptions<any, any>, 'mutationKey'>
 ) => {
-  const { replace } = useRouter();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: async () => {
@@ -24,8 +24,7 @@ export const useSignOut = (
     },
     onSuccess: () => {
       removeSession();
-      replace(PATH.AUTH.LOGIN);
-      window.location.reload();
+      window.location.replace(PATH.AUTH.LOGIN);
     },
     onError: (error) => {
       toast.error(error?.message);
