@@ -1,9 +1,11 @@
 import { LoginForm } from '@/features/auth';
+import { Suspense } from 'react';
 
 const SignIn = () => {
   return (
-    <div
-      className="
+    <Suspense fallback={<div>Loading...</div>}>
+      <div
+        className="
         fixed
         w-full
         h-full
@@ -13,9 +15,10 @@ const SignIn = () => {
         bg-white
         z-50
       "
-    >
-      <LoginForm />
-    </div>
+      >
+        <LoginForm />
+      </div>
+    </Suspense>
   );
 };
 
