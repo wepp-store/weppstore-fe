@@ -49,6 +49,14 @@ axiosInstance.interceptors.response.use(
       Promise.resolve();
     }
 
+    // 401 에러
+    if (error.response.status === 401) {
+      // 로그인 페이지로 이동
+      const pathname = window.location.pathname;
+      window.location.href = `/login?redirect=${pathname}`;
+      return Promise.reject('Unauthorized request');
+    }
+
     // 그 외의 에러는 그대로 반환
     return Promise.reject(
       (error.response && error.response.data) || 'Something went wrong'
