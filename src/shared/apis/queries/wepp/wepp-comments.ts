@@ -18,20 +18,21 @@ interface ResponseType {
   totalPages: number;
 }
 
-type Props = Omit<
+type Props = { size?: number } & Omit<
   UseInfiniteQueryOptions,
   'queryKey' | 'initialPageParam' | 'getNextPageParam'
 >;
 
 export const weppCommentsOptions = (
-  weppId: string
+  weppId: string,
+  size: number = 10
 ): UseInfiniteQueryOptions => ({
   queryKey: weppKeys.comments(weppId),
   queryFn: async ({ pageParam: page }) => {
     const response = await axiosInstance.get(
       `${PATH_API.COMMENT.ROOT}/${weppId}`,
       {
-        params: { page, size: 10 },
+        params: { page, size },
       }
     );
     return response.data;
@@ -46,10 +47,12 @@ export const weppCommentsOptions = (
 });
 
 export const useWeppComments = (props?: Props) => {
-  const { weppId } = useParams();
+  const { weppId }: { weppId: string } = useParams();
+
+  const { size, ...other } = props || {};
 
   return useInfiniteQuery({
-    ...weppCommentsOptions(weppId as string),
-    ...props,
+    ...weppCommentsOptions(weppId, size),
+    ...other,
   }) as UseInfiniteQueryResult<InfiniteData<ResponseType>, any>;
 };
