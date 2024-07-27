@@ -2,10 +2,11 @@ import { IWepp } from '@/shared/types';
 import { formatCategories, installLink } from '@/shared/utils';
 import { Section } from '@/shared/ui/section';
 import { StarRating } from '@/shared/ui/star-rating';
-import { Button, Chip, Divider, Image, Link } from '@nextui-org/react';
+import { Button, Chip, Divider, Image, Link, Tooltip } from '@nextui-org/react';
 import React from 'react';
-import { Heart, MessageCircle } from 'lucide-react';
+import { Heart, MessageCircle, ShieldCheck, ShieldOff } from 'lucide-react';
 import { DesktopChip, MobileChip, TabletChip } from '../ui';
+import WeppInstallButton from '../ui/wepp-install-button';
 
 interface Props {
   wepp: IWepp | undefined;
@@ -13,9 +14,9 @@ interface Props {
 
 const WeppDetailTitle = ({ wepp }: Props) => {
   const {
-    url,
     logo,
     name,
+    isVerified,
     developer,
     categories,
     // devices
@@ -37,7 +38,26 @@ const WeppDetailTitle = ({ wepp }: Props) => {
           radius="sm"
         />
         <div>
-          <h2 className="text-2xl font-bold mb-1">{name}</h2>
+          <h2 className="text-2xl font-bold mb-1 flex gap-4 items-center">
+            {name}
+            {isVerified ? (
+              <Tooltip content="설치 팝업이 제공된 앱입니다.">
+                <ShieldCheck
+                  className="text-green-500"
+                  size={20}
+                  aria-label="인증됨"
+                />
+              </Tooltip>
+            ) : (
+              <Tooltip content="설치 팝업이 제공되지 않은 앱입니다.">
+                <ShieldOff
+                  className="text-gray-500"
+                  size={20}
+                  aria-label="인증되지 않음"
+                />
+              </Tooltip>
+            )}
+          </h2>
           <p className="text-gray-600 mb-2">{developer?.userName}</p>
           <p className="text-sm text-gray-500">
             {formatCategories(categories)}
@@ -67,9 +87,8 @@ const WeppDetailTitle = ({ wepp }: Props) => {
           {isMobile && <MobileChip />}
           {isTablet && <TabletChip />}
         </div>
-        <Button color="primary" as={Link} href={installLink(name, url, logo)}>
-          받기
-        </Button>
+
+        <WeppInstallButton wepp={wepp} />
       </div>
 
       <Divider />
