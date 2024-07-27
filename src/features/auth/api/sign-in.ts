@@ -4,21 +4,20 @@ import { setSession } from '@/features/auth/utils';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
 import { authKeys } from '@/shared/apis/queries/auth/query-key-factory';
-import { PATH } from '@/shared/constants';
 import {
   useMutation,
   useQueryClient,
   UseMutationOptions,
 } from '@tanstack/react-query';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import toast from 'react-hot-toast';
 
 export const useSignIn = <T>(
   options?: Omit<UseMutationOptions<any, any, T>, 'mutationKey'>
 ) => {
-  const pathname = usePathname();
   const { replace } = useRouter();
   const queryClient = useQueryClient();
+  const searchParams = useSearchParams();
 
   return useMutation({
     mutationFn: async (payload: T) => {
@@ -33,10 +32,11 @@ export const useSignIn = <T>(
     onSuccess: (user) => {
       queryClient.setQueryData(authKeys.session, user);
 
-      const isLoginPage = pathname === PATH.AUTH.LOGIN;
-      if (!isLoginPage) return;
+      if (searchParams.get('redirect')) {
+        replace(searchParams.get('redirect') as string);
+        return;
+      }
 
-      // TODO: admin route
       replace('/');
     },
     onError: (error) => {
