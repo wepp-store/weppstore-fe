@@ -24,7 +24,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
     </div>;
   }
 
-  if (isNotFoundUser || !data) {
+  if (isNotFoundUser) {
     return redirect(`${PATH.AUTH.LOGIN}?redirect=${pathname}`);
   }
 
