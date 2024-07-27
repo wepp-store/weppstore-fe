@@ -28,7 +28,7 @@ const Header = ({ showMenu = true, showBackButton = false }: Props) => {
           <h1 className="text-xl font-semibold">Wepp Store</h1>
         </div>
 
-        <Tabs
+        {/* <Tabs
           selectedKey={key}
           variant="underlined"
           aria-label="navigation"
@@ -43,7 +43,7 @@ const Header = ({ showMenu = true, showBackButton = false }: Props) => {
         >
           <Tab key="/wepps" title="앱" href="/wepps" />
           <Tab key="/games" title="게임" href="/games" />
-        </Tabs>
+        </Tabs> */}
       </NavbarBrand>
 
       <NavbarContent justify="end">
