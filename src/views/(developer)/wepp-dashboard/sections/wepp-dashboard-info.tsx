@@ -21,6 +21,8 @@ const WeppDashboardInfo = () => {
 
   const { data: wepp } = useWeppDetail({ weppId });
 
+  const { id, version, categories, status, views, _count } = wepp || {};
+
   return (
     <Section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {/* <!-- 앱 정보 카드 --> */}
@@ -30,19 +32,19 @@ const WeppDashboardInfo = () => {
         <CardBody className="space-y-2">
           <dl className="flex justify-between">
             <dt className="font-medium">앱 ID:</dt>
-            <dd>{wepp?.id}</dd>
+            <dd>{id}</dd>
           </dl>
           <dl className="flex justify-between">
             <dt className="font-medium">현재 버전:</dt>
-            <dd>{wepp?.version}</dd>
+            <dd>{version}</dd>
           </dl>
           <dl className="flex justify-between">
             <dt className="font-medium">카테고리:</dt>
-            <dd>{formatCategories(wepp?.categories)}</dd>
+            <dd>{formatCategories(categories)}</dd>
           </dl>
           <dl className="flex justify-between">
             <dt className="font-medium">상태:</dt>
-            <dd className="text-green-500">{weppStatusToText(wepp?.status)}</dd>
+            <dd className="text-green-500">{weppStatusToText(status)}</dd>
           </dl>
         </CardBody>
         <CardFooter className="w-full flex justify-end">
@@ -65,19 +67,19 @@ const WeppDashboardInfo = () => {
         <CardBody className="space-y-2">
           <dl className="flex justify-between">
             <dt className="font-medium">총 조회수:</dt>
-            <dd>{wepp?.views}</dd>
+            <dd>{views}</dd>
           </dl>
           <dl className="flex justify-between">
-            <dt className="font-medium">이번 달 조회수:</dt>
-            <dd>1,234</dd>
+            <dt className="font-medium">총 좋아요 수:</dt>
+            <dd>{_count?.likes || 0}</dd>
           </dl>
           <dl className="flex justify-between">
-            <dt className="font-medium">평균 평점:</dt>
-            <dd>4.5</dd>
+            <dt className="font-medium">총 댓글 수:</dt>
+            <dd>{_count?.comments || 0}</dd>
           </dl>
           <dl className="flex justify-between">
-            <dt className="font-medium">활성 사용자:</dt>
-            <dd>5,678</dd>
+            <dt className="font-medium">다운로드 링크 클릭 수:</dt>
+            <dd>기능 구현 중</dd>
           </dl>
         </CardBody>
         <CardFooter className="w-full flex justify-end">
