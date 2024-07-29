@@ -53,7 +53,7 @@ const DomainOwnershipInfoButton = () => {
                     pre: 'whitespace-pre-wrap',
                   }}
                 >
-                  {`<script id="weppstore-install-script" src="./install-script.js"></script> `}
+                  {`<script async id="weppstore-install-script" src="https://cdn.jsdelivr.net/gh/ryxxn/pwa-install-prompt@main/index.js"></script>`}
                 </Snippet>
                 <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
                   Wepp Store에서 제공하는 pwa install script를 앱 HTML 파일의
