@@ -82,7 +82,12 @@ const WeppInstallButton = ({ wepp }: Props) => {
 
   if (isVerified && !isIOS) {
     return (
-      <Button color="primary" as={Link} href={installLink(name, url, logo)}>
+      <Button
+        color="primary"
+        size="sm"
+        as={Link}
+        href={installLink(name, url, logo)}
+      >
         받기
       </Button>
     );
