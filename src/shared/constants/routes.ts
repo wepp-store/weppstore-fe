@@ -9,7 +9,7 @@ export const PATH = {
     PROFILE: '/profile',
   },
   DEVELOPER: {
-    MAIN: '/developer',
+    MAIN: '/developer/wepp',
     WEPP: '/developer/wepp',
     MAKE_PWA: '/developer/make-pwa',
   },
