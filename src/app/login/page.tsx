@@ -1,9 +1,16 @@
 import { LoginForm } from '@/features/auth';
+import { CircularProgress } from '@nextui-org/react';
 import { Suspense } from 'react';
 
 const SignIn = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="m-auto">
+          <CircularProgress />
+        </div>
+      }
+    >
       <div
         className="
         fixed
