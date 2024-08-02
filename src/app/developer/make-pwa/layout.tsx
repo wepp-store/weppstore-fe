@@ -1,7 +1,7 @@
 import { DeveloperLayout } from '@/shared/layouts/developer';
 import React from 'react';
 
-const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+const Layout = ({ children }: React.PropsWithChildren) => {
   return <DeveloperLayout>{children}</DeveloperLayout>;
 };
 

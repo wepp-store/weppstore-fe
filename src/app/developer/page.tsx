@@ -1,7 +1,8 @@
-import { DeveloperMainPage } from '@/views/(developer)/main';
+import { PATH } from '@/shared/constants';
+import { redirect } from 'next/navigation';
 
 const DeveloperHome = () => {
-  return <DeveloperMainPage />;
+  redirect(PATH.DEVELOPER.MAIN);
 };
 
 export default DeveloperHome;

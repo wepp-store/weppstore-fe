@@ -1,10 +1,11 @@
 import { AuthGuard } from '@/features/auth';
-import { MainLayout } from '@/shared/layouts/main';
+import { DeveloperLayout } from '@/shared/layouts/developer';
+import React from 'react';
 
 const Layout = ({ children }: React.PropsWithChildren) => {
   return (
     <AuthGuard>
-      <MainLayout>{children}</MainLayout>
+      <DeveloperLayout>{children}</DeveloperLayout>
     </AuthGuard>
   );
 };
