@@ -88,7 +88,7 @@ const VerifyWeppButton = () => {
                 <div className="rounded-[24px] border-[12px]">
                   <iframe
                     src={verifyLink}
-                    className={`container rounded-[12px] w-[340px] h-[604px]`}
+                    className={`container rounded-[12px] w-[280px] h-[560px]`}
                   />
                 </div>
               </ModalBody>
