@@ -8,6 +8,8 @@ import {
   WeppDetailScreenshots,
   WeppDetailAdditionalInfo,
   WeppDetailUpdateHistories,
+  WeppDetailSubInfo,
+  WeppDetailDescription,
 } from './sections';
 import { useAuth } from '@/shared/apis/queries/auth';
 import { Link } from '@nextui-org/react';
@@ -40,7 +42,11 @@ const WeppDetailScreen = () => {
 
       <WeppDetailTitle wepp={wepp} />
 
+      <WeppDetailSubInfo wepp={wepp} />
+
       <WeppDetailScreenshots wepp={wepp} />
+
+      <WeppDetailDescription wepp={wepp} />
 
       <WeppDetailAdditionalInfo wepp={wepp} />
 
