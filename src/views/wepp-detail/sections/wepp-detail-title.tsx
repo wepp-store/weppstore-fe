@@ -13,18 +13,7 @@ interface Props {
 }
 
 const WeppDetailTitle = ({ wepp }: Props) => {
-  const {
-    logo,
-    name,
-    isVerified,
-    developer,
-    categories,
-    // devices
-    isDesktop,
-    isMobile,
-    isTablet,
-    _count,
-  } = wepp || {};
+  const { logo, name, isVerified, tagLine } = wepp || {};
 
   return (
     <Section className="flex flex-col gap-4">
@@ -37,7 +26,7 @@ const WeppDetailTitle = ({ wepp }: Props) => {
           alt="wepp icon"
           radius="sm"
         />
-        <div>
+        <div className="flex flex-col gap-2">
           <h2 className="text-2xl font-bold mb-1 flex gap-4 items-center">
             {name}
             {isVerified ? (
@@ -58,43 +47,14 @@ const WeppDetailTitle = ({ wepp }: Props) => {
               </Tooltip>
             )}
           </h2>
-          <p className="text-gray-600 mb-2">{developer?.userName}</p>
-          <p className="text-sm text-gray-500">
-            {formatCategories(categories)}
-          </p>
-          <div className="flex gap-2">
-            <span
-              className="flex items-center gap-1 text-gray-500"
-              aria-label="좋아요 수"
-            >
-              <Heart size={16} />
-              {_count?.likes || 0}
-            </span>
-            <span
-              className="flex items-center gap-1 text-gray-500"
-              aria-label="댓글 수"
-            >
-              <MessageCircle size={16} />
-              {_count?.comments || 0}
-            </span>
+
+          <p className="text-gray-600">{tagLine}</p>
+
+          <div className="flex justify-between items-center">
+            <WeppInstallButton wepp={wepp} />
           </div>
         </div>
       </div>
-
-      <div className="flex justify-between items-center">
-        <div className="flex gap-4">
-          {isDesktop && <DesktopChip />}
-          {isMobile && <MobileChip />}
-          {isTablet && <TabletChip />}
-        </div>
-
-        <WeppInstallButton wepp={wepp} />
-      </div>
-
-      <Divider />
-
-      <h3 className="text-lg font-semibold mb-2">앱 설명</h3>
-      <p className="text-gray-700 mb-4">{wepp?.description}</p>
     </Section>
   );
 };
