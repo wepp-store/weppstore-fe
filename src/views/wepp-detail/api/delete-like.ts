@@ -12,7 +12,7 @@ import { useParams } from 'next/navigation';
 import { useAuth } from '@/shared/apis/queries/auth';
 import { likeKeys } from './query-key-factory';
 
-const useDeleteWeppLike = (
+export const useDeleteWeppLike = (
   options?: Omit<UseMutationOptions<any, any, any>, 'mutationKey'>
 ) => {
   const { weppId }: { weppId: string } = useParams();
@@ -26,10 +26,10 @@ const useDeleteWeppLike = (
         throw new Error('로그인이 필요합니다.');
       }
 
-      const response = await axiosInstance.delete(PATH_API.COMMENT.ROOT, {
-        data: {
-          weppId,
-          userId: user.id,
+      const response = await axiosInstance.delete(PATH_API.LIKE.ROOT, {
+        params: {
+          wid: weppId,
+          uid: user.id,
         },
       });
 
@@ -42,5 +42,3 @@ const useDeleteWeppLike = (
     ...options,
   });
 };
-
-export default useDeleteWeppLike;
