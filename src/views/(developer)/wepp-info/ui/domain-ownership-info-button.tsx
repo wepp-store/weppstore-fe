@@ -36,8 +36,7 @@ const DomainOwnershipInfoButton = () => {
           <ModalHeader>도메인 소유권 인증 절차</ModalHeader>
           <ModalBody>
             <p className="mb-2">
-              도메인 소유권 인증은 앱을 등록하고 앱의 URL을 변경할 때 필요한
-              절차입니다.
+              도메인 소유권 인증과 앱 설치 팝업을 제공하기 위한 절차입니다.
             </p>
 
             <ol className="relative ml-3 border-s border-gray-200 dark:border-gray-700">
@@ -58,6 +57,8 @@ const DomainOwnershipInfoButton = () => {
                 <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
                   Wepp Store에서 제공하는 pwa install script를 앱 HTML 파일의
                   head 태그에 추가합니다.
+                  <br />위 스크립트를 추가하면, Wepp Store에서 앱 설치 팝업을
+                  제공합니다.
                 </p>
               </li>
               <li className="mb-10 ml-6">
