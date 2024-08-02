@@ -12,7 +12,7 @@ import { useParams } from 'next/navigation';
 import { useAuth } from '@/shared/apis/queries/auth';
 import { likeKeys } from './query-key-factory';
 
-const useAddWeppLike = (
+export const useAddWeppLike = (
   options?: Omit<UseMutationOptions<any, any, any>, 'mutationKey'>
 ) => {
   const { weppId }: { weppId: string } = useParams();
@@ -26,11 +26,9 @@ const useAddWeppLike = (
         throw new Error('로그인이 필요합니다.');
       }
 
-      const response = await axiosInstance.post(PATH_API.COMMENT.ROOT, {
-        data: {
-          weppId,
-          userId: user.id,
-        },
+      const response = await axiosInstance.post(PATH_API.LIKE.ROOT, {
+        weppId,
+        userId: user.id,
       });
 
       return response.data;
@@ -39,7 +37,6 @@ const useAddWeppLike = (
       queryClient.setQueryData(likeKeys.hasLiked(weppId), { hasLiked: true });
       toast.success('좋아요가 추가되었습니다.');
     },
+    ...options,
   });
 };
-
-export default useAddWeppLike;
