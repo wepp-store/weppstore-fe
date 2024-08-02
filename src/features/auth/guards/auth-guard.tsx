@@ -19,9 +19,11 @@ export default function AuthGuard({ children }: AuthGuardProps) {
   const pathname = usePathname();
 
   if (isLoading) {
-    <div className="m-auto">
-      <CircularProgress />
-    </div>;
+    return (
+      <div className="m-auto">
+        <CircularProgress />
+      </div>
+    );
   }
 
   if (isNotFoundUser) {
