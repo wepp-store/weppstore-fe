@@ -1,11 +1,9 @@
 import { IWepp } from '@/shared/types';
-import { formatCategories, installLink } from '@/shared/utils';
 import { Section } from '@/shared/ui/section';
-import { StarRating } from '@/shared/ui/star-rating';
-import { Button, Chip, Divider, Image, Link, Tooltip } from '@nextui-org/react';
+import { Image, Tooltip } from '@nextui-org/react';
 import React from 'react';
-import { Heart, MessageCircle, ShieldCheck, ShieldOff } from 'lucide-react';
-import { DesktopChip, MobileChip, TabletChip } from '../ui';
+import { ShieldCheck, ShieldOff } from 'lucide-react';
+import { WeppLikeButton } from '../ui';
 import WeppInstallButton from '../ui/wepp-install-button';
 
 interface Props {
@@ -51,6 +49,7 @@ const WeppDetailTitle = ({ wepp }: Props) => {
           <p className="text-gray-600">{tagLine}</p>
 
           <div className="flex justify-between items-center">
+            <WeppLikeButton />
             <WeppInstallButton wepp={wepp} />
           </div>
         </div>
