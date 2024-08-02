@@ -5,6 +5,7 @@ export type WeppField = Pick<
   | 'url'
   | 'name'
   | 'description'
+  | 'tagLine'
   | 'logo'
   | 'status'
   | 'version'

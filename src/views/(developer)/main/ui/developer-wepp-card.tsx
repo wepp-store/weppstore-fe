@@ -7,7 +7,7 @@ interface Props {
 }
 
 const DeveloperWeppCard = ({ wepp }: Props) => {
-  const { id, logo, name, description } = wepp;
+  const { id, logo, name, tagLine } = wepp;
 
   return (
     <Card as={Link} href={`/developer/wepp/${id}`} isPressable>
@@ -15,7 +15,7 @@ const DeveloperWeppCard = ({ wepp }: Props) => {
         <Image src={logo || ''} alt={name} width={100} height={100} />
         <div className="mr-4">
           <h3 className="text-lg font-semibold">{name}</h3>
-          <p className="text-sm text-gray-500">{description}</p>
+          <p className="text-sm text-gray-500">{tagLine}</p>
         </div>
       </CardBody>
     </Card>

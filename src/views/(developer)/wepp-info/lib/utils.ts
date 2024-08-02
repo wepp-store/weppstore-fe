@@ -10,6 +10,7 @@ export const convertUpdateWeppForm = (wepp: IWepp): WeppField => {
     logo: wepp.logo,
     status: wepp.status,
     version: wepp.version,
+    tagLine: wepp.tagLine,
     isMobile: wepp.isMobile,
     isTablet: wepp.isTablet,
     isDesktop: wepp.isDesktop,

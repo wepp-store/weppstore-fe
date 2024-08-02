@@ -48,6 +48,11 @@ const UpdateWeppBasicInfoSection = () => {
             type="text"
             placeholder="앱 이름"
           />
+          <RHFInput
+            name="tagLine"
+            label="한 줄 소개(생략 가능)"
+            placeholder="한 줄 소개"
+          />
           <div className="flex flex-col gap-4">
             <div className="flex gap-4 items-end">
               <RHFInput

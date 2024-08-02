@@ -21,6 +21,7 @@ export interface IWepp {
   developer: IUser;
   name: string;
   description: string;
+  tagLine: string | null;
   status: WeppStatus;
   url: string;
   createdAt: string;
