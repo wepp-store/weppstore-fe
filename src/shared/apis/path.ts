@@ -20,6 +20,12 @@ export const PATH_API = {
   COMMENT: {
     ROOT: '/comments',
   },
+  LIKE: {
+    ROOT: '/likes',
+    BY_WEPP: '/likes/wepp',
+    BY_USER: '/likes/user',
+    HAS_LIKED: '/likes/has-liked',
+  },
   CATEGORIES: {
     ROOT: '/categories',
   },
