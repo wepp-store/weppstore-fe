@@ -37,6 +37,7 @@ export const useGetHasLiked = (params?: Props) => {
     },
     gcTime: Infinity,
     staleTime: Infinity,
+    enabled: !!user,
     ...params,
   }) as UseQueryResult<ResponseType, AxiosError>;
 };
