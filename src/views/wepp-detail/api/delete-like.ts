@@ -11,6 +11,8 @@ import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
 import { useAuth } from '@/shared/apis/queries/auth';
 import { likeKeys } from './query-key-factory';
+import { weppKeys } from '@/shared/apis/queries/wepp';
+import { IWepp } from '@/shared/types';
 
 export const useDeleteWeppLike = (
   options?: Omit<UseMutationOptions<any, any, any>, 'mutationKey'>
@@ -36,7 +38,22 @@ export const useDeleteWeppLike = (
       return response.data;
     },
     onSuccess: () => {
+      // 좋아요 상태 반영
       queryClient.setQueryData(likeKeys.hasLiked(weppId), { hasLiked: false });
+      // 좋아요 수 반영
+      queryClient.setQueryData(weppKeys.detail(weppId), (prev: IWepp) => {
+        if (!prev) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          _count: {
+            ...prev._count,
+            likes: +prev._count!.likes - 1,
+          },
+        };
+      });
       toast.success('좋아요가 삭제되었습니다.');
     },
     ...options,
