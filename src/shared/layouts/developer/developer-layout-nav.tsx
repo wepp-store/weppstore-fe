@@ -1,11 +1,12 @@
 import React from 'react';
 import { Image, Listbox, ListboxItem } from '@nextui-org/react';
 import { LayoutGrid, Wrench } from 'lucide-react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { PATH } from '@/shared/constants';
 
 const DeveloperLayoutNav = () => {
   const pathname = usePathname();
+  const { replace } = useRouter();
 
   const isActive = (path: string) => {
     const pathKey = path.split('/')[2];
@@ -32,7 +33,10 @@ const DeveloperLayoutNav = () => {
         lg:min-w-[200px]
       "
       >
-        <div className="h-20 flex gap-2 items-center">
+        <div
+          className="h-20 flex gap-2 items-center cursor-pointer"
+          onClick={() => replace(PATH.DEVELOPER.WEPP)}
+        >
           <Image
             src="/logo.svg"
             alt="wepp store logo"

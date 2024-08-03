@@ -7,8 +7,9 @@ import {
   NavbarBrand,
   NavbarContent,
 } from '@nextui-org/react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import AccountPopover from './account-popover';
+import { PATH } from '@/shared/constants';
 
 interface Props {
   showMenu?: boolean;
@@ -18,12 +19,17 @@ interface Props {
 const Header = ({ showMenu = true, showBackButton = false }: Props) => {
   const pathname = usePathname();
 
+  const { replace } = useRouter();
+
   const key = '/' + pathname.split('/')[1];
 
   return (
     <Navbar isBordered maxWidth="full">
       <NavbarBrand className="gap-16">
-        <div className="flex gap-4 items-center">
+        <div
+          className="flex gap-4 items-center cursor-pointer"
+          onClick={() => replace(PATH.MAIN.WEPPS)}
+        >
           <Image src="/logo.svg" alt="wepp store logo" width={48} height={48} />
           <h1 className="text-xl font-semibold">Wepp Store</h1>
         </div>
