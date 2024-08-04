@@ -12,9 +12,24 @@ import {
 } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 import { useSignUp } from '../api';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const signupSchema = Yup.object().shape({
+  email: Yup.string()
+    .required('이메일을 입력해주세요.')
+    .matches(
+      /^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i,
+      '이메일 형식이 아닙니다.'
+    ),
+  password: Yup.string().required('비밀번호를 입력해주세요.'),
+  userName: Yup.string().required('이름을 입력해주세요.'),
+});
 
 const SignUpForm = () => {
-  const methods = useForm();
+  const methods = useForm({
+    resolver: yupResolver(signupSchema),
+  });
   const { handleSubmit } = methods;
 
   const signUpMutation = useSignUp();
@@ -38,19 +53,19 @@ const SignUpForm = () => {
           <RHFInput
             isRequired
             name="userName"
-            label="user name"
+            label="이름"
             placeholder="Enter your name"
           />
           <RHFInput
             isRequired
             name="email"
-            label="Name"
+            label="이메일"
             placeholder="Enter your email"
           />
           <RHFInput
             isRequired
             name="password"
-            label="password"
+            label="비밀번호"
             placeholder="Enter your password"
             type="password"
           />
