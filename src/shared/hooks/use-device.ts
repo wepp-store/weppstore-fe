@@ -1,3 +1,5 @@
+'use client';
+
 const useDevice = () => {
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
