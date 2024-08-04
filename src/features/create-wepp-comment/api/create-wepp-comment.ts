@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
 import { useAuth } from '@/shared/apis/queries/auth';
 import { weppKeys } from '@/shared/apis/queries/wepp';
+import { IWepp } from '@/shared/types';
 
 type Payload = { content: string };
 
@@ -44,6 +45,7 @@ export const useCreateWeppComment = (
         user,
       };
 
+      // 댓글 상태 반영
       queryClient.setQueryData(weppKeys.comments(weppId), (oldData: any) => {
         if (!oldData) {
           return {
@@ -63,6 +65,21 @@ export const useCreateWeppComment = (
             }
             return page;
           }),
+        };
+      });
+
+      // 댓글 수 반영
+      queryClient.setQueryData(weppKeys.detail(weppId), (prev: IWepp) => {
+        if (!prev) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          _count: {
+            ...prev._count,
+            comments: +prev._count!.comments + 1,
+          },
         };
       });
     },

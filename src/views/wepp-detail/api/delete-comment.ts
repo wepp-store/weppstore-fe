@@ -11,6 +11,7 @@ import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
 import { useAuth } from '@/shared/apis/queries/auth';
 import { weppKeys } from '@/shared/apis/queries/wepp';
+import { IWepp } from '@/shared/types';
 
 type Payload = { commentId: number };
 
@@ -37,6 +38,7 @@ export const useDeleteWeppComment = (
     onSuccess: (_data, { commentId }) => {
       toast.success('댓글이 삭제되었습니다.');
 
+      // 댓글 상태 반영
       queryClient.setQueryData(weppKeys.comments(weppId), (oldData: any) => {
         if (!oldData) {
           return oldData;
@@ -48,6 +50,21 @@ export const useDeleteWeppComment = (
             ...page,
             data: page.data.filter((comment: any) => comment.id !== commentId),
           })),
+        };
+      });
+
+      // 댓글 수 반영
+      queryClient.setQueryData(weppKeys.detail(weppId), (prev: IWepp) => {
+        if (!prev) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          _count: {
+            ...prev._count,
+            comments: +prev._count!.comments - 1,
+          },
         };
       });
     },
