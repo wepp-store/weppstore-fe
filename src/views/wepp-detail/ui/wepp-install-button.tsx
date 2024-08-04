@@ -1,3 +1,5 @@
+'use client';
+
 import { BrowserShare } from '@/shared/assets/icons';
 import useDevice from '@/shared/hooks/use-device';
 import { IWepp } from '@/shared/types';
