@@ -19,7 +19,7 @@ interface Props {
 const Header = ({ showMenu = true, showBackButton = false }: Props) => {
   const pathname = usePathname();
 
-  const { replace } = useRouter();
+  const { push } = useRouter();
 
   const key = '/' + pathname.split('/')[1];
 
@@ -28,7 +28,7 @@ const Header = ({ showMenu = true, showBackButton = false }: Props) => {
       <NavbarBrand className="gap-16">
         <div
           className="flex gap-4 items-center cursor-pointer"
-          onClick={() => replace(PATH.MAIN.WEPPS)}
+          onClick={() => push(PATH.MAIN.WEPPS)}
         >
           <Image src="/logo.svg" alt="wepp store logo" width={48} height={48} />
           <h1 className="text-xl font-semibold">Wepp Store</h1>

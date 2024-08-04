@@ -7,14 +7,14 @@ import { PATH } from '@/shared/constants';
 import { useRouter } from 'next/navigation';
 
 const Header = () => {
-  const { replace } = useRouter();
+  const { push } = useRouter();
 
   return (
     <Navbar isBordered maxWidth="full">
       <NavbarBrand className="gap-16 sm:hidden">
         <div
           className="flex gap-4 items-center cursor-pointer"
-          onClick={() => replace(PATH.DEVELOPER.WEPP)}
+          onClick={() => push(PATH.DEVELOPER.WEPP)}
         >
           <Image src="/logo.svg" alt="wepp store logo" width={48} height={48} />
           <h1 className="text-xl font-semibold">Developer</h1>
