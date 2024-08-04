@@ -26,6 +26,8 @@ export const weppDetailOptions = ({
       {
         headers: {
           'X-WEPP-READ': read,
+          // TODO: 작동하나?
+          'Cache-Control': 'max-age=3600, must-revalidate', // 1시간 동안 캐시 유지
         },
       }
     );
