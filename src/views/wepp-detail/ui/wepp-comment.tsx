@@ -11,6 +11,7 @@ import {
 } from '@nextui-org/react';
 import React from 'react';
 import { useDeleteWeppComment } from '../api';
+import { useAuth } from '@/shared/apis/queries/auth';
 
 interface Props {
   comment: Pick<IComment, 'id' | 'content' | 'user'>;
@@ -19,9 +20,13 @@ interface Props {
 const WeppComment = ({ comment }: Props) => {
   const { id: commentId, content, user } = comment;
 
+  const { data: me } = useAuth();
+
   const { isOpen, onOpenChange, onClose } = useDisclosure();
 
   const { mutate, isPending } = useDeleteWeppComment();
+
+  const isMyComment = user.id === me?.id;
 
   return (
     <>
@@ -34,9 +39,11 @@ const WeppComment = ({ comment }: Props) => {
               src: user.profileUrl || '/no-image.svg',
             }}
           />
-          <Button size="sm" variant="light" onPress={onOpenChange}>
-            삭제
-          </Button>
+          {isMyComment && (
+            <Button size="sm" variant="light" onPress={onOpenChange}>
+              삭제
+            </Button>
+          )}
         </div>
         <p className="text-gray-700">{content}</p>
       </div>
