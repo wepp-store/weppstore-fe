@@ -2,6 +2,7 @@ import {
   ClientToastProvider,
   ClientNextUIProvider,
   ClientQueryClientProvider,
+  ClientProgressProvider,
 } from '@/shared/providers';
 import '@/shared/styles/globals.scss';
 import type { Metadata, Viewport } from 'next';
@@ -70,15 +71,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ClientNextUIProvider>
-          <ClientQueryClientProvider>
-            <ClientToastProvider>
-              {children}
-              <div id="drawer-root"></div>
-              <div id="modal-root"></div>
-            </ClientToastProvider>
-          </ClientQueryClientProvider>
-        </ClientNextUIProvider>
+        <ClientProgressProvider>
+          <ClientNextUIProvider>
+            <ClientQueryClientProvider>
+              <ClientToastProvider>
+                {children}
+                <div id="drawer-root"></div>
+                <div id="modal-root"></div>
+              </ClientToastProvider>
+            </ClientQueryClientProvider>
+          </ClientNextUIProvider>
+        </ClientProgressProvider>
+
         <Script src="https://cdn.jsdelivr.net/gh/ryxxn/pwa-install-prompt@main/index.js" />
       </body>
     </html>
