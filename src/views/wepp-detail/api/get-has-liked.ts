@@ -2,7 +2,7 @@
 
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
-import { useAuth } from '@/shared/apis/queries/auth';
+import { useSession } from '@/shared/apis/queries/auth';
 import {
   useQuery,
   UseQueryResult,
@@ -17,7 +17,7 @@ type ResponseType = { hasLiked: boolean | undefined };
 
 export const useGetHasLiked = (params?: Props) => {
   const { weppId }: { weppId: string } = useParams();
-  const { data: user } = useAuth();
+  const { user } = useSession();
 
   return useQuery({
     queryKey: likeKeys.hasLiked(weppId),

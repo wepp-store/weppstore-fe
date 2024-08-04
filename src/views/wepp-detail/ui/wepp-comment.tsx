@@ -11,7 +11,7 @@ import {
 } from '@nextui-org/react';
 import React from 'react';
 import { useDeleteWeppComment } from '../api';
-import { useAuth } from '@/shared/apis/queries/auth';
+import { useSession } from '@/shared/apis/queries/auth';
 
 interface Props {
   comment: Pick<IComment, 'id' | 'content' | 'user'>;
@@ -20,7 +20,7 @@ interface Props {
 const WeppComment = ({ comment }: Props) => {
   const { id: commentId, content, user } = comment;
 
-  const { data: me } = useAuth();
+  const { user: me } = useSession();
 
   const { isOpen, onOpenChange, onClose } = useDisclosure();
 

@@ -8,6 +8,7 @@ import {
   useQuery,
   UseQueryResult,
   UseQueryOptions,
+  useQueryClient,
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { axiosInstance } from '../../axios';
@@ -49,4 +50,13 @@ export const useAuth = (params?: Props) => {
     staleTime: Infinity,
     ...params,
   }) as UseQueryResult<IUser, AxiosError>;
+};
+
+export const useSession = () => {
+  const { data: user } = useAuth({ enabled: false });
+
+  return {
+    user,
+    isLoggedIn: !!user,
+  };
 };

@@ -9,7 +9,7 @@ import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
 import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
-import { useAuth } from '@/shared/apis/queries/auth';
+import { useSession } from '@/shared/apis/queries/auth';
 import { likeKeys } from './query-key-factory';
 import { weppKeys } from '@/shared/apis/queries/wepp';
 import { IWepp } from '@/shared/types';
@@ -18,7 +18,7 @@ export const useAddWeppLike = (
   options?: Omit<UseMutationOptions<any, any, any>, 'mutationKey'>
 ) => {
   const { weppId }: { weppId: string } = useParams();
-  const { data: user } = useAuth();
+  const { user } = useSession();
 
   const queryClient = useQueryClient();
 

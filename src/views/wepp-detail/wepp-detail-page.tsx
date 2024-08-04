@@ -11,7 +11,7 @@ import {
   WeppDetailSubInfo,
   WeppDetailDescription,
 } from './sections';
-import { useAuth } from '@/shared/apis/queries/auth';
+import { useAuth, useSession } from '@/shared/apis/queries/auth';
 import { Link } from '@nextui-org/react';
 import { Section } from '@/shared/ui/section';
 import { ChevronLeft } from 'lucide-react';
@@ -20,14 +20,9 @@ import { ChevronLeft } from 'lucide-react';
 const WeppDetailScreen = () => {
   const { back } = useRouter();
   const { weppId }: { weppId: string } = useParams();
-  const { data: wepp } = useWeppDetail({
-    weppId,
-    read: true,
-    gcTime: Infinity,
-    staleTime: Infinity,
-  });
+  const { data: wepp } = useWeppDetail({ weppId });
 
-  const { data: user } = useAuth();
+  const { isLoggedIn } = useSession();
 
   return (
     <article className="flex flex-col gap-2">
@@ -50,7 +45,7 @@ const WeppDetailScreen = () => {
 
       <WeppDetailAdditionalInfo wepp={wepp} />
 
-      {user ? (
+      {isLoggedIn ? (
         <WeppDetailComments />
       ) : (
         <Section>
