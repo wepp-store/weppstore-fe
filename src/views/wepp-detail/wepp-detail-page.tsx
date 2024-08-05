@@ -11,7 +11,7 @@ import {
   WeppDetailSubInfo,
   WeppDetailDescription,
 } from './sections';
-import { useAuth, useSession } from '@/shared/apis/queries/auth';
+import { useSession } from '@/shared/apis/queries/auth';
 import { Link } from '@nextui-org/react';
 import { Section } from '@/shared/ui/section';
 import { ChevronLeft } from 'lucide-react';
