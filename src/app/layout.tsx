@@ -83,7 +83,10 @@ export default function RootLayout({
           </ClientNextUIProvider>
         </ClientProgressProvider>
 
-        <Script src="https://cdn.jsdelivr.net/gh/ryxxn/pwa-install-prompt@main/index.js" />
+        <Script
+          async
+          src="https://cdn.jsdelivr.net/gh/ryxxn/pwa-install-prompt@main/index.js"
+        />
       </body>
     </html>
   );
