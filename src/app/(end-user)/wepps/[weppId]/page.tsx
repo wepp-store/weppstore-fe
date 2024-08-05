@@ -1,4 +1,4 @@
-import { getQueryClient } from '@/shared/apis/get-query-client';
+import { getServerQueryClient } from '@/shared/apis/get-query-client';
 import { weppDetailOptions } from '@/shared/apis/queries/wepp';
 import { IWepp } from '@/shared/types';
 import { WeppDetailPage } from '@/views/wepp-detail';
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const queryClient = getQueryClient();
+  const queryClient = getServerQueryClient();
 
   const wepp = await queryClient.fetchQuery<IWepp>(
     weppDetailOptions({ weppId: params.weppId }) as any
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const queryClient = getQueryClient();
+  const queryClient = getServerQueryClient();
 
   await queryClient.prefetchQuery(
     weppDetailOptions({
