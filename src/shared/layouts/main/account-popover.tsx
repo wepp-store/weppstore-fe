@@ -74,11 +74,11 @@ const AccountPopover = () => {
             key="profile"
             className="h-14 gap-2"
             showDivider
-            href="/profile"
+            href={PATH.MAIN.PROFILE}
           >
             <p className="font-semibold">{me?.userName}님 프로필 보기</p>
           </DropdownItem>
-          <DropdownItem key="developer" href="/developer">
+          <DropdownItem key="developer" href={PATH.DEVELOPER.MAIN}>
             개발자 센터
           </DropdownItem>
           <DropdownItem key="logout" color="danger">
