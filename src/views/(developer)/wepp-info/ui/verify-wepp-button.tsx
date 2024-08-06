@@ -16,7 +16,7 @@ import { Callout } from '@/shared/ui/callout';
 import toast from 'react-hot-toast';
 
 const VerifyWeppButton = () => {
-  const { watch, setValue } = useFormContext();
+  const { watch, setValue, trigger } = useFormContext();
 
   const { url, logo, name, isVerified } = watch();
 
@@ -24,9 +24,14 @@ const VerifyWeppButton = () => {
 
   const { isOpen, onOpenChange } = useDisclosure();
 
-  const onOpenModal = () => {
+  const onOpenModal = async () => {
     if (verifyLink === '#') {
       toast.error('URL 및 로고를 입력해주세요.');
+      return;
+    }
+
+    if (!(await trigger('url'))) {
+      toast.error('URL 형식이 아닙니다.');
       return;
     }
 
@@ -44,7 +49,7 @@ const VerifyWeppButton = () => {
     });
   };
 
-  const verifyLink = installLink(name, url, logo);
+  const verifyLink = installLink(url);
 
   return (
     <>
