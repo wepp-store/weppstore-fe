@@ -1,9 +1,5 @@
-export const installLink = (
-  name: string | undefined,
-  weppUrl: string | undefined,
-  logoUrl: string | undefined | null
-) => {
-  if (!weppUrl || !logoUrl) return '#';
+export const installLink = (weppUrl: string | undefined) => {
+  if (!weppUrl) return '#';
   // return `${weppUrl}#wepp-install-modal-v${name}-v${logoUrl}`;
   return `${weppUrl}#wepp-install-modal`;
 };
