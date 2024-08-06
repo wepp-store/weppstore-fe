@@ -11,6 +11,26 @@ const nextConfig = {
   images: {
     domains: ['localhost'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/wepps',
+        permanent: true,
+      },
+      {
+        source: '/developer',
+        destination: '/developer/wepp',
+        permanent: true,
+      },
+      // Wildcard path matching
+      // {
+      //   source: '/blog/:slug',
+      //   destination: '/news/:slug',
+      //   permanent: true,
+      // },
+    ]
+  },
 };
 
 module.exports = withPWA(nextConfig);
