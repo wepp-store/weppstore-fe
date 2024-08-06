@@ -28,6 +28,8 @@ const WeppInstallButton = ({ wepp }: Props) => {
 
   const { isOpen, onOpenChange, onClose } = useDisclosure();
 
+  const weppInstallLink = installLink(url);
+
   const modalRenderContent = () => {
     if (isIOS) {
       return (
@@ -46,11 +48,7 @@ const WeppInstallButton = ({ wepp }: Props) => {
             <Button variant="light" onPress={onClose}>
               닫기
             </Button>
-            <Button
-              color="primary"
-              as={Link}
-              href={installLink(name, url, logo)}
-            >
+            <Button color="primary" as={Link} href={weppInstallLink}>
               받기
             </Button>
           </ModalFooter>
@@ -74,7 +72,7 @@ const WeppInstallButton = ({ wepp }: Props) => {
           <Button variant="light" onPress={onClose}>
             닫기
           </Button>
-          <Button color="primary" as={Link} href={installLink(name, url, logo)}>
+          <Button color="primary" as={Link} href={weppInstallLink}>
             받기
           </Button>
         </ModalFooter>
@@ -84,12 +82,7 @@ const WeppInstallButton = ({ wepp }: Props) => {
 
   if (isVerified && !isIOS) {
     return (
-      <Button
-        color="primary"
-        size="sm"
-        as={Link}
-        href={installLink(name, url, logo)}
-      >
+      <Button color="primary" size="sm" as={Link} href={weppInstallLink}>
         받기
       </Button>
     );
