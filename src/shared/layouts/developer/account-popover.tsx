@@ -70,7 +70,15 @@ const AccountPopover = () => {
           variant="flat"
           onAction={onAction}
         >
-          <DropdownItem key="developer" href="/wepps">
+          <DropdownItem
+            key="profile"
+            className="h-14 gap-2"
+            showDivider
+            href={PATH.MAIN.PROFILE}
+          >
+            <p className="font-semibold">{me?.userName}님 프로필 보기</p>
+          </DropdownItem>
+          <DropdownItem key="developer" href={PATH.MAIN.WEPPS}>
             스토어로 이동하기
           </DropdownItem>
           <DropdownItem key="logout" color="danger">
