@@ -1,7 +1,16 @@
 import { IWepp } from '@/shared/types';
 import { WeppField } from './types';
-
 import * as y from 'yup';
+
+const isValidUrl = (url: string) => {
+  try {
+    new URL(url);
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+  return true;
+};
 
 export const convertUpdateWeppForm = (wepp: IWepp): WeppField => {
   return {
@@ -24,7 +33,12 @@ export const weppSchema = y
   .object()
   .shape({
     logo: y.string().required('로고를 등록해주세요.'),
-    url: y.string().required('앱 URL을 입력해주세요.'),
+    url: y
+      .string()
+      .required('앱 URL을 입력해주세요.')
+      .test('is-url-valid', 'URL 형식이 아닙니다.', (value: string) => {
+        return isValidUrl(value);
+      }),
     name: y.string().required('앱 이름을 입력해주세요.'),
     categories: y.array().min(1, '카테고리를 선택해주세요.'),
     description: y.string().required('앱 설명을 입력해주세요.'),
