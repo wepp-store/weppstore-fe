@@ -32,11 +32,19 @@ export const useUploadProfileImage = () => {
     mutationFn: upload,
     onSuccess: (profileUrl: string) => {
       toast.success('프로필 이미지가 수정되었습니다.');
+
+      // update profile
       const oldData = queryClient.getQueryData<IUser>(authKeys.profile);
       queryClient.setQueryData(authKeys.profile, {
         ...oldData,
         profileUrl,
       });
+
+      // update session
+      queryClient.setQueryData(authKeys.session, (oldSession: IUser) => ({
+        ...oldSession,
+        profileUrl,
+      }));
     },
     onError: (error) => {
       toast.error(error?.message);
