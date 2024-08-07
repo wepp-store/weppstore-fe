@@ -11,4 +11,8 @@ export interface IComment {
   wepp: IWepp;
   createdAt: string;
   updatedAt: string;
+  parentId?: number;
+  _count: {
+    children: number;
+  };
 }
