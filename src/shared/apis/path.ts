@@ -19,6 +19,7 @@ export const PATH_API = {
   },
   COMMENT: {
     ROOT: '/comments',
+    REPLIES: '/comments/replies',
   },
   LIKE: {
     ROOT: '/likes',
