@@ -1,3 +1,4 @@
+export * from './time';
 export * from './styles';
 export * from './debounce';
 export * from './throttle';
