@@ -7,8 +7,8 @@ import {
 import { IComment } from '@/shared/types';
 import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
-import { weppKeys } from './query-key-factory';
 import { useParams } from 'next/navigation';
+import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
 
 interface ResponseType {
   data: IComment[];
@@ -27,7 +27,7 @@ export const weppCommentsOptions = (
   weppId: string,
   size: number = 10
 ): UseInfiniteQueryOptions => ({
-  queryKey: weppKeys.comments(weppId),
+  queryKey: commentKeys.list(weppId),
   queryFn: async ({ pageParam: page }) => {
     const response = await axiosInstance.get(
       `${PATH_API.COMMENT.ROOT}/${weppId}`,
