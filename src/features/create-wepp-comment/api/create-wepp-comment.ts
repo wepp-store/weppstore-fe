@@ -1,9 +1,9 @@
 'use client';
 
 import {
-  UseMutationOptions,
   useMutation,
   useQueryClient,
+  UseMutationOptions,
 } from '@tanstack/react-query';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
@@ -11,9 +11,10 @@ import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
 import { useSession } from '@/shared/apis/queries/auth';
 import { weppKeys } from '@/shared/apis/queries/wepp';
-import { IWepp } from '@/shared/types';
+import { IComment, IWepp } from '@/shared/types';
+import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
 
-type Payload = { content: string };
+type Payload = Pick<IComment, 'content' | 'parentId'>;
 
 export const useCreateWeppComment = (
   options?: Omit<UseMutationOptions<any, any, Payload>, 'mutationKey'>
@@ -31,6 +32,7 @@ export const useCreateWeppComment = (
 
       const response = await axiosInstance.post(PATH_API.COMMENT.ROOT, {
         content: content.content,
+        parentId: content.parentId,
         weppId: weppId,
         userId: user.id,
       });
@@ -46,7 +48,7 @@ export const useCreateWeppComment = (
       };
 
       // 댓글 상태 반영
-      queryClient.setQueryData(weppKeys.comments(weppId), (oldData: any) => {
+      queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
         if (!oldData) {
           return {
             pages: [newData],

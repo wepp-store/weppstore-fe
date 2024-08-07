@@ -10,8 +10,9 @@ import { PATH_API } from '@/shared/apis/path';
 import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
 import { useSession } from '@/shared/apis/queries/auth';
-import { weppKeys } from '@/shared/apis/queries/wepp';
 import { IWepp } from '@/shared/types';
+import { commentKeys } from './query-key-factory';
+import { weppKeys } from '@/shared/apis/queries/wepp';
 
 type Payload = { commentId: number };
 
@@ -39,7 +40,7 @@ export const useDeleteWeppComment = (
       toast.success('댓글이 삭제되었습니다.');
 
       // 댓글 상태 반영
-      queryClient.setQueryData(weppKeys.comments(weppId), (oldData: any) => {
+      queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
         if (!oldData) {
           return oldData;
         }
