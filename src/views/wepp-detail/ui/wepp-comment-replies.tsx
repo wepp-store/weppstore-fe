@@ -6,14 +6,16 @@ import { timeAgo } from '@/shared/utils';
 import { useReplyStateStore } from '@/features/create-wepp-comment/lib';
 import WeppCommentDeleteButton from './wepp-comment-delete-button';
 import { Loader } from '@/shared/ui/loader';
+import { useSession } from '@/shared/apis/queries/auth';
+import { useParams } from 'next/navigation';
+import { useWeppDetail } from '@/shared/apis/queries/wepp';
 
 interface Props {
   show: boolean;
   commentId: number;
-  isDeletable: boolean;
 }
 
-const WeppCommentReplies = ({ commentId, show, isDeletable }: Props) => {
+const WeppCommentReplies = ({ commentId, show }: Props) => {
   const {
     data,
     isFetched,
@@ -32,11 +34,7 @@ const WeppCommentReplies = ({ commentId, show, isDeletable }: Props) => {
         data?.pages.map((group, i) => (
           <React.Fragment key={i}>
             {group.data.map((comment) => (
-              <ReplyComment
-                key={comment.id}
-                comment={comment}
-                isDeletable={isDeletable}
-              />
+              <ReplyComment key={comment.id} comment={comment} />
             ))}
           </React.Fragment>
         ))}
@@ -57,13 +55,7 @@ const WeppCommentReplies = ({ commentId, show, isDeletable }: Props) => {
   );
 };
 
-const ReplyComment = ({
-  comment,
-  isDeletable,
-}: {
-  comment: IComment;
-  isDeletable: boolean;
-}) => {
+const ReplyComment = ({ comment }: { comment: IComment }) => {
   const {
     // comment data
     user,
@@ -76,6 +68,16 @@ const ReplyComment = ({
 
   // reply state
   const setReplyComment = useReplyStateStore((state) => state.setReplyComment);
+
+  // deletable check
+  const { user: me } = useSession();
+  const { weppId }: { weppId: string } = useParams();
+  const { data: wepp } = useWeppDetail({ weppId, enabled: false });
+
+  const isMyComment = user.id === me?.id;
+  const isCreator = wepp?.developer?.id === me?.id;
+
+  const isDeletable = isCreator || isMyComment;
 
   return (
     <div className="pt-4 flex justify-between">
@@ -91,7 +93,8 @@ const ReplyComment = ({
               role="button"
               onClick={() =>
                 setReplyComment({
-                  id: parentId || commentId,
+                  replyId: parentId || commentId,
+                  mentionId: user.id,
                   writer: user.userName,
                 })
               }
