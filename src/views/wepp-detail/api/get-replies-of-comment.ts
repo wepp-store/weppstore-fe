@@ -20,9 +20,11 @@ type Props = { commentId: number; size?: number } & Omit<
   'queryKey' | 'initialPageParam' | 'getNextPageParam'
 >;
 
-export const useRepliesOfComment = (props: Props) => {
-  const { commentId, size, ...other } = props || {};
-
+export const useRepliesOfComment = ({
+  commentId,
+  size = 8,
+  ...other
+}: Props) => {
   return useInfiniteQuery({
     queryKey: commentKeys.replies(commentId),
     queryFn: async ({ pageParam: page }) => {
