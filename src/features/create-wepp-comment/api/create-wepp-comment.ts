@@ -56,7 +56,10 @@ export const useCreateWeppComment = (
         setCacheComment({ newData, weppId, queryClient });
       } else {
         const commentId = data.parentId!;
-        setCacheReply({ parentId: commentId, queryClient });
+        // refetch replies
+        queryClient.invalidateQueries({
+          queryKey: commentKeys.replies(commentId),
+        });
         // 대댓글 수 반영
         setCacheReplyCount({ weppId, parentId: commentId, queryClient });
       }
@@ -86,7 +89,7 @@ const setCacheComment = ({
     if (!oldData) {
       return {
         pages: [newData],
-        pageParams: [],
+        pageParams: [1],
       };
     }
 
@@ -100,41 +103,6 @@ const setCacheComment = ({
           };
         }
         return page;
-      }),
-    };
-  });
-};
-
-const setCacheReply = ({
-  parentId,
-  queryClient,
-}: {
-  parentId: number;
-  queryClient: QueryClient;
-}) => {
-  queryClient.setQueryData(commentKeys.replies(parentId), (prev: any) => {
-    if (!prev) {
-      return prev;
-    }
-
-    return {
-      ...prev,
-      pages: prev.pages.map((page: any) => {
-        return {
-          ...page,
-          data: page.data.map((comment: any) => {
-            if (comment.id === parentId) {
-              return {
-                ...comment,
-                _count: {
-                  ...comment._count,
-                  children: comment._count.children + 1,
-                },
-              };
-            }
-            return comment;
-          }),
-        };
       }),
     };
   });

@@ -10,7 +10,7 @@ import { PATH_API } from '@/shared/apis/path';
 import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
 import { useSession } from '@/shared/apis/queries/auth';
-import { IWepp } from '@/shared/types';
+import { IComment, IWepp } from '@/shared/types';
 import { commentKeys } from './query-key-factory';
 import { weppKeys } from '@/shared/apis/queries/wepp';
 
@@ -36,23 +36,21 @@ export const useDeleteWeppComment = (
 
       return response.data;
     },
-    onSuccess: (_data, { commentId }) => {
+    onSuccess: (data: Pick<IComment, 'id' | 'parentId'>) => {
       toast.success('댓글이 삭제되었습니다.');
 
-      // 댓글 상태 반영
-      queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
-        if (!oldData) {
-          return oldData;
-        }
+      const parentId = data.parentId;
+      const isReply = !!parentId;
+      const commentId = data.id;
 
-        return {
-          ...oldData,
-          pages: oldData.pages.map((page: any) => ({
-            ...page,
-            data: page.data.filter((comment: any) => comment.id !== commentId),
-          })),
-        };
-      });
+      if (!isReply) {
+        // 댓글 상태 반영
+        removeCacheComment({ commentId, queryClient, weppId });
+      } else {
+        removeCacheReply({ parentId, commentId, queryClient });
+        // 대댓글 수 반영
+        removeCacheRepliesCount({ weppId, parentId, queryClient });
+      }
 
       // 댓글 수 반영
       queryClient.setQueryData(weppKeys.detail(weppId), (prev: IWepp) => {
@@ -73,5 +71,96 @@ export const useDeleteWeppComment = (
       toast.error(error?.message);
     },
     ...options,
+  });
+};
+
+// ------------------------------------------------------------
+const removeCacheComment = ({
+  commentId,
+  queryClient,
+  weppId,
+}: {
+  commentId: number;
+  queryClient: any;
+  weppId: string;
+}) => {
+  queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
+    if (!oldData) {
+      return oldData;
+    }
+
+    return {
+      ...oldData,
+      pages: oldData.pages.map((page: any) => ({
+        ...page,
+        data: page.data.filter((comment: any) => comment.id !== commentId),
+      })),
+    };
+  });
+};
+
+const removeCacheReply = ({
+  parentId,
+  commentId,
+  queryClient,
+}: {
+  parentId: number;
+  commentId: number;
+  queryClient: any;
+}) => {
+  queryClient.setQueryData(commentKeys.replies(parentId), (oldData: any) => {
+    if (!oldData) {
+      return oldData;
+    }
+
+    if (oldData.pages.length === 1 && oldData.pages[0].data.length === 1) {
+      return {
+        pages: [],
+        pageParams: [],
+      };
+    }
+
+    return {
+      ...oldData,
+      pages: oldData.pages.map((page: any) => ({
+        ...page,
+        data: page.data.filter((comment: any) => comment.id !== commentId),
+      })),
+    };
+  });
+};
+
+const removeCacheRepliesCount = ({
+  weppId,
+  parentId,
+  queryClient,
+}: {
+  weppId: string;
+  parentId: number;
+  queryClient: any;
+}) => {
+  queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
+    if (!oldData) {
+      return oldData;
+    }
+
+    return {
+      ...oldData,
+      pages: oldData.pages.map((page: any) => ({
+        ...page,
+        data: page.data.map((comment: any) => {
+          if (comment.id === parentId) {
+            return {
+              ...comment,
+              _count: {
+                ...comment._count,
+                children: comment._count.children - 1,
+              },
+            };
+          }
+          return comment;
+        }),
+      })),
+    };
   });
 };
