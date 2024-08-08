@@ -39,10 +39,7 @@ export const weppCommentsOptions = (
   },
   enabled: !!weppId,
   initialPageParam: 1,
-  getNextPageParam: (lastData: any, _allData: any) => {
-    const isEnd = lastData?.page === lastData?.totalPages;
-    return isEnd ? undefined : lastData?.page + 1;
-  },
+  getNextPageParam: (lastData: any, _allData: any) => lastData?.next,
   // keepPreviousData: true,
 });
 
