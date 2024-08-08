@@ -3,6 +3,7 @@
 import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { getBrowserQueryClient } from '@/shared/apis/get-query-client';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 const ClientQueryClientProvider: React.FC<React.PropsWithChildren> = ({
   children,
@@ -16,7 +17,7 @@ const ClientQueryClientProvider: React.FC<React.PropsWithChildren> = ({
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      {/* TODO: Will Delete */}
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 };
