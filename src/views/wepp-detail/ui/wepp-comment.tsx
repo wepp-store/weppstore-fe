@@ -8,6 +8,7 @@ import { timeAgo } from '@/shared/utils';
 import { useReplyStateStore } from '@/features/create-wepp-comment/lib';
 import WeppCommentDeleteButton from './wepp-comment-delete-button';
 import WeppCommentReplies from './wepp-comment-replies';
+import { parseMention } from '../lib';
 
 interface Props {
   comment: IComment;
@@ -19,6 +20,7 @@ const WeppComment = ({ comment }: Props) => {
     user,
     _count,
     content,
+    mention,
     parentId,
     createdAt,
     id: commentId,
@@ -52,14 +54,25 @@ const WeppComment = ({ comment }: Props) => {
           />
           <div className="flex flex-col grow">
             <p className="text-sm">@{user.userName}</p>
-            <p className="font-gray-800">{content}</p>
+            <p className="font-gray-800">
+              {mention && (
+                <span
+                  className="text-sm text-gray-500"
+                  aria-label={String(parseMention(mention).id)}
+                >
+                  @{parseMention(mention).name}{' '}
+                </span>
+              )}
+              {content}
+            </p>
             <div className="flex gap-2 mt-1 text-xs text-gray-500">
               <time>{timeAgo(createdAt)}</time>
               <div
                 role="button"
                 onClick={() =>
                   setReplyComment({
-                    id: commentId,
+                    replyId: commentId,
+                    mentionId: user.id,
                     writer: user.userName,
                   })
                 }
@@ -87,7 +100,6 @@ const WeppComment = ({ comment }: Props) => {
                   <WeppCommentReplies
                     commentId={commentId}
                     show={isShowReply}
-                    isDeletable={isDeletable}
                   />
                 )}
               </>
