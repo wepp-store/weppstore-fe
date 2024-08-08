@@ -5,6 +5,7 @@ import { Avatar } from '@nextui-org/react';
 import { timeAgo } from '@/shared/utils';
 import { useReplyStateStore } from '@/features/create-wepp-comment/lib';
 import WeppCommentDeleteButton from './wepp-comment-delete-button';
+import { Loader } from '@/shared/ui/loader';
 
 interface Props {
   show: boolean;
@@ -15,10 +16,10 @@ interface Props {
 const WeppCommentReplies = ({ commentId, show, isDeletable }: Props) => {
   const {
     data,
-    isLoading,
     isFetched,
     hasNextPage,
     isFetchingNextPage,
+    //
     fetchNextPage,
   } = useRepliesOfComment({
     commentId,
@@ -39,6 +40,19 @@ const WeppCommentReplies = ({ commentId, show, isDeletable }: Props) => {
             ))}
           </React.Fragment>
         ))}
+
+      {hasNextPage && (
+        <button
+          className="flex items-center mt-4 mb-2 text-sm text-gray-700"
+          onClick={() => fetchNextPage()}
+        >
+          {/* divider */}
+          <div className="w-8 h-px bg-divider" />
+          <span className="ml-4">
+            {isFetchingNextPage ? <Loader /> : '더보기'}
+          </span>
+        </button>
+      )}
     </div>
   );
 };
@@ -77,7 +91,7 @@ const ReplyComment = ({
               role="button"
               onClick={() =>
                 setReplyComment({
-                  id: commentId,
+                  id: parentId || commentId,
                   writer: user.userName,
                 })
               }
