@@ -28,7 +28,7 @@ const WeppCommentDeleteButton = ({ commentId }: Props) => {
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           <ModalHeader>댓글을 삭제하시겠습니까?</ModalHeader>
-          <ModalFooter>
+          <ModalFooter className="mb-2">
             <Button variant="light" onPress={onClose}>
               아니요
             </Button>

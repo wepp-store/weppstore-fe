@@ -32,7 +32,7 @@ const DeleteWeppButton = () => {
               <ModalBody className="items-center">
                 삭제하면 복구할 수 없습니다. 계속하시겠습니까?
               </ModalBody>
-              <ModalFooter>
+              <ModalFooter className="mb-2">
                 <Button variant="light" onPress={onClose}>
                   아니요
                 </Button>
