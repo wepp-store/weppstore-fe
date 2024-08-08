@@ -35,7 +35,7 @@ const WeppCommentDeleteButton = ({ commentId }: Props) => {
             <Button
               color="primary"
               isLoading={isPending}
-              onPress={() => mutate({ commentId })}
+              onPress={() => mutate({ commentId }, { onSuccess: onClose })}
             >
               {isPending || '네, 삭제할게요'}
             </Button>
