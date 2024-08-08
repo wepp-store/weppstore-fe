@@ -9,6 +9,7 @@ import { Loader } from '@/shared/ui/loader';
 import { useSession } from '@/shared/apis/queries/auth';
 import { useParams } from 'next/navigation';
 import { useWeppDetail } from '@/shared/apis/queries/wepp';
+import { parseMention } from '../lib';
 
 interface Props {
   show: boolean;
@@ -33,7 +34,7 @@ const WeppCommentReplies = ({ commentId, show }: Props) => {
       {isFetched &&
         data?.pages.map((group, i) => (
           <React.Fragment key={i}>
-            {group.data.map((comment) => (
+            {group?.data?.map((comment) => (
               <ReplyComment key={comment.id} comment={comment} />
             ))}
           </React.Fragment>
@@ -59,7 +60,7 @@ const ReplyComment = ({ comment }: { comment: IComment }) => {
   const {
     // comment data
     user,
-    _count,
+    mention,
     content,
     parentId,
     createdAt,
@@ -86,7 +87,17 @@ const ReplyComment = ({ comment }: { comment: IComment }) => {
 
         <div className="flex flex-col grow">
           <p className="text-sm">@{user.userName}</p>
-          <p className="font-gray-800">{content}</p>
+          <p className="font-gray-800">
+            {mention && (
+              <span
+                className="text-sm text-gray-500"
+                aria-label={String(parseMention(mention).id)}
+              >
+                @{parseMention(mention).name}{' '}
+              </span>
+            )}
+            {content}
+          </p>
           <div className="flex gap-2 mt-1 text-xs text-gray-500">
             <time>{timeAgo(createdAt)}</time>
             <div
