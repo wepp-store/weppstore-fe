@@ -5,13 +5,25 @@ import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
 import { Button } from '@nextui-org/react';
 import { useReplyStateStore } from '../lib';
 import { IComment } from '@/shared/types';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const commentSchema = Yup.object().shape({
+  content: Yup.string().required('내용을 입력해주세요.'),
+});
 
 const CreateWeppCommentField = () => {
   const { mutate, isPending } = useCreateWeppComment();
 
-  const methods = useForm<{ content: string }>();
+  const methods = useForm<{ content: string }>({
+    resolver: yupResolver(commentSchema),
+  });
 
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    setValue,
+    formState: { isValid },
+  } = methods;
 
   // reply state
   const {
@@ -27,7 +39,11 @@ const CreateWeppCommentField = () => {
       clearReplyComment();
     }
 
-    mutate(data);
+    mutate(data, {
+      onSuccess: () => {
+        setValue('content', '');
+      },
+    });
   };
 
   return (
@@ -47,7 +63,7 @@ const CreateWeppCommentField = () => {
         <Button
           type="submit"
           color="primary"
-          isDisabled={isPending}
+          isDisabled={!isValid || isPending}
           isLoading={isPending}
         >
           {isPending ? '작성중...' : '작성'}
