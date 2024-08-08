@@ -9,6 +9,7 @@ export interface IComment {
   weppId: number;
   user: IUser;
   wepp: IWepp;
+  mention?: string;
   createdAt: string;
   updatedAt: string;
   parentId?: number;
