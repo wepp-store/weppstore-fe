@@ -6,6 +6,7 @@ import { IWepp } from '@/shared/types';
 import { installLink } from '@/shared/utils';
 import {
   Button,
+  ButtonProps,
   Link,
   Modal,
   ModalBody,
@@ -17,12 +18,12 @@ import {
 import { Info } from 'lucide-react';
 import React from 'react';
 
-interface Props {
+interface Props extends ButtonProps {
   wepp: IWepp | undefined;
 }
 
-const WeppInstallButton = ({ wepp }: Props) => {
-  const { name, url, logo, isVerified } = wepp || {};
+const WeppInstallButton = ({ wepp, ...other }: Props) => {
+  const { url, isVerified } = wepp || {};
 
   const { isIOS, isMobile } = useDevice();
 
@@ -44,7 +45,7 @@ const WeppInstallButton = ({ wepp }: Props) => {
             </p>
             <p>2. {`'홈 화면에 추가'`}를 눌러주세요.</p>
           </ModalBody>
-          <ModalFooter>
+          <ModalFooter className="mb-2">
             <Button variant="light" onPress={onClose}>
               닫기
             </Button>
@@ -82,7 +83,13 @@ const WeppInstallButton = ({ wepp }: Props) => {
 
   if (isVerified && !isIOS) {
     return (
-      <Button color="primary" size="sm" as={Link} href={weppInstallLink}>
+      <Button
+        color="primary"
+        size="sm"
+        as={Link}
+        href={weppInstallLink}
+        {...other}
+      >
         받기
       </Button>
     );
@@ -90,7 +97,7 @@ const WeppInstallButton = ({ wepp }: Props) => {
 
   return (
     <>
-      <Button color="primary" onPress={onOpenChange}>
+      <Button color="primary" onPress={onOpenChange} {...other}>
         받기
       </Button>
 
