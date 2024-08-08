@@ -39,36 +39,66 @@ export const useCreateWeppComment = (
 
       return response.data;
     },
-    onSuccess: (data: { content: string }) => {
+    onSuccess: (data: Pick<IComment, 'content' | 'parentId'>) => {
       toast.success('댓글이 작성되었습니다.');
+
+      const isReply = !!data.parentId;
 
       const newData = {
         ...data,
         user,
       };
 
-      // 댓글 상태 반영
-      queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
-        if (!oldData) {
-          return {
-            pages: [newData],
-            pageParams: [],
-          };
-        }
+      if (!isReply) {
+        // 댓글 상태 반영
+        queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
+          if (!oldData) {
+            return {
+              pages: [newData],
+              pageParams: [],
+            };
+          }
 
-        return {
-          ...oldData,
-          pages: oldData.pages.map((page: any, index: number) => {
-            if (index === oldData.pages.length - 1) {
+          return {
+            ...oldData,
+            pages: oldData.pages.map((page: any, index: number) => {
+              if (index === oldData.pages.length - 1) {
+                return {
+                  ...page,
+                  data: [...page.data, newData],
+                };
+              }
+              return page;
+            }),
+          };
+        });
+      } else {
+        const commentId = data.parentId!;
+        queryClient.setQueryData(
+          commentKeys.replies(commentId),
+          (oldData: any) => {
+            if (!oldData) {
               return {
-                ...page,
-                data: [...page.data, newData],
+                pages: [newData],
+                pageParams: [],
               };
             }
-            return page;
-          }),
-        };
-      });
+
+            return {
+              ...oldData,
+              pages: oldData.pages.map((page: any, index: number) => {
+                if (index === oldData.pages.length - 1) {
+                  return {
+                    ...page,
+                    data: [...page.data, newData],
+                  };
+                }
+                return page;
+              }),
+            };
+          }
+        );
+      }
 
       // 댓글 수 반영
       queryClient.setQueryData(weppKeys.detail(weppId), (prev: IWepp) => {
@@ -86,7 +116,9 @@ export const useCreateWeppComment = (
       });
     },
     onError: (error) => {
-      toast.error(error?.message);
+      toast.error(
+        error?.message || '댓글 작성에 실패했습니다. 잠시 후 다시 시도해주세요.'
+      );
     },
     ...options,
   });
