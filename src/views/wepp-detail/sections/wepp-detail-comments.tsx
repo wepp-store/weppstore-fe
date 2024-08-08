@@ -3,6 +3,7 @@ import { useWeppComments } from '@/shared/apis/queries/wepp/wepp-comments';
 import { Section } from '@/shared/ui/section';
 import React from 'react';
 import { WeppComment } from '../ui';
+import { Loader } from '@/shared/ui/loader';
 
 const WeppDetailComments = () => {
   const {
@@ -25,11 +26,23 @@ const WeppDetailComments = () => {
       {isFetched &&
         data?.pages.map((group, i) => (
           <React.Fragment key={i}>
-            {group.data.map((comment) => (
+            {group?.data?.map((comment) => (
               <WeppComment key={comment.id} comment={comment} />
             ))}
           </React.Fragment>
         ))}
+      {hasNextPage && (
+        <button
+          className="flex items-center mt-4 mb-2 text-sm text-gray-700"
+          onClick={() => fetchNextPage()}
+        >
+          {/* divider */}
+          <div className="w-8 h-px bg-divider" />
+          <span className="ml-4">
+            {isFetchingNextPage ? <Loader /> : '더보기'}
+          </span>
+        </button>
+      )}
 
       <CreateWeppCommentField />
     </Section>
