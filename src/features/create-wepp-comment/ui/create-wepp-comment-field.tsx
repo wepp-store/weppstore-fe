@@ -7,6 +7,7 @@ import { useReplyStateStore } from '../lib';
 import { IComment } from '@/shared/types';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { stringifyMention } from '@/views/wepp-detail/lib';
 
 const commentSchema = Yup.object().shape({
   content: Yup.string().required('내용을 입력해주세요.'),
@@ -33,9 +34,15 @@ const CreateWeppCommentField = () => {
     clearReplyComment,
   } = useReplyStateStore();
 
-  const onSubmit = (data: Pick<IComment, 'content' | 'parentId'>) => {
+  const onSubmit = (
+    data: Pick<IComment, 'content' | 'parentId' | 'mention'>
+  ) => {
     if (replyComment) {
-      data.parentId = replyComment.id;
+      data.parentId = replyComment.replyId;
+      data.mention = stringifyMention(
+        replyComment.mentionId,
+        replyComment.writer
+      );
       clearReplyComment();
     }
 

@@ -2,7 +2,8 @@ import { create } from 'zustand';
 
 interface ReplyComment {
   writer: string;
-  id: number;
+  mentionId: number;
+  replyId: number;
 }
 
 interface Store {

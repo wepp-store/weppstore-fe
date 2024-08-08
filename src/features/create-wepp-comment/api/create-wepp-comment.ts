@@ -4,6 +4,7 @@ import {
   useMutation,
   useQueryClient,
   UseMutationOptions,
+  type QueryClient,
 } from '@tanstack/react-query';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
@@ -14,7 +15,7 @@ import { weppKeys } from '@/shared/apis/queries/wepp';
 import { IComment, IWepp } from '@/shared/types';
 import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
 
-type Payload = Pick<IComment, 'content' | 'parentId'>;
+type Payload = Pick<IComment, 'content' | 'parentId' | 'mention'>;
 
 export const useCreateWeppComment = (
   options?: Omit<UseMutationOptions<any, any, Payload>, 'mutationKey'>
@@ -33,6 +34,7 @@ export const useCreateWeppComment = (
       const response = await axiosInstance.post(PATH_API.COMMENT.ROOT, {
         content: content.content,
         parentId: content.parentId,
+        mention: content.mention,
         weppId: weppId,
         userId: user.id,
       });
@@ -51,69 +53,16 @@ export const useCreateWeppComment = (
 
       if (!isReply) {
         // 댓글 상태 반영
-        queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
-          if (!oldData) {
-            return {
-              pages: [newData],
-              pageParams: [],
-            };
-          }
-
-          return {
-            ...oldData,
-            pages: oldData.pages.map((page: any, index: number) => {
-              if (index === oldData.pages.length - 1) {
-                return {
-                  ...page,
-                  data: [...page.data, newData],
-                };
-              }
-              return page;
-            }),
-          };
-        });
+        setCacheComment({ newData, weppId, queryClient });
       } else {
         const commentId = data.parentId!;
-        queryClient.setQueryData(
-          commentKeys.replies(commentId),
-          (oldData: any) => {
-            if (!oldData) {
-              return {
-                pages: [newData],
-                pageParams: [],
-              };
-            }
-
-            return {
-              ...oldData,
-              pages: oldData.pages.map((page: any, index: number) => {
-                if (index === oldData.pages.length - 1) {
-                  return {
-                    ...page,
-                    data: [...page.data, newData],
-                  };
-                }
-                return page;
-              }),
-            };
-          }
-        );
+        setCacheReply({ parentId: commentId, queryClient });
+        // 대댓글 수 반영
+        setCacheReplyCount({ weppId, parentId: commentId, queryClient });
       }
 
       // 댓글 수 반영
-      queryClient.setQueryData(weppKeys.detail(weppId), (prev: IWepp) => {
-        if (!prev) {
-          return prev;
-        }
-
-        return {
-          ...prev,
-          _count: {
-            ...prev._count,
-            comments: +prev._count!.comments + 1,
-          },
-        };
-      });
+      setCacheCommentCount({ weppId, queryClient });
     },
     onError: (error) => {
       toast.error(
@@ -121,5 +70,131 @@ export const useCreateWeppComment = (
       );
     },
     ...options,
+  });
+};
+
+const setCacheComment = ({
+  newData,
+  weppId,
+  queryClient,
+}: {
+  newData: any;
+  weppId: string;
+  queryClient: QueryClient;
+}) => {
+  queryClient.setQueryData(commentKeys.list(weppId), (oldData: any) => {
+    if (!oldData) {
+      return {
+        pages: [newData],
+        pageParams: [],
+      };
+    }
+
+    return {
+      ...oldData,
+      pages: oldData.pages.map((page: any, index: number) => {
+        if (index === oldData.pages.length - 1) {
+          return {
+            ...page,
+            data: [...page.data, newData],
+          };
+        }
+        return page;
+      }),
+    };
+  });
+};
+
+const setCacheReply = ({
+  parentId,
+  queryClient,
+}: {
+  parentId: number;
+  queryClient: QueryClient;
+}) => {
+  queryClient.setQueryData(commentKeys.replies(parentId), (prev: any) => {
+    if (!prev) {
+      return prev;
+    }
+
+    return {
+      ...prev,
+      pages: prev.pages.map((page: any) => {
+        return {
+          ...page,
+          data: page.data.map((comment: any) => {
+            if (comment.id === parentId) {
+              return {
+                ...comment,
+                _count: {
+                  ...comment._count,
+                  children: comment._count.children + 1,
+                },
+              };
+            }
+            return comment;
+          }),
+        };
+      }),
+    };
+  });
+};
+
+const setCacheReplyCount = ({
+  weppId,
+  parentId,
+  queryClient,
+}: {
+  weppId: string;
+  parentId: number;
+  queryClient: QueryClient;
+}) => {
+  queryClient.setQueryData(commentKeys.list(weppId), (prev: any) => {
+    if (!prev) {
+      return prev;
+    }
+
+    return {
+      ...prev,
+      pages: prev.pages.map((page: any) => {
+        return {
+          ...page,
+          data: page.data.map((comment: any) => {
+            if (comment.id === parentId) {
+              return {
+                ...comment,
+                _count: {
+                  ...comment._count,
+                  children: comment._count.children + 1,
+                },
+              };
+            }
+            return comment;
+          }),
+        };
+      }),
+    };
+  });
+};
+
+const setCacheCommentCount = ({
+  weppId,
+  queryClient,
+}: {
+  weppId: string;
+  queryClient: QueryClient;
+}) => {
+  queryClient.setQueryData(weppKeys.detail(weppId), (prev: IWepp) => {
+    if (!prev) {
+      return prev;
+    }
+
+    return {
+      ...prev,
+      _count: {
+        ...prev._count,
+        comments: +prev._count!.comments + 1,
+      },
+    };
   });
 };
