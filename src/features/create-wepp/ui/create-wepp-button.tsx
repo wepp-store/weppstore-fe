@@ -37,7 +37,7 @@ const CreateWeppButton = () => {
       </Button>
 
       {/* Modal */}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
