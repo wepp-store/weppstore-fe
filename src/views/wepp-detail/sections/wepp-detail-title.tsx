@@ -50,10 +50,11 @@ const WeppDetailTitle = ({ wepp }: Props) => {
 
           <div className="flex justify-between items-center">
             <WeppLikeButton />
-            <WeppInstallButton wepp={wepp} />
+            <WeppInstallButton wepp={wepp} className="hidden md:flex" />
           </div>
         </div>
       </div>
+      <WeppInstallButton wepp={wepp} className="md:hidden" />
     </Section>
   );
 };
