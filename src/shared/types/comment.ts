@@ -13,6 +13,7 @@ export interface IComment {
   createdAt: string;
   updatedAt: string;
   parentId?: number;
+  deletedAt?: string;
   _count: {
     children: number;
   };
