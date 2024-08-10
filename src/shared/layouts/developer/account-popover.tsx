@@ -60,6 +60,7 @@ const AccountPopover = () => {
             isBordered
             as="button"
             radius="lg"
+            showFallback
             name={me?.userName}
             size="sm"
             src={me?.profileUrl || './no-image.svg'}

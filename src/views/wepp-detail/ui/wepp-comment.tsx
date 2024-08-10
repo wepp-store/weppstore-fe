@@ -50,6 +50,7 @@ const WeppComment = ({ comment }: Props) => {
       <div className="pt-4 flex justify-between">
         <div className="flex gap-4 grow">
           <Avatar
+            showFallback
             name={user?.userName}
             src={user?.profileUrl || '/no-image.svg'}
           />
