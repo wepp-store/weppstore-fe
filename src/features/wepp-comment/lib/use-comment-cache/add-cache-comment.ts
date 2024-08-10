@@ -1,12 +1,19 @@
 import { type QueryKey, type QueryClient } from '@tanstack/react-query';
 
-export const addInfiniteCache =
+export const addCacheComment =
   (queryClient: QueryClient) =>
   ({ data, queryKey }: { data: any; queryKey: QueryKey }) => {
     queryClient.setQueryData(queryKey, (oldData: any) => {
       if (!oldData) {
         return {
-          pages: [data],
+          pages: [
+            {
+              data: [data],
+              page: 1,
+              size: 8,
+              next: null,
+            },
+          ],
           pageParams: [1],
         };
       }
