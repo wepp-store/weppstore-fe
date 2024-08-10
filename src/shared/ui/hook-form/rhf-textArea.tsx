@@ -10,6 +10,7 @@ interface Props extends TextAreaProps {
 export default function RHFTextarea({
   name,
   loading = false,
+  isInvalid,
   ...other
 }: Props) {
   const { control } = useFormContext();
@@ -18,8 +19,14 @@ export default function RHFTextarea({
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <Textarea labelPlacement="outside" {...field} {...other} />
+      render={({ field, fieldState: { error } }) => (
+        <Textarea
+          labelPlacement="outside"
+          {...field}
+          {...other}
+          isInvalid={!!error || isInvalid}
+          errorMessage={error?.message}
+        />
       )}
     />
   );
