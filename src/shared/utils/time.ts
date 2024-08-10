@@ -13,6 +13,7 @@ export function timeAgo(date: string | Date): string {
   const months = Math.floor(days / 30); // 대략적인 값
   const years = Math.floor(days / 365); // 대략적인 값
 
+  if (seconds < 10) return '방금 전';
   if (seconds < 60) return `${seconds}초 전`;
   if (minutes < 60) return `${minutes}분 전`;
   if (hours < 24) return `${hours}시간 전`;
