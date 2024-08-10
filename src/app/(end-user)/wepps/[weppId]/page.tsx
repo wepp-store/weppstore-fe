@@ -4,6 +4,7 @@ import { IWepp } from '@/shared/types';
 import { WeppDetailPage } from '@/views/wepp-detail';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 // TODO: 2회 호출되는 이슈가 있음
 
@@ -38,8 +39,10 @@ export default async function Page({ params }: Props) {
   );
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <WeppDetailPage />
-    </HydrationBoundary>
+    <Suspense>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <WeppDetailPage />
+      </HydrationBoundary>
+    </Suspense>
   );
 }
