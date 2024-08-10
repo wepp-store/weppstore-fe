@@ -49,6 +49,7 @@ const CreateWeppCommentField = () => {
     mutate(data, {
       onSuccess: () => {
         setValue('content', '');
+        clearReplyComment();
       },
     });
   };
