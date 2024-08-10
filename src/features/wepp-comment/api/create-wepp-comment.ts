@@ -58,7 +58,6 @@ export const useCreateWeppComment = (
         addCacheComment({ data: newData, queryKey: commentKeys.list(weppId) });
       } else {
         const commentId = data.parentId!;
-        // refetch replies
         addCacheComment({
           data: newData,
           queryKey: commentKeys.replies(commentId),
