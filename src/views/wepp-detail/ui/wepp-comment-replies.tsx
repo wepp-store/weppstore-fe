@@ -3,13 +3,13 @@ import { useRepliesOfComment } from '../api';
 import { IComment } from '@/shared/types';
 import { Avatar } from '@nextui-org/react';
 import { timeAgo } from '@/shared/utils';
-import { useReplyStateStore } from '@/features/create-wepp-comment/lib';
-import WeppCommentDeleteButton from './wepp-comment-delete-button';
 import { Loader } from '@/shared/ui/loader';
 import { useSession } from '@/shared/apis/queries/auth';
 import { useParams } from 'next/navigation';
 import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { parseMention } from '../lib';
+import { DeleteWeppCommentButton } from '@/features/wepp-comment';
+import { useReplyStateStore } from '@/features/wepp-comment/lib';
 
 interface Props {
   show: boolean;
@@ -64,6 +64,7 @@ const ReplyComment = ({ comment }: { comment: IComment }) => {
     content,
     parentId,
     createdAt,
+    deletedAt,
     id: commentId,
   } = comment;
 
@@ -75,47 +76,59 @@ const ReplyComment = ({ comment }: { comment: IComment }) => {
   const { weppId }: { weppId: string } = useParams();
   const { data: wepp } = useWeppDetail({ weppId, enabled: false });
 
-  const isMyComment = user.id === me?.id;
+  const isMyComment = user?.id && user.id === me?.id;
   const isCreator = wepp?.developer?.id === me?.id;
 
-  const isDeletable = isCreator || isMyComment;
+  const isDeletable = (!deletedAt && isCreator) || isMyComment;
 
   return (
     <div className="pt-4 flex justify-between">
       <div className="flex gap-4 grow">
-        <Avatar name={user.userName} src={user.profileUrl || '/no-image.svg'} />
+        <Avatar
+          name={user?.userName}
+          src={user?.profileUrl || '/no-image.svg'}
+        />
 
         <div className="flex flex-col grow">
-          <p className="text-sm">@{user.userName}</p>
-          <p className="font-gray-800">
-            {mention && (
-              <span
-                className="text-sm text-gray-500"
-                aria-label={String(parseMention(mention).id)}
-              >
-                @{parseMention(mention).name}{' '}
-              </span>
-            )}
-            {content}
-          </p>
-          <div className="flex gap-2 mt-1 text-xs text-gray-500">
-            <time>{timeAgo(createdAt)}</time>
-            <div
-              role="button"
-              onClick={() =>
-                setReplyComment({
-                  replyId: parentId || commentId,
-                  mentionId: user.id,
-                  writer: user.userName,
-                })
-              }
-            >
-              답글 달기
-            </div>
-          </div>
+          {!deletedAt ? (
+            <>
+              <p className="text-sm">@{user.userName}</p>
+              <p className="font-gray-800">
+                {mention && (
+                  <span
+                    className="text-sm text-gray-500"
+                    aria-label={String(parseMention(mention).id)}
+                  >
+                    @{parseMention(mention).name}{' '}
+                  </span>
+                )}
+                {content}
+              </p>
+              <div className="flex gap-2 mt-1 text-xs text-gray-500">
+                <time>{timeAgo(createdAt)}</time>
+                <div
+                  role="button"
+                  onClick={() =>
+                    setReplyComment({
+                      replyId: parentId || commentId,
+                      mentionId: user.id,
+                      writer: user.userName,
+                    })
+                  }
+                >
+                  답글 달기
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-sm">(삭제)</p>
+              <p className="font-gray-800">{content}</p>
+            </>
+          )}
         </div>
       </div>
-      {isDeletable && <WeppCommentDeleteButton commentId={commentId} />}
+      {isDeletable && <DeleteWeppCommentButton commentId={commentId} />}
     </div>
   );
 };

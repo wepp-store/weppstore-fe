@@ -5,10 +5,10 @@ import { useSession } from '@/shared/apis/queries/auth';
 import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { useParams } from 'next/navigation';
 import { timeAgo } from '@/shared/utils';
-import { useReplyStateStore } from '@/features/create-wepp-comment/lib';
-import WeppCommentDeleteButton from './wepp-comment-delete-button';
+import { useReplyStateStore } from '@/features/wepp-comment/lib';
 import WeppCommentReplies from './wepp-comment-replies';
 import { parseMention } from '../lib';
+import { DeleteWeppCommentButton } from '@/features/wepp-comment';
 
 interface Props {
   comment: IComment;
@@ -23,6 +23,7 @@ const WeppComment = ({ comment }: Props) => {
     mention,
     parentId,
     createdAt,
+    deletedAt,
     id: commentId,
   } = comment;
 
@@ -37,10 +38,10 @@ const WeppComment = ({ comment }: Props) => {
   // reply state
   const setReplyComment = useReplyStateStore((state) => state.setReplyComment);
 
-  const isMyComment = user.id === me?.id;
+  const isMyComment = user?.id && user.id === me?.id;
   const isCreator = wepp?.developer?.id === me?.id;
 
-  const isDeletable = isCreator || isMyComment;
+  const isDeletable = (!deletedAt && isCreator) || isMyComment;
 
   const hasChildren = _count?.children > 0;
 
@@ -49,37 +50,46 @@ const WeppComment = ({ comment }: Props) => {
       <div className="pt-4 flex justify-between">
         <div className="flex gap-4 grow">
           <Avatar
-            name={user.userName}
-            src={user.profileUrl || '/no-image.svg'}
+            name={user?.userName}
+            src={user?.profileUrl || '/no-image.svg'}
           />
           <div className="flex flex-col grow">
-            <p className="text-sm">@{user.userName}</p>
-            <p className="font-gray-800">
-              {mention && (
-                <span
-                  className="text-sm text-gray-500"
-                  aria-label={String(parseMention(mention).id)}
-                >
-                  @{parseMention(mention).name}{' '}
-                </span>
-              )}
-              {content}
-            </p>
-            <div className="flex gap-2 mt-1 text-xs text-gray-500">
-              <time>{timeAgo(createdAt)}</time>
-              <div
-                role="button"
-                onClick={() =>
-                  setReplyComment({
-                    replyId: commentId,
-                    mentionId: user.id,
-                    writer: user.userName,
-                  })
-                }
-              >
-                답글 달기
-              </div>
-            </div>
+            {!deletedAt ? (
+              <>
+                <p className="text-sm">@{user.userName}</p>
+                <p className="font-gray-800">
+                  {mention && (
+                    <span
+                      className="text-sm text-gray-500"
+                      aria-label={String(parseMention(mention).id)}
+                    >
+                      @{parseMention(mention).name}{' '}
+                    </span>
+                  )}
+                  {content}
+                </p>
+                <div className="flex gap-2 mt-1 text-xs text-gray-500">
+                  <time>{timeAgo(createdAt)}</time>
+                  <div
+                    role="button"
+                    onClick={() =>
+                      setReplyComment({
+                        replyId: commentId,
+                        mentionId: user.id,
+                        writer: user.userName,
+                      })
+                    }
+                  >
+                    답글 달기
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-sm">(삭제)</p>
+                <p className="font-gray-800">{content}</p>
+              </>
+            )}
 
             {hasChildren && (
               <>
@@ -107,7 +117,7 @@ const WeppComment = ({ comment }: Props) => {
           </div>
         </div>
 
-        {isDeletable && <WeppCommentDeleteButton commentId={commentId} />}
+        {isDeletable && <DeleteWeppCommentButton commentId={commentId} />}
       </div>
     </>
   );

@@ -5,10 +5,10 @@ import {
   UseInfiniteQueryOptions,
 } from '@tanstack/react-query';
 import { IComment } from '@/shared/types';
-import { PATH_API } from '../../path';
-import { axiosInstance } from '../../axios';
 import { useParams } from 'next/navigation';
 import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
+import { axiosInstance } from '@/shared/apis/axios';
+import { PATH_API } from '@/shared/apis/path';
 
 interface ResponseType {
   data: IComment[];
