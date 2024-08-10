@@ -15,11 +15,12 @@ import { FormProvider, RHFInput, RHFTextArea } from '@/shared/ui/hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-type FieldValues = Pick<IUser, 'userName' | 'description'>;
+interface FieldValues extends Pick<IUser, 'userName'> {
+  description?: string;
+}
 
 const profileSchema = yup.object().shape({
   userName: yup.string().required('이름을 입력해주세요.'),
-  description: yup.string().required('소개를 입력해주세요.'),
 });
 
 const UpdateProfileFormOpenButton = ({ profile }: { profile: IUser }) => {
