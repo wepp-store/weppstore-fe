@@ -49,7 +49,12 @@ const WeppInstallButton = ({ wepp, ...other }: Props) => {
             <Button variant="light" onPress={onClose}>
               닫기
             </Button>
-            <Button color="primary" as={Link} href={weppInstallLink}>
+            <Button
+              color="primary"
+              as={Link}
+              href={weppInstallLink}
+              target="_blank"
+            >
               받기
             </Button>
           </ModalFooter>
@@ -73,7 +78,12 @@ const WeppInstallButton = ({ wepp, ...other }: Props) => {
           <Button variant="light" onPress={onClose}>
             닫기
           </Button>
-          <Button color="primary" as={Link} href={weppInstallLink}>
+          <Button
+            color="primary"
+            as={Link}
+            href={weppInstallLink}
+            target="_blank"
+          >
             받기
           </Button>
         </ModalFooter>
@@ -87,6 +97,7 @@ const WeppInstallButton = ({ wepp, ...other }: Props) => {
         color="primary"
         size="sm"
         as={Link}
+        target="_blank"
         href={weppInstallLink}
         {...other}
       >
