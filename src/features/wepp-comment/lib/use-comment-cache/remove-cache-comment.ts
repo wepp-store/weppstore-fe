@@ -8,7 +8,7 @@ export const removeCacheComment =
   ({ commentId, weppId }: { commentId: number; weppId: string }) => {
     const comment = getCacheComment(queryClient, weppId, commentId);
     // 대댓글이 있는 경우 논리적 삭제 처리
-    if (comment && comment._count.children > 0) {
+    if (comment && comment._count?.children > 0) {
       logicalDeleteComment(queryClient, weppId, commentId);
       return;
     }
