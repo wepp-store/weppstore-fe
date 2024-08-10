@@ -14,20 +14,30 @@ import {
 import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
 import { useForm } from 'react-hook-form';
 import { useCreateWepp } from '../api/create-wepp';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 type FieldValues = Pick<IWepp, 'name'>;
+
+const createWeppSchema = Yup.object().shape({
+  name: Yup.string().required('앱 이름을 입력해주세요.'),
+});
 
 const CreateWeppButton = () => {
   const createMutation = useCreateWepp<FieldValues>();
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
-  const methods = useForm<FieldValues>();
+  const methods = useForm<FieldValues>({
+    resolver: yupResolver(createWeppSchema),
+  });
 
   const { handleSubmit } = methods;
 
   const onSubmit = (data: FieldValues) => {
-    createMutation.mutate(data);
+    createMutation.mutate(data, {
+      onSuccess: onClose,
+    });
   };
 
   return (
@@ -39,25 +49,23 @@ const CreateWeppButton = () => {
       {/* Modal */}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
-          {(onClose) => (
-            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-              <ModalHeader className="flex flex-col gap-1">
-                앱 이름을 입력해주세요.
-              </ModalHeader>
-              <ModalBody>
-                <RHFInput
-                  name="name"
-                  type="text"
-                  placeholder="앱 이름을 입력해주세요."
-                />
-              </ModalBody>
-              <ModalFooter>
-                <Button type="submit" color="primary" onPress={onClose}>
-                  생성하기
-                </Button>
-              </ModalFooter>
-            </FormProvider>
-          )}
+          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+            <ModalHeader className="flex flex-col gap-1">
+              앱 이름을 입력해주세요.
+            </ModalHeader>
+            <ModalBody>
+              <RHFInput
+                name="name"
+                type="text"
+                placeholder="앱 이름을 입력해주세요."
+              />
+            </ModalBody>
+            <ModalFooter>
+              <Button type="submit" color="primary">
+                생성하기
+              </Button>
+            </ModalFooter>
+          </FormProvider>
         </ModalContent>
       </Modal>
     </>
