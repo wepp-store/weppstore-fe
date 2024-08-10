@@ -1,18 +1,12 @@
 'use client';
 
-import {
-  useMutation,
-  useQueryClient,
-  UseMutationOptions,
-} from '@tanstack/react-query';
+import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
 import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
 import { useSession } from '@/shared/apis/queries/auth';
-import { IComment, IWepp } from '@/shared/types';
-import { weppKeys } from '@/shared/apis/queries/wepp';
-import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
+import { IComment } from '@/shared/types';
 import { useCommentCache } from '../lib/use-comment-cache';
 
 type Payload = { commentId: number };
@@ -55,7 +49,7 @@ export const useDeleteWeppComment = (
         // 댓글 상태 반영
         removeCacheComment({ commentId, weppId });
       } else {
-        removeCacheReply({ parentId, commentId });
+        removeCacheReply({ parentId, weppId, commentId });
         // 대댓글 수 반영
         decreaseCacheReplyCount({ weppId, parentId });
       }
