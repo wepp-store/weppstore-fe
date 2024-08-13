@@ -46,41 +46,44 @@ const SignUpForm = () => {
     >
       <Card className="max-w-full w-[340px]">
         <CardHeader className="justify-center">
-          <h1 className="text-3xl font-bold">Sign Up</h1>
+          <h1 className="text-3xl font-bold">회원가입</h1>
         </CardHeader>
         <Divider />
         <CardBody className="items-center gap-4 p-4">
           <RHFInput
             isRequired
+            id="name"
             name="userName"
             label="이름"
-            placeholder="Enter your name"
+            placeholder="이름을 입력해주세요."
           />
           <RHFInput
             isRequired
+            id="email"
             name="email"
             label="이메일"
-            placeholder="Enter your email"
+            placeholder="이메일을 입력해주세요."
           />
           <RHFInput
             isRequired
+            id="password"
             name="password"
             label="비밀번호"
-            placeholder="Enter your password"
+            placeholder="비밀번호를 입력해주세요."
             type="password"
           />
 
           <p className="text-center text-small">
-            Already have an account?{' '}
+            이미 계정이 있으신가요?{' '}
             <Link size="sm" href="/login">
-              Login
+              로그인
             </Link>
           </p>
         </CardBody>
 
         <CardFooter className="justify-end">
           <Button color="primary" type="submit" fullWidth>
-            Sign Up
+            회원가입
           </Button>
         </CardFooter>
       </Card>
