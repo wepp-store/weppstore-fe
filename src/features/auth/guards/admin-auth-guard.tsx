@@ -1,7 +1,6 @@
 'use client';
 
 import { useAuth } from '@/shared/apis/queries/auth';
-import SignIn from '@/app/login/page';
 import React from 'react';
 import { redirect, usePathname } from 'next/navigation';
 import { CircularProgress } from '@nextui-org/react';
