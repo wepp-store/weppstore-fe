@@ -1,3 +1,5 @@
+import { OAuthProvider } from './types';
+
 export const PATH_API = {
   // auth
   AUTH: {
@@ -8,6 +10,11 @@ export const PATH_API = {
     SIGN_OUT: '/auth/sign-out',
     REFRESH_TOKEN: '/auth/refresh',
     UPLOAD_PROFILE: '/auth/upload-profile',
+    // oauth
+    OAUTH_SIGN_IN_URI: (provider: OAuthProvider) =>
+      `/auth/oauth/${provider.toLowerCase()}/sign-in-uri`,
+    OAUTH_SIGN_IN: (provider: OAuthProvider) =>
+      `/auth/oauth/${provider.toLowerCase()}/sign-in`,
   },
   WEPP: {
     ROOT: '/wepp',
