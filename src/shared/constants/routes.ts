@@ -2,6 +2,7 @@ export const PATH = {
   AUTH: {
     LOGIN: '/login',
     SIGN_UP: '/sign-up',
+    OAUTH_LOADING: '/oauth-loading',
   },
   MAIN: {
     WEPPS: '/wepps',
