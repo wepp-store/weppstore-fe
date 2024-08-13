@@ -21,9 +21,11 @@ export default function AdminAuthGuard({ children }: AdminAuthGuardProps) {
   const isAdmin = data?.kind === 'ADMIN';
 
   if (isLoading) {
-    <div className="m-auto">
-      <CircularProgress />
-    </div>;
+    return (
+      <div className="m-auto">
+        <CircularProgress />
+      </div>
+    );
   }
 
   if (isNotFoundUser) {
