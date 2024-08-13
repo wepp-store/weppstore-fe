@@ -3,9 +3,9 @@
 import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
 import { Link, Button } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
-import { useSignIn } from '../api';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useSignIn } from '../api';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()

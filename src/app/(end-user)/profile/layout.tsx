@@ -1,4 +1,4 @@
-import { AuthGuard } from '@/features/auth';
+import { AuthGuard } from '@/shared/auth';
 import { MainLayout } from '@/shared/layouts/main';
 
 const Layout = ({ children }: React.PropsWithChildren) => {

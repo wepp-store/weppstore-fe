@@ -1,4 +1,4 @@
-import { OAuthPendingPage } from '@/views/login';
+import { OAuthPendingPage } from '@/views/(auth)/login';
 import { CircularProgress } from '@nextui-org/react';
 import React, { Suspense } from 'react';
 

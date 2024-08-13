@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { LoginForm } from '@/features/auth';
 import { Button, Card, CardBody, Divider, Image } from '@nextui-org/react';
 import GoogleLoginButton from './ui/google-login-button';
 import { ChevronLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { PATH } from '@/shared/constants';
+import { LoginForm } from './sections';
 
 const LoginPage = () => {
   const router = useRouter();

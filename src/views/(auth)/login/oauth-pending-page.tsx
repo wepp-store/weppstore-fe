@@ -1,6 +1,6 @@
 'use client';
 
-import { setSession } from '@/features/auth';
+import { setSession } from '@/shared/auth';
 import { useOAuthLogIn } from '@/shared/apis/queries/auth';
 import { PATH } from '@/shared/constants';
 import { CircularProgress } from '@nextui-org/react';

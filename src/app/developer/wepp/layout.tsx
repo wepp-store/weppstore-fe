@@ -1,4 +1,4 @@
-import { AuthGuard } from '@/features/auth';
+import { AuthGuard } from '@/shared/auth';
 import { DeveloperLayout } from '@/shared/layouts/developer';
 import React from 'react';
 

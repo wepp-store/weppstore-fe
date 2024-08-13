@@ -1,6 +1,6 @@
 'use client';
 
-import { isValidToken, setSession } from '@/features/auth/utils';
+import { isValidToken, setSession } from '@/shared/auth/utils';
 import { REFRESH_TOKEN_KEY } from '@/shared/constants';
 import { IUser } from '@/shared/types';
 import { localStorageAvailable } from '@/shared/utils';

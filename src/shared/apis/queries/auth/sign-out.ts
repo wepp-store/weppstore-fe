@@ -3,7 +3,7 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { PATH, REFRESH_TOKEN_KEY } from '@/shared/constants';
-import { removeSession } from '@/features/auth';
+import { removeSession } from '@/shared/auth';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
 import toast from 'react-hot-toast';
