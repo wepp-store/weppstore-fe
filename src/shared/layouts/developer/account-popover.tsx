@@ -63,7 +63,7 @@ const AccountPopover = () => {
             showFallback
             name={me?.userName}
             size="sm"
-            src={me?.profileUrl || './no-image.svg'}
+            src={me?.profileUrl || undefined}
           />
         </DropdownTrigger>
         <DropdownMenu
