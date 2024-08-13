@@ -21,6 +21,7 @@ const WeppUrlChangeButton = () => {
       // optimistic update
       setValue('url', '');
       setValue('isVerified', false);
+      setValue('status', 'DRAFT');
 
       onClose();
     },
@@ -42,7 +43,10 @@ const WeppUrlChangeButton = () => {
         <ModalContent>
           <ModalHeader>URL을 변경하시겠습니까?</ModalHeader>
           <ModalBody>
-            <p>URL을 변경하시면 앱 인증이 해제됩니다.</p>
+            <p>
+              URL을 변경하시면 앱 인증이 해제되며, 출시에서 대기중 상태로
+              변경됩니다.
+            </p>
           </ModalBody>
           <ModalFooter>
             <Button variant="light" onPress={onClose}>
