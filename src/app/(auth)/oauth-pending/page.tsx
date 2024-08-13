@@ -1,8 +1,19 @@
 import { OAuthPendingPage } from '@/views/login';
-import React from 'react';
+import { CircularProgress } from '@nextui-org/react';
+import React, { Suspense } from 'react';
 
 const Page = () => {
-  return <OAuthPendingPage />;
+  return (
+    <Suspense
+      fallback={
+        <div className="m-auto">
+          <CircularProgress />
+        </div>
+      }
+    >
+      <OAuthPendingPage />;
+    </Suspense>
+  );
 };
 
 export default Page;
