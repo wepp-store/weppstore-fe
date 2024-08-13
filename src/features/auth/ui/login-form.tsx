@@ -1,20 +1,26 @@
 'use client';
 
 import { FormProvider, RHFInput } from '@/shared/ui/hook-form';
-import {
-  Link,
-  Card,
-  Divider,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Button,
-} from '@nextui-org/react';
+import { Link, Button } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 import { useSignIn } from '../api';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const loginSchema = Yup.object().shape({
+  email: Yup.string()
+    .required('이메일을 입력해주세요.')
+    .matches(
+      /^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i,
+      '이메일 형식이 아닙니다.'
+    ),
+  password: Yup.string().required('비밀번호를 입력해주세요.'),
+});
 
 const LoginForm = () => {
-  const methods = useForm();
+  const methods = useForm({
+    resolver: yupResolver(loginSchema),
+  });
 
   const { handleSubmit } = methods;
 
@@ -30,45 +36,43 @@ const LoginForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="m-auto"
     >
-      <Card className="max-w-full w-[340px]">
-        <CardHeader className="justify-center">
-          <h1 className="text-3xl font-bold">Login</h1>
-        </CardHeader>
-        <Divider />
-        <CardBody className="items-center gap-4 p-4">
+      <div className="max-w-full w-[340px]">
+        <div className="flex flex-col items-center gap-4 p-4">
           <RHFInput
             isRequired
+            id="email"
             name="email"
             label="이메일"
-            placeholder="Enter your email"
+            placeholder="이메일을 입력해주세요."
           />
           <RHFInput
             isRequired
+            id="password"
             name="password"
             label="비밀번호"
-            placeholder="Enter your password"
+            placeholder="비밀번호를 입력해주세요."
             type="password"
           />
 
           <p className="text-center text-small">
             계정이 없으신가요?{' '}
             <Link size="sm" href="/sign-up">
-              SignUp
+              회원가입
             </Link>
           </p>
-        </CardBody>
+        </div>
 
-        <CardFooter className="justify-end">
+        <div className="flex flex-col justify-end">
           <Button
             color="primary"
             type="submit"
             fullWidth
             isLoading={signInMutation.isPending}
           >
-            {signInMutation.isPending || 'Login'}
+            {signInMutation.isPending || '로그인하기'}
           </Button>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </FormProvider>
   );
 };
