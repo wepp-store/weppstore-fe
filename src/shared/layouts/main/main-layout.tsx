@@ -12,7 +12,7 @@ interface Props {
 
 const MainLayout: React.FC<Props> = ({ children }: React.PropsWithChildren) => {
   return (
-    <div className="flex flex-col w-full h-dvh overflow-y-auto">
+    <div className="flex flex-col size-full overflow-y-auto">
       <MainLayoutHeader />
       <main
         className={cn(

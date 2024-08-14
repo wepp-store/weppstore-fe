@@ -11,7 +11,7 @@ interface Props {
 
 const DeveloperLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div className="flex w-full h-dvh">
+    <div className="flex size-full">
       <DeveloperLayoutNav />
       <div className="flex flex-col w-full grow overflow-y-auto">
         <Header />

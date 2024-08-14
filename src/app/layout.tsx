@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'cyan' },
+    { media: '(prefers-color-scheme: light)', color: 'white' },
     { media: '(prefers-color-scheme: dark)', color: 'black' },
   ],
   initialScale: 1,
@@ -74,8 +74,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn(inter.className, styles.safeArea, 'min-h-svh')}>
+    <html lang="en" className="h-full">
+      <body
+        className={cn(inter.className, styles.safeArea, 'min-h-svh h-full')}
+      >
         <ClientProgressProvider>
           <ClientNextUIProvider>
             <ClientQueryClientProvider>

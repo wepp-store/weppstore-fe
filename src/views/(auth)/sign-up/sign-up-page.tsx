@@ -20,7 +20,7 @@ const SignUpPage = () => {
   return (
     <div
       className="
-        w-full max-w-screen-md min-h-svh
+        size-full max-w-screen-md
         box-border
         mx-auto
         flex sm:items-center

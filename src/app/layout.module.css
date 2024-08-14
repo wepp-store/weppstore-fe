@@ -1,8 +1,13 @@
+/* safe area */
 .safeArea {
-  /* safe area */
-  padding-top: constant(safe-area-inset-top); /* 구형 iOS 지원 */
-  padding-top: env(safe-area-inset-top); /* 최신 iOS 지원 */
+  /* 구형 iOS 지원 (11) */
+  padding-top: constant(safe-area-inset-top);
+  padding-left: constant(safe-area-inset-left);
+  padding-right: constant(safe-area-inset-right);
+  padding-bottom: calc(constant(safe-area-inset-bottom) - 12px);
+  /* 최신 iOS 지원 (12+) */
+  padding-top: env(safe-area-inset-top);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(env(safe-area-inset-bottom) - 12px);
 }
