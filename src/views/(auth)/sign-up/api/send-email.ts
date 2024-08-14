@@ -22,7 +22,6 @@ export const useSendEmail = (
       toast.success('이메일 전송이 완료되었습니다.');
     },
     onError: (error) => {
-      toast.error(String(error));
       toast.error(error?.message);
     },
     ...options,
