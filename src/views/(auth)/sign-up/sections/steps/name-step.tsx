@@ -26,9 +26,10 @@ const NameStep = () => {
       <div className="grow px-4">
         <RHFInput
           size="lg"
-          name="userName"
           label="이름"
+          name="userName"
           placeholder="이름을 입력해주세요."
+          autoComplete="userName"
         />
       </div>
       <div className="mt-6 px-4">

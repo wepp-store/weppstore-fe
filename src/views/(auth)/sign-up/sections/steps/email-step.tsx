@@ -58,6 +58,7 @@ const EmailStep = () => {
           inputMode="email"
           placeholder="이메일을 입력해주세요."
           isDisabled={isVerified}
+          autoComplete="email"
         />
         {isVerified && (
           <div className="flex items-center text-sm text-green-600">
