@@ -15,6 +15,9 @@ export const PATH_API = {
       `/auth/oauth/${provider.toLowerCase()}/sign-in-uri`,
     OAUTH_SIGN_IN: (provider: OAuthProvider) =>
       `/auth/oauth/${provider.toLowerCase()}/sign-in`,
+    // verify email
+    SEND_EMAIL: '/auth/send-verify-email',
+    VERIFY_EMAIL: '/auth/verify-email',
   },
   WEPP: {
     ROOT: '/wepp',
