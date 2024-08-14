@@ -10,7 +10,7 @@ export default function ClientNextUIProvider({
   const { push } = useRouter();
 
   return (
-    <NextUIProvider className="flex flex-col min-h-screen" navigate={push}>
+    <NextUIProvider className="size-full min-h-svh" navigate={push}>
       {children}
     </NextUIProvider>
   );
