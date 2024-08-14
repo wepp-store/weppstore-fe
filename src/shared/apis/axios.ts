@@ -50,7 +50,7 @@ axiosInstance.interceptors.response.use(
     }
 
     // 401 에러
-    if (error.response.status === 401) {
+    if (error.response?.status === 401) {
       // 로그인 페이지로 이동
       const pathname = window.location.pathname;
       window.location.href = `/login?redirect=${pathname}`;
