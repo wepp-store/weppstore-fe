@@ -1,6 +1,6 @@
 'use client';
 
-import { setSession } from '@/features/auth/utils';
+import { setSession } from '@/shared/auth/utils';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
 import { authKeys } from '@/shared/apis/queries/auth/query-key-factory';

@@ -1,4 +1,4 @@
-import { LoginPage } from '@/views/login';
+import { LoginPage } from '@/views/(auth)/login';
 import { CircularProgress } from '@nextui-org/react';
 import { Metadata } from 'next';
 import { Suspense } from 'react';

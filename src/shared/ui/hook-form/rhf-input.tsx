@@ -9,6 +9,7 @@ export default function RHFInput({
   name,
   isInvalid,
   isReadOnly,
+  isClearable = true,
   ...other
 }: Props) {
   const { control, setValue } = useFormContext();
@@ -21,8 +22,10 @@ export default function RHFInput({
         <Input
           labelPlacement="outside"
           // TODO: isReadOnly일 때 clear 버튼이 보이지 않도록 nextui에 요청
-          isClearable={!isReadOnly}
-          onClear={!isReadOnly ? () => setValue(name, '') : undefined}
+          isClearable={isClearable && !isReadOnly}
+          onClear={
+            isClearable && !isReadOnly ? () => setValue(name, '') : undefined
+          }
           isReadOnly={isReadOnly}
           isInvalid={!!error || isInvalid}
           errorMessage={error?.message}

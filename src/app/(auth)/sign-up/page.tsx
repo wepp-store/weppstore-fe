@@ -1,4 +1,4 @@
-import { SignUpForm } from '@/features/auth';
+import { SignUpPage } from '@/views/(auth)/sign-up';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,12 +6,8 @@ export const metadata: Metadata = {
   description: 'Wepp Store 회원가입 페이지',
 };
 
-const SignUpPage = () => {
-  return (
-    <>
-      <SignUpForm />
-    </>
-  );
+const Page = () => {
+  return <SignUpPage />;
 };
 
-export default SignUpPage;
+export default Page;

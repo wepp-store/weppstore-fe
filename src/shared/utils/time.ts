@@ -24,3 +24,13 @@ export function timeAgo(date: string | Date): string {
 
   return '방금 전';
 }
+
+export const formatTimer = (distance: number | null) => {
+  if (!distance) return null;
+
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  if (minutes === 0) return `${seconds}초`;
+  return `${minutes}분 ${seconds}초`;
+};
