@@ -8,6 +8,8 @@ import '@/shared/styles/globals.scss';
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
+import styles from './layout.module.css';
+import { cn } from '@nextui-org/theme';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -51,6 +53,8 @@ export const metadata: Metadata = {
       },
     ],
   },
+  // @ts-ignore
+  'apple-mobile-web-app-status-bar-style': 'black-translucent',
 };
 
 export const viewport: Viewport = {
@@ -61,6 +65,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   userScalable: false,
   width: 'device-width',
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({
@@ -70,7 +75,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, styles.safeArea, 'min-h-svh')}>
         <ClientProgressProvider>
           <ClientNextUIProvider>
             <ClientQueryClientProvider>
