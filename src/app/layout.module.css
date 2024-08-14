@@ -1,0 +1,8 @@
+.safeArea {
+  /* safe area */
+  padding-top: constant(safe-area-inset-top); /* 구형 iOS 지원 */
+  padding-top: env(safe-area-inset-top); /* 최신 iOS 지원 */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
