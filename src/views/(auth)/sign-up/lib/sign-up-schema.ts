@@ -7,7 +7,12 @@ export const signUpSchema = Yup.object().shape({
       /^[a-zA-Z0-9+-_.]+@[a-z]+\.[a-z]{2,3}/i,
       '이메일 형식이 아닙니다.'
     ),
-  password: Yup.string().required('비밀번호를 입력해주세요.'),
+  password: Yup.string()
+    .required('비밀번호를 입력해주세요.')
+    .matches(
+      /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+]).{8,}$/,
+      '비밀번호는 특수문자, 숫자를 포함하여 8자리 이상이어야 합니다.'
+    ),
   password2: Yup.string().oneOf(
     [Yup.ref('password'), ''],
     '비밀번호가 일치하지 않습니다.'
