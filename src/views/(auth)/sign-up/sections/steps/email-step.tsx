@@ -6,8 +6,12 @@ import { useFormContext, useWatch } from 'react-hook-form';
 import { SignUpHeader } from '../../ui';
 import { KeyboardAdjustButton } from '@/shared/ui/keyboard-adjust-button';
 import { Button } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+import { PATH } from '@/shared/constants';
 
 const EmailStep = () => {
+  const { replace } = useRouter();
+
   const setStep = useSignUpStepStore((state) => state.setStep);
   const { isVerified, setEndAt } = useEmailVerifyStore();
   const setUserToken = useEmailVerifyStore((state) => state.setUserToken);
@@ -49,7 +53,10 @@ const EmailStep = () => {
 
   return (
     <div className="h-full flex flex-col justify-between">
-      <SignUpHeader title="이메일 인증" />
+      <SignUpHeader
+        title="이메일 인증"
+        onBack={() => replace(PATH.AUTH.LOGIN)}
+      />
       <div className="grow px-4 flex flex-col gap-2">
         <RHFInput
           size="lg"
