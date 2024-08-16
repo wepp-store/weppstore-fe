@@ -42,6 +42,12 @@ const PasswordStep = () => {
     });
   };
 
+  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && isValid) {
+      handleSubmit(onSubmit)();
+    }
+  };
+
   const isValid =
     !!watchedPw && !!watchedPw2 && !errors.password && !errors.password2;
 
@@ -51,11 +57,13 @@ const PasswordStep = () => {
       <div className="grow px-4 flex flex-col gap-4">
         <RHFInput
           size="lg"
+          autoFocus
           isClearable={false}
           type={isVisible ? 'test' : 'password'}
           name="password"
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요."
+          onKeyUp={onKeyUp}
           endContent={
             <button
               className="focus:outline-none"
@@ -78,6 +86,7 @@ const PasswordStep = () => {
           name="password2"
           label="비밀번호 확인"
           placeholder="비밀번호 확인을 입력해주세요."
+          onKeyUp={onKeyUp}
           endContent={
             <button
               className="focus:outline-none"

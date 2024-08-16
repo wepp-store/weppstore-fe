@@ -37,6 +37,8 @@ const EmailStep = () => {
   const { mutate, isPending } = useSendEmail();
 
   const sendEmail = () => {
+    if (!isValid || isPending) return;
+
     mutate(
       { email: watchedEmail },
       {
@@ -49,6 +51,12 @@ const EmailStep = () => {
     );
   };
 
+  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      sendEmail();
+    }
+  };
+
   const isValid = !!watchedEmail && !errors.email;
 
   return (
@@ -59,6 +67,7 @@ const EmailStep = () => {
       />
       <div className="grow px-4 flex flex-col gap-2">
         <RHFInput
+          autoFocus
           size="lg"
           name="email"
           label="이메일"
@@ -66,6 +75,7 @@ const EmailStep = () => {
           placeholder="이메일을 입력해주세요."
           isDisabled={isVerified}
           autoComplete="email"
+          onKeyUp={onKeyUp}
         />
         {isVerified && (
           <div className="flex items-center text-sm text-green-600">

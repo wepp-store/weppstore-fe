@@ -24,6 +24,7 @@ const VerifyEmailStep = () => {
 
   const {
     control,
+    setValue,
     getValues,
     formState: { errors },
   } = useFormContext();
@@ -39,6 +40,8 @@ const VerifyEmailStep = () => {
   const sendMutation = useSendEmail();
 
   const verifyEmail = () => {
+    if (!isValid || verifyMutation.isPending) return;
+
     verifyMutation.mutate(
       { email, code: watchedCode, userToken },
       {
@@ -53,16 +56,25 @@ const VerifyEmailStep = () => {
   };
 
   const sendEmail = () => {
+    if (!isValid || verifyMutation.isPending) return;
+
     sendMutation.mutate(
       { email },
       {
         onSuccess: (userToken: string) => {
-          setUserToken(userToken);
           setStep(1);
+          setValue('code', '');
+          setUserToken(userToken);
           setEndAt(Date.now() + 1000 * 60 * 3); // 3m
         },
       }
     );
+  };
+
+  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      verifyEmail();
+    }
   };
 
   const isValid = watchedCode?.length === 6 && !errors.email;
@@ -76,12 +88,14 @@ const VerifyEmailStep = () => {
       <SignUpHeader title="이메일 인증" onBack={() => setStep(0)} />
       <div className="grow px-4">
         <RHFInput
+          autoFocus
           size="lg"
           name="code"
           maxLength={6}
           inputMode="decimal"
           label="인증코드"
           placeholder="인증코드를 입력해주세요."
+          onKeyUp={onKeyUp}
         />
         <div className="flex flex-col items-end mt-3 text-sm">
           {timer && <p className="text-red-500">{formatTimer(timer)}</p>}

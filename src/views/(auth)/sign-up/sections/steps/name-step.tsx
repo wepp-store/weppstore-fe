@@ -18,6 +18,12 @@ const NameStep = () => {
     name: 'userName',
   });
 
+  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && isValid) {
+      setStep(3);
+    }
+  };
+
   const isValid = !!watchedName && !errors.userName;
 
   return (
@@ -25,11 +31,13 @@ const NameStep = () => {
       <SignUpHeader title="사용자 정보 입력 (1/2)" onBack={() => setStep(1)} />
       <div className="grow px-4">
         <RHFInput
+          autoFocus
           size="lg"
           label="이름"
           name="userName"
           placeholder="이름을 입력해주세요."
           autoComplete="userName"
+          onKeyUp={onKeyUp}
         />
       </div>
       <div className="mt-6 px-4">

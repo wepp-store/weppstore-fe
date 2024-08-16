@@ -17,6 +17,8 @@ const SignUpPage = () => {
     mode: 'onChange',
   });
 
+  const onSubmit = () => {};
+
   return (
     <div
       className="
@@ -42,7 +44,11 @@ const SignUpPage = () => {
           </div>
         </div>
         <div className="flex-1 py-4">
-          <FormProvider className="size-full" methods={methods}>
+          <FormProvider
+            className="size-full"
+            methods={methods}
+            onSubmit={methods.handleSubmit(onSubmit)}
+          >
             {step === 0 && <EmailStep />}
             {step === 1 && <VerifyEmailStep />}
             {step === 2 && <NameStep />}
