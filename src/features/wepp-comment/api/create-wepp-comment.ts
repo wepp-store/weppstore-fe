@@ -43,7 +43,7 @@ export const useCreateWeppComment = (
 
       return response.data;
     },
-    onSuccess: (data: Pick<IComment, 'content' | 'parentId'>) => {
+    onSuccess: (data: Pick<IComment, 'content' | 'parentId' | '_count'>) => {
       toast.success('댓글이 작성되었습니다.');
 
       const isReply = !!data.parentId;
@@ -55,6 +55,7 @@ export const useCreateWeppComment = (
 
       if (!isReply) {
         // 댓글 반영
+        newData._count = { children: 0 };
         addCacheComment({ data: newData, queryKey: commentKeys.list(weppId) });
       } else {
         const commentId = data.parentId!;
