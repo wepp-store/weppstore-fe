@@ -21,7 +21,7 @@ const OAuthPending = () => {
 
   if (isLoading) {
     return (
-      <div className="m-auto">
+      <div className="size-full flex justify-center items-center">
         <CircularProgress />
       </div>
     );

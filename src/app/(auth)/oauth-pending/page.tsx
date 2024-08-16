@@ -6,12 +6,12 @@ const Page = () => {
   return (
     <Suspense
       fallback={
-        <div className="m-auto">
+        <div className="size-full flex justify-center items-center">
           <CircularProgress />
         </div>
       }
     >
-      <OAuthPendingPage />;
+      <OAuthPendingPage />
     </Suspense>
   );
 };
