@@ -25,7 +25,7 @@ interface Props extends ButtonProps {
 const WeppInstallButton = ({ wepp, ...other }: Props) => {
   const { url, isVerified } = wepp || {};
 
-  const { isIOS, isMobile } = useDevice();
+  const { isIOS } = useDevice();
 
   const { isOpen, onOpenChange, onClose } = useDisclosure();
 
