@@ -40,7 +40,6 @@ const useResponsive = () => {
       }
 
       useStore.setState({ viewportType: 'desktop' });
-      console.log('하하', viewportType);
     }, 200);
 
     // initialize
