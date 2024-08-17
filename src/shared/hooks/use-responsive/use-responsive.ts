@@ -56,6 +56,7 @@ const useResponsive = () => {
   }, []);
 
   return {
+    viewportType,
     isMobile: viewportType === 'mobile',
     isTablet: viewportType === 'tablet',
     isDesktop: viewportType === 'desktop',
