@@ -37,16 +37,16 @@ const CreateWeppCommentField = () => {
   const onSubmit = (
     data: Pick<IComment, 'content' | 'parentId' | 'mention'>
   ) => {
+    const newComment = { ...data };
+
     if (replyComment) {
-      data.parentId = replyComment.replyId;
-      data.mention = stringifyMention(
-        replyComment.mentionId,
-        replyComment.writer
-      );
+      const { replyId, mentionId, writer } = replyComment;
+      newComment.parentId = replyId;
+      newComment.mention = stringifyMention(mentionId, writer);
       clearReplyComment();
     }
 
-    mutate(data, {
+    mutate(newComment, {
       onSuccess: () => {
         setValue('content', '');
         clearReplyComment();
