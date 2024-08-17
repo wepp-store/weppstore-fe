@@ -1,14 +1,17 @@
 'use client';
 
-import { CircleCheckBig, CircleX } from 'lucide-react';
 import React from 'react';
-import toast, { ToastBar, Toaster } from 'react-hot-toast';
+import { CircleCheckBig, CircleX } from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
+import { useResponsive } from '@/shared/hooks';
 
 const ClientToastProvider = ({ children }: React.PropsWithChildren) => {
+  const { isMobile } = useResponsive();
+
   return (
     <>
       <Toaster
-        position="bottom-right"
+        position={isMobile ? 'top-center' : 'bottom-right'}
         toastOptions={{
           className: '',
           success: {
