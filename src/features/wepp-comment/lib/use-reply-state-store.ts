@@ -12,7 +12,7 @@ interface Store {
   clearReplyComment: () => void;
 }
 
-export const useReplyStateStore = create<Store>()((set) => ({
+export const useReplyStateStore = create<Store>((set) => ({
   replyComment: null,
   setReplyComment: (replyComment) => set({ replyComment }),
   clearReplyComment: () => set({ replyComment: null }),
