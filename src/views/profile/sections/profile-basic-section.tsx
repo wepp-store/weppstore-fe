@@ -20,7 +20,7 @@ const ProfileBasicSection = ({ profile }: Props) => {
         <div className="grow flex flex-col">
           <h1 className="text-2xl font-bold">{profile?.userName}</h1>
           <p className="text-gray-600 grow">{profile?.email}</p>
-          <div className="flex justify-end gap-4 self-end">
+          <div className="mt-4 flex justify-end gap-4 self-end">
             <Skeleton isLoaded={isFetched} className="rounded-lg">
               {!!profile && <UpdateProfileFormOpenButton profile={profile} />}
             </Skeleton>

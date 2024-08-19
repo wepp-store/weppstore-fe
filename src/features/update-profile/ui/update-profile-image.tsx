@@ -22,9 +22,12 @@ const UpdateProfileImage = ({ src }: { src: string | null | undefined }) => {
           alt="Profile"
           fallbackSrc="/no-image.svg"
           className="
-          w-32
-          min-w-32
-          h-32
+          w-24 md:w-32
+          min-w-24 md:min-w-32
+          max-w-24 md:max-w-32
+          h-24 md:h-32
+          min-h-24 md:min-h-32
+          max-h-24 md:max-h-32
           rounded-full
           border-4
           border-white
