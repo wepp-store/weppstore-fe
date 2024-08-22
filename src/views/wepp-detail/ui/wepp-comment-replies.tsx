@@ -86,7 +86,7 @@ const ReplyComment = ({ comment }: { comment: IComment }) => {
       <div className="flex gap-4 grow">
         <Avatar
           showFallback
-          name={user?.userName}
+          name={user?.userName?.charAt(0)}
           src={user?.profileUrl || '/no-image.svg'}
         />
 

@@ -51,7 +51,7 @@ const WeppComment = ({ comment }: Props) => {
         <div className="flex gap-4 grow">
           <Avatar
             showFallback
-            name={user?.userName}
+            name={user?.userName?.charAt(0)}
             src={user?.profileUrl || '/no-image.svg'}
           />
           <div className="flex flex-col grow">

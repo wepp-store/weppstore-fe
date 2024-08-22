@@ -61,7 +61,7 @@ const AccountPopover = () => {
             as="button"
             radius="lg"
             showFallback
-            name={me?.userName}
+            name={me?.userName?.charAt(0)}
             size="sm"
             src={me?.profileUrl || undefined}
           />
