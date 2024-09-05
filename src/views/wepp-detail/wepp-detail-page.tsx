@@ -3,13 +3,11 @@ import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { useParams, useRouter } from 'next/navigation';
 import {
   WeppDetailTitle,
-  WeppDetailSimilars,
+  WeppDetailSubInfo,
   WeppDetailComments,
   WeppDetailScreenshots,
-  WeppDetailAdditionalInfo,
-  WeppDetailUpdateHistories,
-  WeppDetailSubInfo,
   WeppDetailDescription,
+  WeppDetailAdditionalInfo,
 } from './sections';
 import { useSession } from '@/shared/apis/queries/auth';
 import { Link } from '@nextui-org/react';
