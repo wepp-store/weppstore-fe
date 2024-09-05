@@ -48,7 +48,7 @@ const WeppDetailTitle = ({ wepp }: Props) => {
 
           <p className="text-gray-600">{tagLine}</p>
 
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center min-w-48">
             <WeppLikeButton />
             <WeppInstallButton wepp={wepp} className="hidden md:flex" />
           </div>
