@@ -1,16 +1,12 @@
 import { Button, ButtonProps } from '@nextui-org/react';
 import React from 'react';
 
-interface Props extends ButtonProps {
-  children: React.ReactNode;
-}
-
-const KeyboardAdjustButton = ({
+const KeyboardAdjustButton: React.FC<ButtonProps> = ({
   style,
   onPress,
   children,
   ...other
-}: Props) => {
+}) => {
   const [keyboardHeight, setKeyboardHeight] = React.useState(0);
 
   React.useEffect(() => {
