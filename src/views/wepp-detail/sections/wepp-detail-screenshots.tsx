@@ -33,6 +33,8 @@ const WeppDetailScreenshots = ({ wepp }: Props) => {
                 h-80
                 min-h-80
                 max-h-80
+                w-auto
+                max-w-none
               "
             />
           ))}

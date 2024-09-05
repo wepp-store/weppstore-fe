@@ -60,6 +60,8 @@ const UpdateWeppScreenshot = forwardRef(function UpdateWeppScreenshot(
           h-72
           min-h-72
           max-h-72
+          w-auto
+          max-w-none
         "
       />
       <X
