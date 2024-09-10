@@ -14,7 +14,6 @@ import { Link } from '@nextui-org/react';
 import { Section } from '@/shared/ui/section';
 import { ChevronLeft } from 'lucide-react';
 
-// 나중에 서버 사이드에서 pre fetch하기
 const WeppDetailScreen = () => {
   const { back } = useRouter();
   const { weppId }: { weppId: string } = useParams();
