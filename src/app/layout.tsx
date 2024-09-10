@@ -81,11 +81,7 @@ export default function RootLayout({
         <ClientProgressProvider>
           <ClientNextUIProvider>
             <ClientQueryClientProvider>
-              <ClientToastProvider>
-                {children}
-                <div id="drawer-root"></div>
-                <div id="modal-root"></div>
-              </ClientToastProvider>
+              <ClientToastProvider>{children}</ClientToastProvider>
             </ClientQueryClientProvider>
           </ClientNextUIProvider>
         </ClientProgressProvider>
