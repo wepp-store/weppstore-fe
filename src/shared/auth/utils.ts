@@ -70,8 +70,6 @@ export const tokenExpired = (exp: number) => {
 
   const currentTime = Date.now();
 
-  // 만료 되기 5분 전에 토큰 갱신
-  // Test token expires after 10s
   const timeLeft = exp * 1000 - currentTime;
 
   clearTimeout(expiredTimer);
