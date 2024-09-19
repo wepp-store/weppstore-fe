@@ -203,6 +203,7 @@ const ManifestStep = () => {
                       ref={addIconRef}
                       type="file"
                       id="manifest-icon"
+                      accept="image/*"
                       onChange={addIcons}
                       className="hidden"
                     />
