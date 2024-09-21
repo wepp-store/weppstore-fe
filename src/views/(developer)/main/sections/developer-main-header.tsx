@@ -2,6 +2,7 @@
 import { CreateWeppButton } from '@/features/create-wepp';
 import { useAuth } from '@/shared/apis/queries/auth';
 import { Section } from '@/shared/ui/section';
+import { AddWeppHelpButton } from '../ui';
 
 const DeveloperMainHeader = () => {
   const { data: me } = useAuth();
@@ -19,8 +20,10 @@ const DeveloperMainHeader = () => {
         >
           {me?.userName}님의 앱
         </h2>
-
-        <CreateWeppButton />
+        <div className="flex gap-4">
+          <AddWeppHelpButton />
+          <CreateWeppButton />
+        </div>
       </Section>
     </>
   );
