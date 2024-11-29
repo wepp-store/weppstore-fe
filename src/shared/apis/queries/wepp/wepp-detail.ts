@@ -8,6 +8,7 @@ import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
 import { IWepp } from '@/shared/types';
 import { weppKeys } from './query-key-factory';
+import { notFound } from 'next/navigation';
 
 type Props = {
   weppId: string;
@@ -21,17 +22,24 @@ export const weppDetailOptions = ({
 }: Props): UseQueryOptions => ({
   queryKey: weppKeys.detail(weppId),
   queryFn: async () => {
-    const response = await axiosInstance.get(
-      `${PATH_API.WEPP.ROOT}/${weppId}`,
-      {
-        headers: {
-          'X-WEPP-READ': read,
-          // TODO: 작동하나?
-          'Cache-Control': 'max-age=3600, must-revalidate', // 1시간 동안 캐시 유지
-        },
+    try {
+      const response = await axiosInstance.get(
+        `${PATH_API.WEPP.ROOT}/${weppId}`,
+        {
+          headers: {
+            'X-WEPP-READ': read,
+            // TODO: 작동하나?
+            'Cache-Control': 'max-age=3600, must-revalidate', // 1시간 동안 캐시 유지
+          },
+        }
+      );
+      return response.data;
+    } catch (error: any) {
+      if (error.statusCode === 404) {
+        return notFound();
       }
-    );
-    return response.data;
+      throw error;
+    }
   },
   enabled: !!weppId,
   ...other,
