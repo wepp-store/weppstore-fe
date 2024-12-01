@@ -7,7 +7,7 @@ import React from 'react';
 import { convertUpdateWeppForm, type WeppField, weppSchema } from './lib';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { useWeppDetail } from '@/shared/apis/queries/wepp';
+import { useMineWeppDetail } from '@/shared/apis/queries/wepp';
 import { useUpdateWepp } from './api';
 import { IWepp } from '@/shared/types';
 import { FormProvider } from '@/shared/ui/hook-form';
@@ -24,7 +24,7 @@ import {
 const WeppInfoPage = () => {
   const { weppId }: { weppId: string } = useParams();
 
-  const { data } = useWeppDetail({ weppId });
+  const { data } = useMineWeppDetail({ weppId });
 
   const patchWeppMutation = useUpdateWepp<WeppField>();
 
