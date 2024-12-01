@@ -1,4 +1,4 @@
-import { weppDetailOptions } from '@/shared/apis/queries/wepp';
+import { weppMineDetailOptions } from '@/shared/apis/queries/wepp';
 import { WeppInfoPage } from '@/views/(developer)/wepp-info';
 import {
   dehydrate,
@@ -10,7 +10,7 @@ const Page = async ({ params }: { params: { weppId: string } }) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(
-    weppDetailOptions({
+    weppMineDetailOptions({
       weppId: params.weppId,
     })
   );
