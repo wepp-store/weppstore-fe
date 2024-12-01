@@ -28,7 +28,7 @@ export const useDeleteWepp = <T>(
     },
     onSuccess: () => {
       toast.success('앱 삭제가 완료되었습니다.');
-      queryClient.invalidateQueries({ queryKey: weppKeys.mine });
+      queryClient.invalidateQueries({ queryKey: weppKeys.mineList });
       replace(PATH.DEVELOPER.WEPP);
     },
     onError: (error) => {
