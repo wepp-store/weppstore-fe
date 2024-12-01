@@ -1,6 +1,7 @@
 'use client';
 import { DeleteWeppButton } from '@/features/delete-wepp';
 import { PATH_API } from '@/shared/apis/path';
+import { weppKeys } from '@/shared/apis/queries/wepp';
 import { IWepp } from '@/shared/types';
 import { Section } from '@/shared/ui/section';
 import { useQueryClient } from '@tanstack/react-query';
@@ -11,9 +12,8 @@ const WeppDashboardHeader = () => {
   const { weppId }: { weppId: string } = useParams();
 
   const queryClient = useQueryClient();
-  const queryKey = [PATH_API.WEPP.ROOT, weppId];
 
-  const wepp = queryClient.getQueryData<IWepp>(queryKey);
+  const wepp = queryClient.getQueryData<IWepp>(weppKeys.mine(weppId));
 
   return (
     <Section>
