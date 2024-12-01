@@ -1,6 +1,6 @@
 'use client';
 
-import { useWeppDetail } from '@/shared/apis/queries/wepp';
+import { useMineWeppDetail } from '@/shared/apis/queries/wepp';
 import { formatCategories, weppStatusToText } from '@/shared/utils';
 import { Section } from '@/shared/ui/section';
 import {
@@ -19,7 +19,7 @@ const WeppDashboardInfo = () => {
   const pathname = usePathname();
   const { weppId }: { weppId: string } = useParams();
 
-  const { data: wepp } = useWeppDetail({ weppId });
+  const { data: wepp } = useMineWeppDetail({ weppId });
 
   const { id, version, categories, status, views, _count } = wepp || {};
 
