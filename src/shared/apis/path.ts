@@ -22,7 +22,7 @@ export const PATH_API = {
   WEPP: {
     ROOT: '/wepp',
     MINE_LIST: '/wepp/mine-list',
-    MINE: (weppId: string) => `/wepp/mine/${weppId}`,
+    MINE: (weppId: string) => `/wepp/mine/${weppId}` as const,
     SUBMIT: '/wepp/submit',
     VERIFY: '/wepp/verify',
     UPLOAD: '/wepp/upload',
