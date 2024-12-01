@@ -26,9 +26,9 @@ type Props = Omit<
 
 export const useMineWeppList = (props?: Props) => {
   return useInfiniteQuery({
-    queryKey: weppKeys.mine,
+    queryKey: weppKeys.mineList,
     queryFn: async ({ pageParam: page }) => {
-      const response = await axiosInstance.get(PATH_API.WEPP.MINE, {
+      const response = await axiosInstance.get(PATH_API.WEPP.MINE_LIST, {
         params: { page, size: 20 },
       });
       return response.data;
