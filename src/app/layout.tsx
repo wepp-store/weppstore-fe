@@ -5,6 +5,7 @@ import {
   ClientProgressProvider,
 } from '@/shared/providers';
 import '@/shared/styles/globals.scss';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import Script from 'next/script';
@@ -85,6 +86,10 @@ export default function RootLayout({
             </ClientQueryClientProvider>
           </ClientNextUIProvider>
         </ClientProgressProvider>
+
+        {process.env.NODE_ENV === 'production' && (
+          <GoogleAnalytics gaId="G-X8PDBBD3R5" />
+        )}
 
         <Script
           async
