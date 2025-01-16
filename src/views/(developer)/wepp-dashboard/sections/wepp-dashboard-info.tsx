@@ -24,7 +24,8 @@ const WeppDashboardInfo = () => {
   const { id, version, categories, status, views, _count } = wepp || {};
 
   return (
-    <Section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    // <Section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <Section className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* <!-- 앱 정보 카드 --> */}
       <Card>
         <CardHeader className="text-xl font-semibold">앱 정보</CardHeader>
@@ -77,18 +78,18 @@ const WeppDashboardInfo = () => {
             <dt className="font-medium">총 댓글 수:</dt>
             <dd>{_count?.comments || 0}</dd>
           </dl>
-          <dl className="flex justify-between">
+          {/* <dl className="flex justify-between">
             <dt className="font-medium">다운로드 링크 클릭 수:</dt>
             <dd>기능 구현 중</dd>
-          </dl>
+          </dl> */}
         </CardBody>
         <CardFooter className="w-full flex justify-end">
-          <Button color="success">상세 통계 보기</Button>
+          {/* <Button color="success">상세 통계 보기</Button> */}
         </CardFooter>
       </Card>
 
       {/* <!-- 버전 업데이트 카드 --> */}
-      <Card>
+      {/* <Card>
         <CardHeader className="text-xl font-semibold">버전 업데이트</CardHeader>
         <Divider />
         <form>
@@ -128,7 +129,7 @@ const WeppDashboardInfo = () => {
             </Button>
           </CardFooter>
         </form>
-      </Card>
+      </Card> */}
     </Section>
   );
 };
