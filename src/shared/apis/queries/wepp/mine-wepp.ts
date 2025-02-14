@@ -12,21 +12,27 @@ import { notFound } from 'next/navigation';
 
 type Props = {
   weppId: string;
+  headers?: { [key: string]: string };
 } & Omit<UseQueryOptions, 'queryKey'>;
 
 export const weppMineDetailOptions = ({
   weppId,
+  headers,
   ...other
 }: Props): UseQueryOptions => ({
   queryKey: weppKeys.mine(weppId),
   queryFn: async () => {
     try {
-      const response = await axiosInstance.get(PATH_API.WEPP.MINE(weppId));
+      const response = await axiosInstance.get(PATH_API.WEPP.MINE(weppId), {
+        headers,
+      });
+
       return response.data;
     } catch (error: any) {
       if (error.statusCode === 404) {
         return notFound();
       }
+
       throw error;
     }
   },
