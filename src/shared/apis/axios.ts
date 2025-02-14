@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_DOMAIN } from '@/shared/constants';
+import { isServer } from '@tanstack/react-query';
 
 const TIMEOUT_TIME = 10_000;
 
@@ -8,7 +9,7 @@ export const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  // withCredentials:true, // 쿠키 cors 통신 설정
+  withCredentials: true, // 쿠키 on
 });
 
 // 취소 토큰을 생성하는 함수
@@ -25,9 +26,6 @@ let firstRequestCancelToken = null;
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    // const token = localStorage.getItem('capsule_token') as any;
-    // config.headers.Authorization = `Bearer ${token?.access}`;
-
     firstRequestCancelToken = cancelTokenSource();
     config.cancelToken = firstRequestCancelToken.token;
     config.timeout = TIMEOUT_TIME;
@@ -52,8 +50,16 @@ axiosInstance.interceptors.response.use(
     // 401 에러
     if (error.response?.status === 401) {
       // 로그인 페이지로 이동
+      if (isServer) {
+        // 서버에서는 리다이렉트 처리
+        return Promise.reject({
+          status: 401,
+          message: 'Unauthorized request',
+        });
+      }
       const pathname = window.location.pathname;
       window.location.href = `/login?redirect=${pathname}`;
+
       return Promise.reject('Unauthorized request');
     }
 
