@@ -20,7 +20,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
 
   if (isLoading) {
     return (
-      <div className="m-auto">
+      <div className="size-full flex items-center justify-center">
         <CircularProgress />
       </div>
     );
