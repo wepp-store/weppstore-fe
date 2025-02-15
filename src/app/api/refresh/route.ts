@@ -2,6 +2,15 @@ import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
 import { cookies } from 'next/headers';
 
+function jwtDecode(token: string) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+
+  const jsonPayload = Buffer.from(base64, 'base64').toString('utf-8');
+
+  return JSON.parse(jsonPayload);
+}
+
 export async function POST(req: Request) {
   try {
     const { refreshToken } = await req.json();
@@ -12,11 +21,13 @@ export async function POST(req: Request) {
       refreshToken,
     });
 
+    const { exp, iat } = jwtDecode(data.accessToken);
+
     cookieStore.set('weppstore_token', data.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      maxAge: 3600 * 1000,
+      maxAge: exp - iat || 0,
     });
 
     return Response.json(data);
@@ -25,8 +36,12 @@ export async function POST(req: Request) {
       return new Response('Unauthorized request', { status: 401 });
     }
 
-    return new Response('Internal server ERROR! Something went wrong', {
-      status: 500,
-    });
+    if (error.response?.status) {
+      return new Response(error.response?.data ?? 'Something went wrong', {
+        status: error.response?.status,
+      });
+    }
+
+    return new Response('Something went wrong', { status: 500 });
   }
 }
