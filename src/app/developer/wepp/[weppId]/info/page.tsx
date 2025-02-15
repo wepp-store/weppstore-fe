@@ -13,9 +13,7 @@ const Page = async ({ params }: { params: { weppId: string } }) => {
   await queryClient.prefetchQuery(
     weppMineDetailOptions({
       weppId: params.weppId,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
     })
   );
 
