@@ -10,7 +10,7 @@ import {
   UseQueryOptions,
   useQueryClient,
 } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { axiosInstance } from '../../axios';
 import { PATH_API } from '../../path';
 import { authKeys } from './query-key-factory';
@@ -33,7 +33,13 @@ export const useAuth = (params?: Props) => {
       let user = null;
 
       if (!axiosInstance.defaults.headers.common.Authorization) {
-        const response = await axiosInstance.post(PATH_API.AUTH.REFRESH_TOKEN, {
+        // const response = await axiosInstance.post(PATH_API.AUTH.REFRESH_TOKEN, {
+        //   refreshToken,
+        // });
+        /** Server side에서 first party cookie를 사용하기 위해
+         * route handler 사용
+         */
+        const response = await axios.post('/api/refresh', {
           refreshToken,
         });
 
