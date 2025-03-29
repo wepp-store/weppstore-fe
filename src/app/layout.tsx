@@ -4,7 +4,7 @@ import {
   ClientQueryClientProvider,
   ClientProgressProvider,
 } from '@/shared/providers';
-import '@/shared/styles/globals.scss';
+import '@/app/globals.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
