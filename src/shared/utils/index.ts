@@ -1,3 +1,4 @@
+export * from './cn';
 export * from './time';
 export * from './styles';
 export * from './debounce';
