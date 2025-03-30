@@ -45,7 +45,7 @@ const AccountPopover = () => {
       <Button
         as={Link}
         href={`${PATH.AUTH.LOGIN}?redirect=${pathname}`}
-        color="primary"
+        className="rounded-lg font-semibold"
       >
         로그인
       </Button>
