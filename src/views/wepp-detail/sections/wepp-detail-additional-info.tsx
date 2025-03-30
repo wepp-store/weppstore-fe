@@ -15,8 +15,6 @@ const WeppDetailAdditionalInfo = ({ wepp }: Props) => {
     return format(new Date(at), 'yyyy.MM.dd');
   })();
 
-  console.log(wepp);
-
   return (
     <Section>
       <h3 className="text-lg font-semibold mb-6">개발자</h3>
