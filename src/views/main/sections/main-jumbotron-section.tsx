@@ -1,6 +1,6 @@
 'use client';
 
-import { PATH } from '@/shared/constants';
+import { ELEMENT_ID, PATH } from '@/shared/constants';
 import { Button } from '@nextui-org/react';
 import { Sparkles, UploadCloud } from 'lucide-react';
 
@@ -71,7 +71,7 @@ const PhoneIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const MainJumbotronSection = () => {
   // 둘러보기
   const onClickBrowse = () => {
-    document.getElementById('main-list-section')?.scrollIntoView({
+    document.getElementById(ELEMENT_ID.MAIN_LIST_SECTION)?.scrollIntoView({
       behavior: 'smooth',
     });
   };

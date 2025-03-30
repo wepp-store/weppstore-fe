@@ -4,6 +4,7 @@ import { useWeppList } from '@/shared/apis/queries/wepp';
 import { Section } from '@/shared/ui/section';
 import React from 'react';
 import { WeppCard } from '../ui';
+import { ELEMENT_ID } from '@/shared/constants';
 
 const MainListSection = () => {
   const {
@@ -19,7 +20,7 @@ const MainListSection = () => {
 
   return (
     <>
-      <Section id="main-list-section" className="min-h-[500px]">
+      <Section id={ELEMENT_ID.MAIN_LIST_SECTION} className="min-h-[500px]">
         <h2 className="text-2xl font-bold mb-4">최신 앱</h2>
 
         <div
