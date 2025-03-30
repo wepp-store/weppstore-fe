@@ -27,10 +27,10 @@ const Header = ({ showMenu = true, showBackButton = false }: Props) => {
     <Navbar isBordered maxWidth="full">
       <NavbarBrand className="gap-16">
         <div
-          className="flex gap-4 items-center cursor-pointer"
+          className="flex gap-2 items-center cursor-pointer"
           onClick={() => push(PATH.MAIN.WEPPS)}
         >
-          <Image src="/logo.svg" alt="wepp store logo" width={48} height={48} />
+          <Image src="/logo.svg" alt="wepp store logo" width={28} height={28} />
           <h1 className="text-xl font-semibold">Wepp Store</h1>
         </div>
 
