@@ -8,6 +8,7 @@ import { IComment } from '@/shared/types';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { stringifyMention } from '@/views/wepp-detail/lib';
+import { ELEMENT_ID } from '@/shared/constants';
 
 const commentSchema = Yup.object().shape({
   content: Yup.string().required('내용을 입력해주세요.'),
@@ -66,7 +67,11 @@ const CreateWeppCommentField = () => {
               </div>
             </div>
           )}
-          <RHFInput name="content" placeholder="댓글을 입력해주세요." />
+          <RHFInput
+            name="content"
+            placeholder="댓글을 입력해주세요."
+            id={ELEMENT_ID.CREATE_COMMENT_FIELD}
+          />
         </div>
         <Button
           type="submit"
