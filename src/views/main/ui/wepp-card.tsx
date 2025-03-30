@@ -15,7 +15,12 @@ const WeppCard = ({ wepp, href }: Props) => {
   const existCategories = categories && categories.length > 0;
 
   return (
-    <Card as={Link} href={href} isPressable>
+    <Card
+      as={Link}
+      href={href}
+      isPressable
+      className="border-none shadow-none bg-gray-100 hover:bg-gray-200 transition-all duration-200 ease-in-out"
+    >
       <CardBody className="flex-row gap-4">
         <Image
           src={logo || ''}
