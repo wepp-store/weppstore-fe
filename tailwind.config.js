@@ -8,12 +8,16 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // colors: {
-      //   default: {
-      //     DEFAULT: "#F3F4F6",
-      //     foreground: "#fff",
-      //   }
-      // },
+      colors: {
+        // default: {
+        //   DEFAULT: "#F3F4F6",
+        //   foreground: "#fff",
+        // }
+        primary: {
+          DEFAULT: '#000',
+          foreground: '#fff',
+        }
+      },
       aspectRatio: {
         mobile: '9 / 16',
         tablet: '3 / 4',
