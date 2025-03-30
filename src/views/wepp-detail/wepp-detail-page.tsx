@@ -10,9 +10,10 @@ import {
   WeppDetailAdditionalInfo,
 } from './sections';
 import { useSession } from '@/shared/apis/queries/auth';
-import { Link } from '@nextui-org/react';
+import { Divider, Link } from '@nextui-org/react';
 import { Section } from '@/shared/ui/section';
 import { ChevronLeft } from 'lucide-react';
+import { ELEMENT_ID } from '@/shared/constants';
 
 const WeppDetailScreen = () => {
   const { back } = useRouter();
@@ -34,13 +35,17 @@ const WeppDetailScreen = () => {
 
       <WeppDetailTitle wepp={wepp} />
 
-      <WeppDetailSubInfo wepp={wepp} />
+      {/* <WeppDetailSubInfo wepp={wepp} /> */}
 
       <WeppDetailScreenshots wepp={wepp} />
 
       <WeppDetailDescription wepp={wepp} />
 
+      <Divider className="my-4" />
+
       <WeppDetailAdditionalInfo wepp={wepp} />
+
+      <Divider className="my-4" />
 
       {isLoggedIn ? (
         <WeppDetailComments />
@@ -50,7 +55,7 @@ const WeppDetailScreen = () => {
           <div className="flex justify-center items-center bg-gray-100 rounded-md h-20">
             <p>
               댓글을 작성하려면{' '}
-              <span>
+              <span id={ELEMENT_ID.CREATE_COMMENT_FIELD}>
                 <Link href="/login" color="primary" className="underline">
                   로그인
                 </Link>

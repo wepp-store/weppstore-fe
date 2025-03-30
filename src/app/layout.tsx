@@ -4,7 +4,7 @@ import {
   ClientQueryClientProvider,
   ClientProgressProvider,
 } from '@/shared/providers';
-import '@/shared/styles/globals.scss';
+import '@/app/globals.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
@@ -27,11 +27,11 @@ export const metadata: Metadata = {
     type: 'website',
     // locale: 'en_US',
     url: 'https://weppstore.com',
-    siteName: 'React-handle-alert',
+    siteName: 'Wepp Store',
     images: [
       {
         url: 'https://weppstore.com/logo.svg',
-        alt: 'React-handle-alert',
+        alt: 'Wepp Store',
         width: 500,
         height: 500,
       },
@@ -43,12 +43,12 @@ export const metadata: Metadata = {
       'A simple pwa store where you can find various web applications and games.',
     site: 'https://weppstore.com',
     // siteId: '', // string;
-    creator: 'dochi',
+    creator: 'ryxxn',
     // creatorId: '',
     images: [
       {
         url: 'https://weppstore.com/logo.svg',
-        alt: 'React-handle-alert',
+        alt: 'Wepp Store',
         width: 500,
         height: 500,
       },
