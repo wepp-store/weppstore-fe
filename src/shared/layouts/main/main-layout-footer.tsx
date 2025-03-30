@@ -4,7 +4,7 @@ import React from 'react';
 
 const MainLayoutFooter = () => {
   return (
-    <footer className="bg-gray-100 dark:bg-gray-800 py-4">
+    <footer className="bg-gray-100 dark:bg-gray-800 py-4 hidden md:block">
       <div className="container flex flex-col justify-center items-center lg:grid lg:grid-cols-3">
         <div />
 
