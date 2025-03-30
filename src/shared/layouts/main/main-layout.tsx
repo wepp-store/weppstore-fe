@@ -3,6 +3,7 @@ import React from 'react';
 import MainLayoutHeader from './main-layout-header';
 import MainLayoutNavBottom from './main-layout-nav-bottom';
 import { cn } from '@nextui-org/theme';
+import MainLayoutFooter from './main-layout-footer';
 
 interface Props {
   showMenu?: boolean;
@@ -27,6 +28,7 @@ const MainLayout: React.FC<Props> = ({ children }: React.PropsWithChildren) => {
         {children}
       </main>
       <MainLayoutNavBottom />
+      <MainLayoutFooter />
     </div>
   );
 };
