@@ -16,6 +16,7 @@ import { PATH } from '@/shared/constants';
 import { useQueryClient } from '@tanstack/react-query';
 import { weppKeys } from '@/shared/apis/queries/wepp';
 import { convertUpdateWeppForm, type WeppField } from '../lib';
+import toast from 'react-hot-toast';
 
 const SubmitWeppButton = () => {
   const router = useRouter();
@@ -42,6 +43,11 @@ const SubmitWeppButton = () => {
   const { handleSubmit, watch } = useFormContext<IWepp>();
 
   const onSubmit = (data: IWepp) => {
+    if (!watch('logo')) {
+      toast.error('로고를 등록해주세요.');
+      return;
+    }
+
     const isVerified = watch('isVerified');
 
     if (!isVerified) {
