@@ -3,6 +3,7 @@ import { Section } from '@/shared/ui/section';
 import { Avatar } from '@nextui-org/react';
 import React from 'react';
 import { format } from 'date-fns';
+import { ViewOtherDevelopersButton } from '../ui';
 
 interface Props {
   wepp: IWepp | undefined;
@@ -25,7 +26,12 @@ const WeppDetailAdditionalInfo = ({ wepp }: Props) => {
           src={wepp?.developer?.profileUrl || '/no-image.svg'}
           className="w-8 h-8"
         />
-        <p className="ml-2">@{wepp?.developer?.userName}</p>
+        <div className="ml-2">
+          <span>@{wepp?.developer?.userName}</span>
+          {wepp?.otherDevelopers?.length ? (
+            <ViewOtherDevelopersButton wepp={wepp} />
+          ) : null}
+        </div>
 
         <span className="ml-4 font-bold">·</span>
         <p className="ml-2 text-gray-500">릴리즈 {updatedDate}</p>
