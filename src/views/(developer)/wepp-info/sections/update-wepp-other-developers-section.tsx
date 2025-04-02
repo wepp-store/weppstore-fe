@@ -57,7 +57,7 @@ const UpdateWeppOtherDevelopersSection = () => {
         <div className="flex gap-4">
           <Input
             type="email"
-            placeholder="이메일"
+            placeholder="이메일을 입력해주세요."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             onKeyUp={onKeyUp}
