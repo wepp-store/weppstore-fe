@@ -26,6 +26,7 @@ export const convertUpdateWeppForm = (wepp: IWepp): WeppField => {
     categories: wepp.categories,
     screenshots: wepp.screenshots,
     description: wepp.description,
+    otherDevelopers: wepp.otherDevelopers,
   };
 };
 
