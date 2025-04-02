@@ -13,4 +13,5 @@ export type WeppField = Pick<
   | 'isDesktop'
   | 'isMobile'
   | 'isTablet'
+  | 'otherDevelopers'
 > & { categories: Omit<ICategory, 'description'>[] };
