@@ -19,6 +19,7 @@ import {
   UpdateWeppBasicInfoSection,
   UpdateWeppCategoriesSection,
   UpdateWeppScreenshotsSection,
+  UpdateWeppOtherDevelopersSection,
 } from './sections';
 
 const WeppInfoPage = () => {
@@ -78,6 +79,8 @@ const WeppInfoPage = () => {
               <UpdateWeppScreenshotsSection />
 
               <UpdateWeppVersionSection />
+
+              <UpdateWeppOtherDevelopersSection />
 
               {/* <div className="mb-6">
             <label

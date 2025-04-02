@@ -3,3 +3,4 @@ export { default as UpdateWeppDevicesSection } from './update-wepp-devices-secti
 export { default as UpdateWeppBasicInfoSection } from './update-wepp-basic-info-section';
 export { default as UpdateWeppCategoriesSection } from './update-wepp-categories-section';
 export { default as UpdateWeppScreenshotsSection } from './update-wepp-screenshots-section';
+export { default as UpdateWeppOtherDevelopersSection } from './update-wepp-other-developers-section';
