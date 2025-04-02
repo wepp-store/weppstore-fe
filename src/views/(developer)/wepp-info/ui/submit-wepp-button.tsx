@@ -25,7 +25,6 @@ const SubmitWeppButton = () => {
 
   const { isOpen, onOpenChange, onClose } = useDisclosure();
 
-  // TODO: add toast
   const successOption = {
     onSuccess: () => {
       onClose();
@@ -49,7 +48,9 @@ const SubmitWeppButton = () => {
       onOpenChange();
       return;
     }
-    submitWeppMutation.mutate(convertUpdateWeppForm(data));
+    submitWeppMutation.mutate(convertUpdateWeppForm(data), {
+      onSuccess: () => toast.success('앱 제출이 완료되었습니다.'),
+    });
   };
 
   const onInvalid: SubmitErrorHandler<IWepp> = (errors) => {
