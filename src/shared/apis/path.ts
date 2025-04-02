@@ -19,6 +19,9 @@ export const PATH_API = {
     SEND_EMAIL: '/auth/send-verify-email',
     VERIFY_EMAIL: '/auth/verify-email',
   },
+  USER: {
+    FIND: '/users/find',
+  },
   WEPP: {
     ROOT: '/wepp',
     MINE_LIST: '/wepp/mine-list',
