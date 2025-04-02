@@ -9,7 +9,7 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { SubmitErrorHandler, useFormContext } from 'react-hook-form';
 import { useSubmitWepp, useUpdateWepp } from '../api';
 import { useParams, useRouter } from 'next/navigation';
 import { PATH } from '@/shared/constants';
@@ -43,11 +43,6 @@ const SubmitWeppButton = () => {
   const { handleSubmit, watch } = useFormContext<IWepp>();
 
   const onSubmit = (data: IWepp) => {
-    if (!watch('logo')) {
-      toast.error('로고를 등록해주세요.');
-      return;
-    }
-
     const isVerified = watch('isVerified');
 
     if (!isVerified) {
@@ -55,6 +50,12 @@ const SubmitWeppButton = () => {
       return;
     }
     submitWeppMutation.mutate(convertUpdateWeppForm(data));
+  };
+
+  const onInvalid: SubmitErrorHandler<IWepp> = (errors) => {
+    if (errors.logo) {
+      toast.error(errors.logo.message ?? '로고를 등록해주세요.');
+    }
   };
 
   const onRequest = (data: IWepp) => {
@@ -69,7 +70,7 @@ const SubmitWeppButton = () => {
       <Button
         color="primary"
         isLoading={submitWeppMutation.isPending}
-        onPress={handleSubmit(onSubmit) as VoidFunction}
+        onPress={handleSubmit(onSubmit, onInvalid) as VoidFunction}
       >
         {submitWeppMutation.isPending || '앱 제출'}
       </Button>
@@ -89,7 +90,7 @@ const SubmitWeppButton = () => {
             </Button>
             <Button
               color="primary"
-              onPress={handleSubmit(onRequest) as VoidFunction}
+              onPress={handleSubmit(onRequest, onInvalid) as VoidFunction}
               isLoading={updateWeppMutation.isPending}
             >
               {updateWeppMutation.isPending || '네, 제출할게요'}
