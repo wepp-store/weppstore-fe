@@ -35,6 +35,7 @@ export interface IWepp {
   isTablet: boolean;
   isMobile: boolean;
   isVerified: boolean;
+  otherDevelopers: IUser[];
   _count?: {
     comments: number;
     likes: number;
