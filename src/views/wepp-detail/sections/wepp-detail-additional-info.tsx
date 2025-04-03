@@ -4,6 +4,8 @@ import { Avatar } from '@nextui-org/react';
 import React from 'react';
 import { format } from 'date-fns';
 import { ViewOtherDevelopersButton } from '../ui';
+import Link from 'next/link';
+import { PATH } from '@/shared/constants';
 
 interface Props {
   wepp: IWepp | undefined;
@@ -27,7 +29,10 @@ const WeppDetailAdditionalInfo = ({ wepp }: Props) => {
           className="w-8 h-8"
         />
         <div className="ml-2">
-          <span>@{wepp?.developer?.userName}</span>
+          <Link href={PATH.MAIN.OTHER_PROFILE(wepp?.developerId)}>
+            @
+            <span className="hover:underline">{wepp?.developer?.userName}</span>
+          </Link>
           {wepp?.otherDevelopers?.length ? (
             <ViewOtherDevelopersButton wepp={wepp} />
           ) : null}

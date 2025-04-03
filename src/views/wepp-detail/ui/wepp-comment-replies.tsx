@@ -10,6 +10,8 @@ import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { parseMention } from '../lib';
 import { DeleteWeppCommentButton } from '@/features/wepp-comment';
 import { useReplyStateStore } from '@/features/wepp-comment/lib';
+import Link from 'next/link';
+import { PATH } from '@/shared/constants';
 
 interface Props {
   show: boolean;
@@ -93,7 +95,9 @@ const ReplyComment = ({ comment }: { comment: IComment }) => {
         <div className="flex flex-col grow">
           {!deletedAt ? (
             <>
-              <p className="text-sm">@{user.userName}</p>
+              <Link className="text-sm" href={PATH.MAIN.OTHER_PROFILE(user.id)}>
+                @<span className="hover:underline">{user.userName}</span>
+              </Link>
               <p className="font-gray-800">
                 {mention && (
                   <span
