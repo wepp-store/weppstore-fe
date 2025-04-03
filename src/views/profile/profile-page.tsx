@@ -12,17 +12,15 @@ const ProfilePage = () => {
   const { data, isFetched } = useMyProfile();
 
   return (
-    <div>
-      <div className="max-w-3xl mx-auto">
-        {/* Profile Header */}
-        <ProfileBasicSection profile={data} isMine />
+    <div className="max-w-3xl mx-auto">
+      {/* Profile Header */}
+      <ProfileBasicSection profile={data} isMine />
 
-        {/* About */}
-        <ProfileAboutSection profile={data} />
+      {/* About */}
+      <ProfileAboutSection profile={data} />
 
-        {/* Wepps */}
-        <ProfileWeppsSection profile={data} />
-      </div>
+      {/* Wepps */}
+      <ProfileWeppsSection profile={data} />
     </div>
   );
 };
