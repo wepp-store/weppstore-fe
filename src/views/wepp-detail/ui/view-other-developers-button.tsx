@@ -1,3 +1,4 @@
+import { PATH } from '@/shared/constants';
 import { IWepp } from '@/shared/types';
 import { RHFInput } from '@/shared/ui/hook-form';
 import {
@@ -10,6 +11,7 @@ import {
   useDisclosure,
   User,
 } from '@nextui-org/react';
+import Link from 'next/link';
 import React from 'react';
 import { FormProvider } from 'react-hook-form';
 
@@ -43,7 +45,14 @@ const ViewOtherDevelopersButton = ({ wepp }: Props) => {
                   avatarProps={{
                     src: developer.profileUrl ?? '/no-image.svg',
                   }}
-                  name={developer.userName}
+                  name={
+                    <Link
+                      href={PATH.MAIN.OTHER_PROFILE(developer.id)}
+                      className="hover:underline"
+                    >
+                      {developer.userName}
+                    </Link>
+                  }
                 />
               </div>
             ))}

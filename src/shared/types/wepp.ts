@@ -16,7 +16,7 @@ export type WeppStatus =
   | 'PENDING';
 
 export interface IWepp {
-  id: number;
+  id: string;
   developerId: number;
   developer: IUser;
   name: string;

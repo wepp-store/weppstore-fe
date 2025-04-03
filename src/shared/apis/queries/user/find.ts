@@ -8,7 +8,7 @@ import {
 import { AxiosError } from 'axios';
 import { PATH_API } from '../../path';
 import { axiosInstance } from '../../axios';
-import { IWepp } from '@/shared/types';
+import { IUser } from '@/shared/types';
 import { userKeys } from './query-key-factory';
 import toast from 'react-hot-toast';
 
@@ -27,7 +27,7 @@ export const useFindUser = ({ params, ...other }: Props) => {
     gcTime: 3_000, // 5m
     staleTime: 3_000,
     ...other,
-  }) as UseQueryResult<IWepp, AxiosError>;
+  }) as UseQueryResult<IUser, AxiosError>;
 };
 
 export const useFindUserMutate = (

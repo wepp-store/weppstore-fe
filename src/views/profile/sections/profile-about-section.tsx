@@ -8,7 +8,7 @@ interface Props {
 
 const ProfileAboutSection = ({ profile }: Props) => {
   return (
-    <Card className="mt-4">
+    <Card className="mt-4 shadow-sm border">
       <CardBody className="p-6">
         <h2 className="text-xl font-bold mb-4">소개</h2>
         <p className="text-gray-700">
