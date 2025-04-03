@@ -1,3 +1,5 @@
+import { IWepp } from './wepp';
+
 export interface IUser {
   id: number;
   email: string;
@@ -9,5 +11,5 @@ export interface IUser {
   updatedAt: Date;
   description: string;
   profileUrl: string | null;
-  // wepps: Wepp[];
+  wepps: IWepp[];
 }
