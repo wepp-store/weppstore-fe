@@ -6,8 +6,10 @@ export const PATH = {
   },
   MAIN: {
     WEPPS: '/wepps',
+    WEPP_DETAIL: (weppId: string) => `/wepps/${weppId}`,
     GAME: '/games',
     PROFILE: '/profile',
+    OTHER_PROFILE: (userId?: number) => `/profile/${userId}`,
   },
   DEVELOPER: {
     MAIN: '/developer/wepp',
