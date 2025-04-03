@@ -13,10 +13,10 @@ import { useSession } from '@/shared/apis/queries/auth';
 import { Divider, Link } from '@nextui-org/react';
 import { Section } from '@/shared/ui/section';
 import { ChevronLeft } from 'lucide-react';
-import { ELEMENT_ID } from '@/shared/constants';
+import { ELEMENT_ID, PATH } from '@/shared/constants';
 
 const WeppDetailScreen = () => {
-  const { back } = useRouter();
+  const { replace } = useRouter();
   const { weppId }: { weppId: string } = useParams();
   const { data: wepp } = useWeppDetail({ weppId });
 
@@ -27,7 +27,7 @@ const WeppDetailScreen = () => {
       <header className="px-4 pt-4">
         <ChevronLeft
           size={24}
-          onClick={back}
+          onClick={() => replace(PATH.MAIN.WEPPS)}
           role="button"
           aria-label="뒤로가기"
         />
