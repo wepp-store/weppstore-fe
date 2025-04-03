@@ -7,15 +7,23 @@ import {
   ProfileBasicSection,
   ProfileWeppsSection,
 } from './sections';
+import { useFindUser } from '@/shared/apis/queries/user';
+import { useParams } from 'next/navigation';
 
 const ProfilePage = () => {
-  const { data, isFetched } = useMyProfile();
+  const { userId } = useParams();
+  const { data, isFetched } = useFindUser({
+    params: {
+      id: +userId,
+    },
+    enabled: !!userId,
+  });
 
   return (
     <div>
       <div className="max-w-3xl mx-auto">
         {/* Profile Header */}
-        <ProfileBasicSection profile={data} isMine />
+        <ProfileBasicSection profile={data} />
 
         {/* About */}
         <ProfileAboutSection profile={data} />
