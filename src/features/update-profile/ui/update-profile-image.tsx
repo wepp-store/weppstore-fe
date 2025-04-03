@@ -1,5 +1,15 @@
 import React from 'react';
-import { Image, Tooltip } from '@nextui-org/react';
+import {
+  Button,
+  Image,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Tooltip,
+  useDisclosure,
+} from '@nextui-org/react';
 import { useUploadProfileImage } from '../api/upload-profile-image';
 
 const UpdateProfileImage = ({
@@ -9,6 +19,7 @@ const UpdateProfileImage = ({
   src: string | null | undefined;
   isMine: boolean;
 }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { mutate, isPending } = useUploadProfileImage();
 
   const onUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,13 +31,14 @@ const UpdateProfileImage = ({
 
   if (!isMine) {
     return (
-      <Image
-        width={128}
-        height={128}
-        src={src || '/no-image.svg'}
-        alt="Profile"
-        fallbackSrc="/no-image.svg"
-        className="
+      <>
+        <Image
+          width={128}
+          height={128}
+          src={src || '/no-image.svg'}
+          alt="Profile"
+          fallbackSrc="/no-image.svg"
+          className="
           w-24 md:w-32
           min-w-24 md:min-w-32
           max-w-24 md:max-w-32
@@ -39,7 +51,40 @@ const UpdateProfileImage = ({
           z-50
           cursor-pointer
           "
-      />
+          onClick={onOpen}
+        />
+        <Modal
+          isOpen={isOpen}
+          onOpenChange={onClose}
+          className="w-full max-w-lg"
+        >
+          <ModalContent>
+            <ModalHeader className="flex flex-col gap-1">
+              프로필 사진
+            </ModalHeader>
+            <ModalBody className="w-full items-center">
+              <Image
+                width={256}
+                height={256}
+                src={src || '/no-image.svg'}
+                alt="Profile"
+                fallbackSrc="/no-image.svg"
+                className="
+                rounded-full
+                border-4
+                border-white
+                z-50
+                "
+              />
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onPress={onClose}>
+                닫기
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
     );
   }
 
