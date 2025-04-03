@@ -18,8 +18,18 @@ export const metadata: Metadata = {
   title: 'Wepp Store',
   description:
     'A simple pwa store where you can find various web applications and games.',
-  authors: [{ name: 'dochi', url: 'https://github.com/ryxxn' }],
-  keywords: ['pwa', 'web', 'application', 'game', 'store', 'wepp app', 'wepp'],
+  authors: [{ name: 'ryxxn', url: 'https://github.com/ryxxn' }],
+  keywords: [
+    'pwa',
+    'web',
+    'application',
+    'game',
+    'store',
+    'wepp app',
+    'wepp',
+    'wepp store',
+    'pwa store',
+  ],
   openGraph: {
     title: 'Wepp Store',
     description:
