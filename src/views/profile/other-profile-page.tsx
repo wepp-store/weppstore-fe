@@ -29,7 +29,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="w-full mx-auto">
       {/* Profile Header */}
       <ProfileBasicSection profile={data} />
 
