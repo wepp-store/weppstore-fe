@@ -9,16 +9,17 @@ PWA 서비스를 쉽게 다운받을 수 있는 스토어입니다.
 ---
 
 ## 도메인 인증 및 PWA 설치 모달 스크립트
-```bash
+
 https://github.com/ryxxn/pwa-install-prompt
-```
 
 ---
 
 ## Framework
+
 - Nextjs
 
 ## Libraries
+
 - nextui
 - react-query
 - zustand
