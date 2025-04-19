@@ -12,8 +12,8 @@ interface Props {
 }
 
 const WeppDetailAdditionalInfo = ({ wepp }: Props) => {
-  const updatedDate = (() => {
-    const at = wepp?.updatedAt || wepp?.createdAt;
+  const releasedDate = (() => {
+    const at = wepp?.releasedAt || wepp?.updatedAt;
     if (!at) return '';
     return format(new Date(at), 'yyyy.MM.dd');
   })();
@@ -39,7 +39,7 @@ const WeppDetailAdditionalInfo = ({ wepp }: Props) => {
         </div>
 
         <span className="ml-4 font-bold">·</span>
-        <p className="ml-2 text-gray-500">릴리즈 {updatedDate}</p>
+        <p className="ml-2 text-gray-500">릴리즈 {releasedDate}</p>
 
         <span className="ml-4 font-bold">·</span>
         <p className="ml-2 text-gray-500">버전 {wepp?.version}</p>
