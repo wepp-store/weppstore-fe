@@ -26,6 +26,7 @@ export interface IWepp {
   url: string;
   createdAt: string;
   updatedAt: string;
+  releasedAt: string | null;
   categories: ICategory[];
   logo: string | null;
   screenshots: WeppScreenshot[];
