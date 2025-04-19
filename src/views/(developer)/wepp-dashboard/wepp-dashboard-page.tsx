@@ -1,8 +1,8 @@
 import {
-  WeppDashboardInfo,
   WeppDashboardHeader,
   WeppDashboardBreadcrumbs,
   WeppDashboardStatistics,
+  WeppDashboardChart,
 } from './sections';
 
 const WeppDashboardPage = () => {
@@ -11,7 +11,7 @@ const WeppDashboardPage = () => {
       <WeppDashboardBreadcrumbs />
       <WeppDashboardHeader />
       <WeppDashboardStatistics />
-      <WeppDashboardInfo />
+      <WeppDashboardChart />
     </>
   );
 };
