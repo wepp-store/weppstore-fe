@@ -12,41 +12,39 @@ const WeppDashboardStatistics = () => {
 
   const { data: wepp } = useMineWeppDetail({ weppId });
 
-  const { views, _count } = wepp ?? {};
+  const { _count, viewCount, installCount } = wepp ?? {};
 
   return (
     <Section>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card className="p-4 flex-row items-center gap-6 border border-gray-200 rounded-md shadow-none">
-          <Eye className="w-8 h-8 text-green-500" />
+          <Eye className="text-green-500" size={24} />
           <div>
             <p className="text-sm text-muted-foreground">총 조회 수</p>
-            <p className="text-xl font-semibold">{views ?? 0}회</p>
+            <p className="text-xl font-semibold">{viewCount ?? 0}회</p>
           </div>
         </Card>
         <Card className="p-4 flex-row items-center gap-6 border border-gray-200 rounded-md shadow-none">
-          <Heart className="w-8 h-8 text-blue-500" />
+          <Heart className="text-red-500" size={24} />
           <div>
             <p className="text-sm text-muted-foreground">총 좋아요 수</p>
             <p className="text-xl font-semibold">{_count?.likes ?? 0}회</p>
           </div>
         </Card>
         <Card className="p-4 flex-row items-center gap-6 border border-gray-200 rounded-md shadow-none">
-          <MessageCircle className="w-8 h-8 text-purple-500" />
+          <MessageCircle className="text-purple-500" size={24} />
           <div>
             <p className="text-sm text-muted-foreground">총 댓글 수</p>
             <p className="text-xl font-semibold">{_count?.comments ?? 0}개</p>
           </div>
         </Card>
         <Card className="p-4 flex-row items-center gap-6 border border-gray-200 rounded-md shadow-none">
-          <BarChart2 className="w-8 h-8 text-purple-500" />
+          <BarChart2 className="text-blue-500" size={24} />
           <div>
             <p className="text-sm text-muted-foreground">
               총 설치 버튼 클릭 수
             </p>
-            <p className="text-xl font-semibold">
-              <del className="text-gray-600">작업 중입니다.</del>
-            </p>
+            <p className="text-xl font-semibold">{installCount ?? 0}회</p>
           </div>
         </Card>
       </div>

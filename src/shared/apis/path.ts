@@ -24,12 +24,14 @@ export const PATH_API = {
   },
   WEPP: {
     ROOT: '/wepp',
+    DETAIL: (weppId: string) => `/wepp/${weppId}` as const,
     MINE_LIST: '/wepp/mine-list',
     MINE: (weppId: string) => `/wepp/mine/${weppId}` as const,
     SUBMIT: '/wepp/submit',
     VERIFY: '/wepp/verify',
     UPLOAD: '/wepp/upload',
     CLEAR_URL: '/wepp/clear-url',
+    EVENT_LOG: '/wepp/event',
   },
   COMMENT: {
     ROOT: '/comments',

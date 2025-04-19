@@ -12,27 +12,16 @@ import { notFound } from 'next/navigation';
 
 type Props = {
   weppId: string;
-  read?: boolean;
 } & Omit<UseQueryOptions, 'queryKey'>;
 
 export const weppDetailOptions = ({
   weppId,
-  read = false,
   ...other
 }: Props): UseQueryOptions => ({
   queryKey: weppKeys.detail(weppId),
   queryFn: async () => {
     try {
-      const response = await axiosInstance.get(
-        `${PATH_API.WEPP.ROOT}/${weppId}`,
-        {
-          headers: {
-            'X-WEPP-READ': read,
-            // TODO: 작동하나?
-            'Cache-Control': 'max-age=3600, must-revalidate', // 1시간 동안 캐시 유지
-          },
-        }
-      );
+      const response = await axiosInstance.get(PATH_API.WEPP.DETAIL(weppId));
       return response.data;
     } catch (error: any) {
       if (error.statusCode === 404) {
@@ -45,8 +34,9 @@ export const weppDetailOptions = ({
   ...other,
 });
 
-export const useWeppDetail = ({ weppId, read = false, ...other }: Props) => {
-  return useQuery(
-    weppDetailOptions({ weppId, read, ...other })
-  ) as UseQueryResult<IWepp, AxiosError>;
+export const useWeppDetail = ({ weppId, ...other }: Props) => {
+  return useQuery(weppDetailOptions({ weppId, ...other })) as UseQueryResult<
+    IWepp,
+    AxiosError
+  >;
 };

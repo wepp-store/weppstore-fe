@@ -41,4 +41,12 @@ export interface IWepp {
     comments: number;
     likes: number;
   };
+  viewCount: number;
+  installCount?: number;
+}
+
+export interface IWeppEventLog {
+  id: number;
+  weppId: string;
+  eventType: 'VIEW' | 'INSTALL';
 }

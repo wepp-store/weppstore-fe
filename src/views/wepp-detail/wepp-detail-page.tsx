@@ -1,4 +1,5 @@
 'use client';
+
 import { useWeppDetail } from '@/shared/apis/queries/wepp';
 import { useParams, useRouter } from 'next/navigation';
 import {
@@ -14,6 +15,7 @@ import { Divider, Link } from '@nextui-org/react';
 import { Section } from '@/shared/ui/section';
 import { ChevronLeft } from 'lucide-react';
 import { ELEMENT_ID, PATH } from '@/shared/constants';
+import WeppViewEventLog from './ui/wepp-view-event-log';
 
 const WeppDetailScreen = () => {
   const { replace } = useRouter();
@@ -70,6 +72,9 @@ const WeppDetailScreen = () => {
 
       {/* 비슷한 앱 추천 */}
       {/* <WeppDetailSimilars /> */}
+
+      {/* 조회수 증가를 위한 이벤트 로그 */}
+      <WeppViewEventLog weppId={weppId} />
     </article>
   );
 };
