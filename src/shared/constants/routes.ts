@@ -14,7 +14,8 @@ export const PATH = {
   DEVELOPER: {
     MAIN: '/developer/wepp',
     WEPP: '/developer/wepp',
-    WEPP_DETAIL: (weppId: string) => `/developer/wepp/${weppId}`,
+    WEPP_DASHBOARD: (weppId: string) => `/developer/wepp/${weppId}`,
+    WEPP_DETAIL: (weppId: string) => `/developer/wepp/${weppId}/info`,
     MAKE_PWA: '/developer/make-pwa',
   },
 };
