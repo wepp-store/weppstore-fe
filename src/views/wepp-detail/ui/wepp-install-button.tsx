@@ -1,5 +1,6 @@
 'use client';
 
+import { createWeppEventLog } from '@/shared/apis/services/wepp/event-log';
 import { BrowserShare } from '@/shared/assets/icons';
 import useDevice from '@/shared/hooks/use-device';
 import { IWepp } from '@/shared/types';
@@ -23,13 +24,19 @@ interface Props extends ButtonProps {
 }
 
 const WeppInstallButton = ({ wepp, ...other }: Props) => {
-  const { url, isVerified } = wepp || {};
+  const { url, isVerified, id } = wepp || {};
 
   const { isIOS } = useDevice();
 
   const { isOpen, onOpenChange, onClose } = useDisclosure();
 
   const weppInstallLink = installLink(url);
+
+  // 설치 이벤트 로그를 기록
+  const onCreateInstallEventLog = () => {
+    if (!id) return;
+    createWeppEventLog({ weppId: id, eventType: 'INSTALL' });
+  };
 
   const modalRenderContent = () => {
     if (isIOS) {
@@ -54,6 +61,7 @@ const WeppInstallButton = ({ wepp, ...other }: Props) => {
               as={Link}
               href={weppInstallLink}
               target="_blank"
+              onClick={onCreateInstallEventLog}
             >
               받기
             </Button>
@@ -83,6 +91,7 @@ const WeppInstallButton = ({ wepp, ...other }: Props) => {
             as={Link}
             href={weppInstallLink}
             target="_blank"
+            onClick={onCreateInstallEventLog}
           >
             받기
           </Button>
@@ -99,6 +108,7 @@ const WeppInstallButton = ({ wepp, ...other }: Props) => {
         as={Link}
         target="_blank"
         href={weppInstallLink}
+        onClick={onCreateInstallEventLog}
         {...other}
       >
         받기
