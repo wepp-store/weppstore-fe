@@ -17,7 +17,12 @@ const DeleteWeppButton = () => {
 
   return (
     <>
-      <Button color="danger" variant="bordered" onPress={onOpenChange}>
+      <Button
+        color="danger"
+        variant="bordered"
+        onPress={onOpenChange}
+        radius="sm"
+      >
         삭제하기
       </Button>
 
