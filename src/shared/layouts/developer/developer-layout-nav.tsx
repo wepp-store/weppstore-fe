@@ -34,7 +34,7 @@ const DeveloperLayoutNav = () => {
       "
       >
         <div
-          className="h-20 flex gap-2 items-center cursor-pointer"
+          className="h-20 flex gap-2 items-center justify-center cursor-pointer"
           onClick={() => replace(PATH.DEVELOPER.WEPP)}
         >
           <Image
@@ -42,7 +42,7 @@ const DeveloperLayoutNav = () => {
             alt="wepp store logo"
             width={28}
             height={28}
-            className="aspect-square w-[48px] min-w-[48px] h-[48px]"
+            className="aspect-square w-[28px] min-w-[28px] h-[28px]"
           />
           <h1 className="text-xl font-semibold text-nowrap hidden lg:inline">
             Developer
