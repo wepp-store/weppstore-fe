@@ -62,7 +62,6 @@ export default async function Page({ params }: Props) {
   await queryClient.prefetchQuery(
     weppDetailOptions({
       weppId: params.weppId,
-      read: true,
       gcTime: Infinity,
       staleTime: Infinity,
     })
