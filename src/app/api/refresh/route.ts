@@ -1,5 +1,6 @@
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import { STORAGE_KEYS } from '@/shared/constants';
 import { cookies } from 'next/headers';
 
 function jwtDecode(token: string) {
@@ -23,7 +24,7 @@ export async function POST(req: Request) {
 
     const { exp, iat } = jwtDecode(data.accessToken);
 
-    cookieStore.set('weppstore_token', data.accessToken, {
+    cookieStore.set(STORAGE_KEYS.TOKEN.ACCESS, data.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',

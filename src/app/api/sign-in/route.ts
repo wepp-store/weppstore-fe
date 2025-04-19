@@ -1,5 +1,6 @@
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import { STORAGE_KEYS } from '@/shared/constants';
 import { cookies } from 'next/headers';
 
 function jwtDecode(token: string) {
@@ -25,14 +26,14 @@ export async function POST(req: Request) {
     const decodedAccessToken = jwtDecode(data.accessToken);
     const decodedRefreshToken = jwtDecode(data.refreshToken);
 
-    cookieStore.set('weppstore_token', data.accessToken, {
+    cookieStore.set(STORAGE_KEYS.TOKEN.ACCESS, data.accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       maxAge: remainingSeconds(decodedAccessToken) || 0,
     });
 
-    cookieStore.set('weppstore_refresh_token', data.refreshToken, {
+    cookieStore.set(STORAGE_KEYS.TOKEN.REFRESH, data.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
