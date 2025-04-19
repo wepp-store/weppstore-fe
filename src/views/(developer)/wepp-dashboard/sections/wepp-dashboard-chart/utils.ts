@@ -9,6 +9,8 @@
  * @device_desktop_install
  * @device_mobile_view
  * @device_mobile_install
+ * @device_tablet_view
+ * @device_tablet_install
  * @device_other_view
  * @device_other_install
  */
@@ -25,6 +27,8 @@ const DEFAULT_ROW = {
   platform_other_install: 0,
   device_mobile_view: 0,
   device_mobile_install: 0,
+  device_tablet_view: 0,
+  device_tablet_install: 0,
   device_desktop_view: 0,
   device_desktop_install: 0,
   device_other_view: 0,
@@ -48,6 +52,8 @@ export const LINE_COLORS: Record<string, string> = {
   // device
   device_mobile_view: '#00bcd4',
   device_mobile_install: '#00bcd4',
+  device_tablet_view: '#4caf50',
+  device_tablet_install: '#4caf50',
   device_desktop_view: '#ff9800',
   device_desktop_install: '#ff9800',
   device_other_view: '#9e9e9e',
@@ -66,6 +72,8 @@ export const LABEL_MAP: Record<string, string> = {
   // device
   device_mobile_view: '모바일',
   device_mobile_install: '모바일',
+  device_tablet_view: '태블릿',
+  device_tablet_install: '태블릿',
   device_desktop_view: '데스크탑',
   device_desktop_install: '데스크탑',
   device_other_view: '기타',
@@ -77,7 +85,7 @@ export const getKeysByFilter = (
   subFilter: SubFilterType
 ) => {
   const platformBase = ['ios', 'other'];
-  const deviceBase = ['desktop', 'mobile', 'other'];
+  const deviceBase = ['desktop', 'tablet', 'mobile', 'other'];
 
   if (filter === 'all') return ['view', 'install'];
 
