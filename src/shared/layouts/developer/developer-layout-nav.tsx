@@ -40,14 +40,9 @@ const DeveloperLayoutNav = () => {
           <Image
             src="/logo.svg"
             alt="wepp store logo"
-            width={48}
-            height={48}
-            className="
-            aspect-square
-            w-[48px]
-            min-w-[48px]
-            h-[48px]
-          "
+            width={28}
+            height={28}
+            className="aspect-square w-[48px] min-w-[48px] h-[48px]"
           />
           <h1 className="text-xl font-semibold text-nowrap hidden lg:inline">
             Developer
