@@ -13,7 +13,23 @@
  * @device_other_install
  */
 
+import { format } from 'date-fns';
 import { FilterType, SubFilterType } from './types';
+
+const DEFAULT_ROW = {
+  view: 0,
+  install: 0,
+  platform_ios_view: 0,
+  platform_ios_install: 0,
+  platform_other_view: 0,
+  platform_other_install: 0,
+  device_mobile_view: 0,
+  device_mobile_install: 0,
+  device_desktop_view: 0,
+  device_desktop_install: 0,
+  device_other_view: 0,
+  device_other_install: 0,
+};
 
 export const SUB_FILTERS = [
   { key: 'device', label: '기기별' },
@@ -92,4 +108,30 @@ export const enrichChartData = (raw: any[]): any[] => {
       install,
     };
   });
+};
+
+export const fillMissingDates = (data: any[]) => {
+  const filledData: any[] = [];
+  const sortedDates = data
+    .map((entry) => entry.date)
+    .sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+
+  const startDate = sortedDates.at(0);
+  const endDate = sortedDates.at(-1);
+  if (!startDate || !endDate) return data;
+
+  const dateSet = new Set(sortedDates);
+
+  let currentDate = new Date(startDate);
+  while (currentDate <= endDate) {
+    const dateString = format(currentDate, 'yyyy-MM-dd');
+    if (!dateSet.has(dateString)) {
+      filledData.push({ date: dateString, ...DEFAULT_ROW });
+    }
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return [...data, ...filledData].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  );
 };

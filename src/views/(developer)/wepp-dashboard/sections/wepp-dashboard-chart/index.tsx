@@ -15,14 +15,16 @@ import { useParams } from 'next/navigation';
 import { Section } from '@/shared/ui/section';
 import { Select, SelectItem, Tab, Tabs } from '@nextui-org/react';
 import {
-  enrichChartData,
-  getKeysByFilter,
   LABEL_MAP,
-  LINE_COLORS,
   SUB_FILTERS,
+  LINE_COLORS,
+  getKeysByFilter,
+  enrichChartData,
+  fillMissingDates,
 } from './utils';
 import { FilterType, SubFilterType } from './types';
 import ChartFallback from './chart-fallback';
+import { format, subMonths } from 'date-fns';
 
 // ----------------------------------------------------------------------
 
@@ -61,14 +63,19 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 const WeppDashboardChart = () => {
   const { weppId }: { weppId: string } = useParams();
-  const { data: eventLogs } = useEventLogs({ weppId });
+  const { data: eventLogs } = useEventLogs({
+    weppId,
+    from: format(subMonths(new Date(), 1), 'yyyy-MM-dd'),
+    to: format(new Date(), 'yyyy-MM-dd'),
+  });
 
   const [filter, setFilter] = React.useState<FilterType>('all');
   const [subFilter, setSubFilter] = React.useState<SubFilterType>('device');
 
   const chartData = React.useMemo(() => {
     if (!eventLogs) return [];
-    return enrichChartData(eventLogs);
+    const enrichData = enrichChartData(eventLogs);
+    return fillMissingDates(enrichData);
   }, [eventLogs]);
 
   const keysByFilter = React.useMemo(
