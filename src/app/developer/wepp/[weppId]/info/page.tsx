@@ -1,6 +1,6 @@
 import { getServerQueryClient } from '@/shared/apis/get-query-client';
 import { weppKeys, weppMineDetailOptions } from '@/shared/apis/queries/wepp';
-import { WeppInfoPage } from '@/views/(developer)/wepp-info';
+import { WeppInfoPage } from '@/views/developer/wepp-info';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';

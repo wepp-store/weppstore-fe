@@ -1,7 +1,7 @@
 import { IComment } from '@/shared/types';
-import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
 import { type InfiniteData, type QueryClient } from '@tanstack/react-query';
 import { getCacheComment } from './get-cache-comment';
+import { commentKeys } from '../../api/query-key-factory';
 
 export const removeCacheComment =
   (queryClient: QueryClient) =>

@@ -1,7 +1,7 @@
 import { getServerQueryClient } from '@/shared/apis/get-query-client';
 import { weppDetailOptions } from '@/shared/apis/queries/wepp';
 import { IWepp } from '@/shared/types';
-import { WeppDetailPage } from '@/views/wepp-detail';
+import { WeppDetailPage } from '@/views/(end-user)/wepp-detail';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { Metadata } from 'next';
 import { Suspense } from 'react';

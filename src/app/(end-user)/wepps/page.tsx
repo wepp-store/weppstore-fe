@@ -1,5 +1,5 @@
 import { weppListOptions } from '@/shared/apis/queries/wepp';
-import { MainPage } from '@/views/main';
+import { MainPage } from '@/views/(end-user)/main';
 import {
   dehydrate,
   QueryClient,

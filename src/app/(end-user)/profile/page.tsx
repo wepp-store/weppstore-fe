@@ -1,4 +1,4 @@
-import { ProfilePage } from '@/views/profile';
+import { ProfilePage } from '@/views/(end-user)/profile';
 
 const Page = () => {
   return <ProfilePage />;

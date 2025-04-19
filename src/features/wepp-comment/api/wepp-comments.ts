@@ -6,9 +6,9 @@ import {
 } from '@tanstack/react-query';
 import { IComment } from '@/shared/types';
 import { useParams } from 'next/navigation';
-import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
 import { axiosInstance } from '@/shared/apis/axios';
 import { PATH_API } from '@/shared/apis/path';
+import { commentKeys } from './query-key-factory';
 
 interface ResponseType {
   data: IComment[];

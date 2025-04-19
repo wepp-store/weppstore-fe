@@ -7,8 +7,8 @@ import toast from 'react-hot-toast';
 import { useParams } from 'next/navigation';
 import { useSession } from '@/shared/apis/queries/auth';
 import { IComment } from '@/shared/types';
-import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
 import { useCommentCache } from '../lib/use-comment-cache';
+import { commentKeys } from './query-key-factory';
 
 type Payload = Pick<IComment, 'content' | 'parentId' | 'mention'>;
 

@@ -1,4 +1,4 @@
-import { MakePWAPage } from '@/views/(developer)/make-pwa';
+import { MakePWAPage } from '@/views/developer/make-pwa';
 import React from 'react';
 
 const Page = () => {

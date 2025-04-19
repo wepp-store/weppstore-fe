@@ -1,6 +1,6 @@
-import { commentKeys } from '@/views/wepp-detail/api/query-key-factory';
 import { type QueryClient } from '@tanstack/react-query';
 import { getCacheComment } from './get-cache-comment';
+import { commentKeys } from '../../api/query-key-factory';
 
 interface Props {
   parentId: number;

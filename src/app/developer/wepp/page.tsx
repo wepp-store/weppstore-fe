@@ -1,4 +1,4 @@
-import { DeveloperMainPage } from '@/views/(developer)/main';
+import { DeveloperMainPage } from '@/views/developer/main';
 
 const DeveloperHome = () => {
   return <DeveloperMainPage />;

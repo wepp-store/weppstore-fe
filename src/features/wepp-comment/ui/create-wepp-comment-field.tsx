@@ -7,7 +7,7 @@ import { useReplyStateStore } from '../lib';
 import { IComment } from '@/shared/types';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { stringifyMention } from '@/views/wepp-detail/lib';
+import { stringifyMention } from '@/views/(end-user)/wepp-detail/lib';
 import { ELEMENT_ID } from '@/shared/constants';
 
 const commentSchema = Yup.object().shape({

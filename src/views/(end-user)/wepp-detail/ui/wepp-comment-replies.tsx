@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRepliesOfComment } from '../api';
 import { IComment } from '@/shared/types';
 import { Avatar } from '@nextui-org/react';
 import { timeAgo } from '@/shared/utils';
@@ -12,6 +11,7 @@ import { DeleteWeppCommentButton } from '@/features/wepp-comment';
 import { useReplyStateStore } from '@/features/wepp-comment/lib';
 import Link from 'next/link';
 import { PATH } from '@/shared/constants';
+import { useRepliesOfComment } from '@/features/wepp-comment/api/get-replies-of-comment';
 
 interface Props {
   show: boolean;
