@@ -22,6 +22,7 @@ import {
   SUB_FILTERS,
 } from './utils';
 import { FilterType, SubFilterType } from './types';
+import ChartFallback from './chart-fallback';
 
 // ----------------------------------------------------------------------
 
@@ -110,49 +111,53 @@ const WeppDashboardChart = () => {
         )}
       </div>
 
-      <ResponsiveContainer width="100%" height={300}>
-        <AreaChart data={chartData}>
-          <defs>
+      {chartData.length <= 3 ? (
+        <ChartFallback />
+      ) : (
+        <ResponsiveContainer width="100%" height={300}>
+          <AreaChart data={chartData}>
+            <defs>
+              {keysByFilter.map((key) => (
+                <linearGradient
+                  id={`fill_${key}`}
+                  key={key}
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
+                  <stop
+                    offset="5%"
+                    stopColor={LINE_COLORS[key]}
+                    stopOpacity={0.7}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor={LINE_COLORS[key]}
+                    stopOpacity={0.1}
+                  />
+                </linearGradient>
+              ))}
+            </defs>
+
+            <XAxis dataKey="date" />
+            <YAxis allowDecimals={false} />
+            <Tooltip content={<CustomTooltip />} />
+            <Legend content={<CustomLegend />} />
+
             {keysByFilter.map((key) => (
-              <linearGradient
-                id={`fill_${key}`}
+              <Area
                 key={key}
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="1"
-              >
-                <stop
-                  offset="5%"
-                  stopColor={LINE_COLORS[key]}
-                  stopOpacity={0.7}
-                />
-                <stop
-                  offset="95%"
-                  stopColor={LINE_COLORS[key]}
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
+                type="monotone"
+                dataKey={key}
+                stroke={LINE_COLORS[key]}
+                fill={`url(#fill_${key})`}
+                strokeWidth={2}
+              />
             ))}
-          </defs>
-
-          <XAxis dataKey="date" />
-          <YAxis allowDecimals={false} />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend content={<CustomLegend />} />
-
-          {keysByFilter.map((key) => (
-            <Area
-              key={key}
-              type="monotone"
-              dataKey={key}
-              stroke={LINE_COLORS[key]}
-              fill={`url(#fill_${key})`}
-              strokeWidth={2}
-            />
-          ))}
-        </AreaChart>
-      </ResponsiveContainer>
+          </AreaChart>
+        </ResponsiveContainer>
+      )}
     </Section>
   );
 };
