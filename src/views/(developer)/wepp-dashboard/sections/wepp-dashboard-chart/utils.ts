@@ -116,13 +116,13 @@ export const fillMissingDates = (data: any[]) => {
     .map((entry) => entry.date)
     .sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
 
-  const startDate = sortedDates.at(0);
-  const endDate = sortedDates.at(-1);
+  const startDate = new Date(sortedDates.at(0));
+  const endDate = new Date(sortedDates.at(-1));
   if (!startDate || !endDate) return data;
 
   const dateSet = new Set(sortedDates);
 
-  let currentDate = new Date(startDate);
+  let currentDate = startDate;
   while (currentDate <= endDate) {
     const dateString = format(currentDate, 'yyyy-MM-dd');
     if (!dateSet.has(dateString)) {
