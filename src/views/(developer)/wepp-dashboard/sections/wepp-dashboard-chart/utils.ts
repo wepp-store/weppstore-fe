@@ -1,0 +1,95 @@
+/**
+ *  platform별
+ * @platform_ios_view
+ * @platform_ios_install
+ * @platform_other_view
+ * @platform_other_install
+ *  device type별
+ * @device_desktop_view
+ * @device_desktop_install
+ * @device_mobile_view
+ * @device_mobile_install
+ * @device_other_view
+ * @device_other_install
+ */
+
+import { FilterType, SubFilterType } from './types';
+
+export const SUB_FILTERS = [
+  { key: 'device', label: '기기별' },
+  { key: 'platform', label: '플랫폼별' },
+];
+
+export const LINE_COLORS: Record<string, string> = {
+  // all
+  view: '#8884d8',
+  install: '#82ca9d',
+  // platform
+  platform_ios_view: '#8884d8',
+  platform_ios_install: '#8884d8',
+  platform_other_view: '#9c27b0',
+  platform_other_install: '#9c27b0',
+  // device
+  device_mobile_view: '#00bcd4',
+  device_mobile_install: '#00bcd4',
+  device_desktop_view: '#ff9800',
+  device_desktop_install: '#ff9800',
+  device_other_view: '#9e9e9e',
+  device_other_install: '#9e9e9e',
+};
+
+export const LABEL_MAP: Record<string, string> = {
+  // all
+  view: '조회수',
+  install: '설치수',
+  // platform
+  platform_ios_view: 'iOS',
+  platform_ios_install: 'iOS',
+  platform_other_view: '기타',
+  platform_other_install: '기타',
+  // device
+  device_mobile_view: '모바일',
+  device_mobile_install: '모바일',
+  device_desktop_view: '데스크탑',
+  device_desktop_install: '데스크탑',
+  device_other_view: '기타',
+  device_other_install: '기타',
+};
+
+export const getKeysByFilter = (
+  filter: FilterType,
+  subFilter: SubFilterType
+) => {
+  const platformBase = ['ios', 'other'];
+  const deviceBase = ['desktop', 'mobile', 'other'];
+
+  if (filter === 'all') return ['view', 'install'];
+
+  if (subFilter === 'platform')
+    return platformBase.map((b) => `platform_${b}_${filter}`);
+  if (subFilter === 'device')
+    return deviceBase.map((b) => `device_${b}_${filter}`);
+
+  return ['view', 'install']; // ALL
+};
+
+export const enrichChartData = (raw: any[]): any[] => {
+  return raw.map((entry) => {
+    // platform별만 합산해도 총 값이 나옴.
+    const view = ['platform_ios_view', 'platform_other_view'].reduce(
+      (acc, key) => acc + (entry[key] ?? 0),
+      0
+    );
+
+    const install = ['platform_ios_install', 'platform_other_install'].reduce(
+      (acc, key) => acc + (entry[key] ?? 0),
+      0
+    );
+
+    return {
+      ...entry,
+      view,
+      install,
+    };
+  });
+};
