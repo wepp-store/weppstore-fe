@@ -10,12 +10,12 @@ interface Props {
 }
 
 const DeveloperWeppCard = ({ wepp }: Props) => {
-  const { id, logo, name, tagLine, _count, views, status } = wepp;
+  const { id, logo, name, tagLine, _count, status } = wepp;
 
   return (
     <Card
       as={Link}
-      href={PATH.DEVELOPER.WEPP_DETAIL(id)}
+      href={PATH.DEVELOPER.WEPP_DASHBOARD(id)}
       isPressable
       className="border-none shadow-none bg-gray-100 hover:bg-gray-200 transition-all duration-200 ease-in-out"
     >
@@ -58,13 +58,6 @@ const DeveloperWeppCard = ({ wepp }: Props) => {
             >
               <MessageCircle size={12} />
               {_count?.comments || 0}
-            </span>
-            <span
-              className="flex items-center gap-1 text-gray-500"
-              aria-label="댓글 수"
-            >
-              <Eye size={12} />
-              {views || 0}
             </span>
           </div>
         </div>
