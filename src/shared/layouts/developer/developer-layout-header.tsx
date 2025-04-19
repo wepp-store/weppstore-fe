@@ -16,7 +16,7 @@ const Header = () => {
           className="flex gap-4 items-center cursor-pointer"
           onClick={() => push(PATH.DEVELOPER.WEPP)}
         >
-          <Image src="/logo.svg" alt="wepp store logo" width={48} height={48} />
+          <Image src="/logo.svg" alt="wepp store logo" width={28} height={28} />
           <h1 className="text-xl font-semibold">Developer</h1>
         </div>
       </NavbarBrand>

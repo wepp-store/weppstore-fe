@@ -50,7 +50,7 @@ const WeppInfoPage = () => {
 
       <Section className="pt-0">
         <FormProvider methods={methods}>
-          <Card>
+          <Card className="border-none shadow-none rounded-md">
             <CardHeader className="flex justify-between items-center p-4">
               <h1 className="text-3xl font-bold text-gray-800">앱 정보</h1>
 
@@ -81,6 +81,8 @@ const WeppInfoPage = () => {
               <UpdateWeppVersionSection />
 
               <UpdateWeppOtherDevelopersSection />
+
+              <Divider />
 
               {/* <div className="mb-6">
             <label

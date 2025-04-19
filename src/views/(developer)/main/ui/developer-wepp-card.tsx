@@ -1,3 +1,4 @@
+import { PATH } from '@/shared/constants';
 import { IWepp } from '@/shared/types';
 import { weppStatusToColor, weppStatusToText } from '@/shared/utils';
 import { Card, Link, Image, CardBody, Chip } from '@nextui-org/react';
@@ -12,8 +13,13 @@ const DeveloperWeppCard = ({ wepp }: Props) => {
   const { id, logo, name, tagLine, _count, views, status } = wepp;
 
   return (
-    <Card as={Link} href={`/developer/wepp/${id}`} isPressable>
-      <CardBody className="flex flex-row items-center justify-between gap-8">
+    <Card
+      as={Link}
+      href={PATH.DEVELOPER.WEPP_DETAIL(id)}
+      isPressable
+      className="border-none shadow-none bg-gray-100 hover:bg-gray-200 transition-all duration-200 ease-in-out"
+    >
+      <CardBody className="flex flex-row justify-between gap-8">
         <Image
           src={logo || ''}
           alt={name}
@@ -22,7 +28,7 @@ const DeveloperWeppCard = ({ wepp }: Props) => {
           fallbackSrc="/no-image.svg"
           className="aspect-square w-[72px] min-w-[72px] h-[72px] object-cover"
         />
-        <div className="w-full h-full flex flex-col gap-4 grow justify-between">
+        <div className="w-full h-full flex flex-col gap-2 grow justify-between">
           <div className="w-full mr-4">
             <div className="w-full flex justify-between">
               <h3 className="text-lg font-semibold">{name}</h3>
@@ -34,7 +40,7 @@ const DeveloperWeppCard = ({ wepp }: Props) => {
                 {weppStatusToText(status)}
               </Chip>
             </div>
-            <p className="text-sm text-gray-500">{tagLine}</p>
+            <p className="mt-2 text-sm text-gray-500">{tagLine}</p>
           </div>
 
           {/* counts */}
