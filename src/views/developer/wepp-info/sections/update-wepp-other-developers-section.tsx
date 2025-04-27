@@ -78,7 +78,7 @@ const UpdateWeppOtherDevelopersSection = () => {
           {otherDevelopers?.map((developer, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-2 border rounded-lg border-gray-300"
+              className="flex items-center justify-between p-2 border rounded-lg border-gray-300 dark:border-gray-700"
             >
               <User
                 avatarProps={{

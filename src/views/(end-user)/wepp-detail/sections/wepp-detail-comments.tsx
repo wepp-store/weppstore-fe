@@ -33,7 +33,7 @@ const WeppDetailComments = () => {
         ))}
       {hasNextPage && (
         <button
-          className="flex items-center mt-4 mb-2 text-sm text-gray-700"
+          className="flex items-center mt-4 mb-2 text-sm text-gray-700 dark:text-gray-400"
           onClick={() => fetchNextPage()}
         >
           {/* divider */}

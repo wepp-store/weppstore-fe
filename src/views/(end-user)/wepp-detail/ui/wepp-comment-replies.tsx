@@ -44,7 +44,7 @@ const WeppCommentReplies = ({ commentId, show }: Props) => {
 
       {hasNextPage && (
         <button
-          className="flex items-center mt-4 mb-2 text-sm text-gray-700"
+          className="flex items-center mt-4 mb-2 text-sm text-gray-700 dark:text-gray-400"
           onClick={() => fetchNextPage()}
         >
           {/* divider */}
@@ -101,7 +101,7 @@ const ReplyComment = ({ comment }: { comment: IComment }) => {
               <p className="font-gray-800">
                 {mention && (
                   <span
-                    className="text-sm text-gray-500"
+                    className="text-sm text-gray-500 dark:text-gray-400"
                     aria-label={String(parseMention(mention).id)}
                   >
                     @{parseMention(mention).name}{' '}
@@ -109,7 +109,7 @@ const ReplyComment = ({ comment }: { comment: IComment }) => {
                 )}
                 {content}
               </p>
-              <div className="flex gap-2 mt-1 text-xs text-gray-500">
+              <div className="flex gap-2 mt-1 text-xs text-gray-500 dark:text-gray-400">
                 <time>{timeAgo(createdAt)}</time>
                 <div
                   role="button"

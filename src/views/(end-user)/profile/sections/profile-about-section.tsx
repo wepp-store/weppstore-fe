@@ -8,10 +8,10 @@ interface Props {
 
 const ProfileAboutSection = ({ profile }: Props) => {
   return (
-    <Card className="mt-4 shadow-sm border">
+    <Card className="mt-4 shadow-sm border dark:border-gray-700">
       <CardBody className="p-6">
         <h2 className="text-xl font-bold mb-4">소개</h2>
-        <p className="text-gray-700">
+        <p className="text-gray-700 dark:text-gray-400">
           {profile?.description || '소개가 없습니다.'}
         </p>
       </CardBody>

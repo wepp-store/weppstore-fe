@@ -48,7 +48,7 @@ const AddWeppScreenshot = () => {
   return (
     <label>
       <Button
-        className="w-40 h-72 bg-gray-100 self-center"
+        className="w-40 h-72 bg-gray-100 dark:bg-gray-700 self-center"
         onPress={() => addInputRef?.current?.click()}
       >
         <Plus />

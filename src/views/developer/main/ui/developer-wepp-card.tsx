@@ -17,7 +17,7 @@ const DeveloperWeppCard = ({ wepp }: Props) => {
       as={Link}
       href={PATH.DEVELOPER.WEPP_DASHBOARD(id)}
       isPressable
-      className="border-none shadow-none bg-gray-100 hover:bg-gray-200 transition-all duration-200 ease-in-out"
+      className="border-none shadow-none bg-gray-100 dark:bg-gray-700 hover:-translate-y-1 transition-all duration-200 ease-in-out"
     >
       <CardBody className="flex flex-row justify-between gap-8">
         <Image
@@ -40,20 +40,22 @@ const DeveloperWeppCard = ({ wepp }: Props) => {
                 {weppStatusToText(status)}
               </Chip>
             </div>
-            <p className="mt-2 text-sm text-gray-500">{tagLine}</p>
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              {tagLine}
+            </p>
           </div>
 
           {/* counts */}
           <div className="flex gap-2 text-gray-500 text-sm">
             <span
-              className="flex items-center gap-1 text-gray-500"
+              className="flex items-center gap-1 text-gray-500 dark:text-gray-400"
               aria-label="좋아요 수"
             >
               <Heart size={12} />
               {_count?.likes || 0}
             </span>
             <span
-              className="flex items-center gap-1 text-gray-500"
+              className="flex items-center gap-1 text-gray-500 dark:text-gray-400"
               aria-label="댓글 수"
             >
               <MessageCircle size={12} />

@@ -10,14 +10,7 @@ const DeveloperMainHeader = () => {
   return (
     <>
       <Section className="flex justify-between">
-        <h2
-          className="
-          text-3xl
-          font-bold
-          text-gray-800
-          mb-4
-          "
-        >
+        <h2 className="mb-4 text-3xl font-bold text-gray-800 dark:text-gray-200">
           {me?.userName}님의 앱
         </h2>
         <div className="flex gap-4">

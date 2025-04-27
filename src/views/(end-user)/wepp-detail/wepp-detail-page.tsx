@@ -54,7 +54,7 @@ const WeppDetailScreen = () => {
       ) : (
         <Section>
           <h3 className="text-lg font-semibold mb-2">댓글</h3>
-          <div className="flex justify-center items-center bg-gray-100 rounded-md h-20">
+          <div className="flex justify-center items-center bg-gray-100 dark:bg-gray-800 rounded-md h-20">
             <p>
               댓글을 작성하려면{' '}
               <span id={ELEMENT_ID.CREATE_COMMENT_FIELD}>

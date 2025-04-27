@@ -32,7 +32,12 @@ const WeppCommentDeleteButton = ({ commentId }: Props) => {
 
   return (
     <>
-      <Button size="sm" variant="light" onPress={onOpenChange}>
+      <Button
+        size="sm"
+        variant="light"
+        onPress={onOpenChange}
+        className="dark:text-gray-400"
+      >
         삭제
       </Button>
 
