@@ -52,4 +52,4 @@ const KeyboardAdjustButton: React.FC<ButtonProps> = ({
   );
 };
 
-export default KeyboardAdjustButton;
+export { KeyboardAdjustButton };
