@@ -7,13 +7,14 @@ function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
 
   const handleModeSwitch = () => {
+    const toggleTheme = () =>
+      setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
+
     if ('startViewTransition' in document) {
-      document.startViewTransition(() => {
-        setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
-      });
+      (document as any).startViewTransition(toggleTheme);
       return;
     }
-    setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
+    toggleTheme();
   };
 
   return (
