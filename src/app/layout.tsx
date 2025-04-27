@@ -11,6 +11,7 @@ import { Inter } from 'next/font/google';
 import Script from 'next/script';
 import styles from './layout.module.css';
 import { cn } from '@nextui-org/theme';
+import { ThemeProvider } from 'next-themes';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -87,16 +88,22 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={cn(inter.className, styles.safeArea, 'min-h-svh h-full')}
+        className={cn(
+          inter.className,
+          styles.safeArea,
+          'min-h-svh h-full',
+          'dark:bg-black dark:text-slate-400'
+        )}
       >
-        <ClientProgressProvider>
-          <ClientNextUIProvider>
-            <ClientQueryClientProvider>
-              <ClientToastProvider>{children}</ClientToastProvider>
-            </ClientQueryClientProvider>
-          </ClientNextUIProvider>
-        </ClientProgressProvider>
-
+        <ThemeProvider attribute="class">
+          <ClientProgressProvider>
+            <ClientNextUIProvider>
+              <ClientQueryClientProvider>
+                <ClientToastProvider>{children}</ClientToastProvider>
+              </ClientQueryClientProvider>
+            </ClientNextUIProvider>
+          </ClientProgressProvider>
+        </ThemeProvider>
         {process.env.NODE_ENV === 'production' && (
           <GoogleAnalytics gaId="G-X8PDBBD3R5" />
         )}
