@@ -11,7 +11,7 @@ const MainLayoutFooter = () => {
         <p className="text-sm text-center">
           &copy; {new Date().getFullYear()} Wepp Store. All rights reserved.
         </p>
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-2">
           <Button
             isIconOnly
             variant="light"

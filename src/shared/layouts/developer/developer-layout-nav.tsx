@@ -1,8 +1,9 @@
 import React from 'react';
-import { Image, Listbox, ListboxItem } from '@nextui-org/react';
+import { Listbox, ListboxItem } from '@nextui-org/react';
 import { LayoutGrid, Wrench } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { PATH } from '@/shared/constants';
+import { LogoIcon } from '@/shared/ui/icons';
 
 const DeveloperLayoutNav = () => {
   const pathname = usePathname();
@@ -19,31 +20,17 @@ const DeveloperLayoutNav = () => {
   };
 
   const selectedClasses = (path: string) => {
-    return isActive(path) ? 'bg-gray-100' : 'text-default-500';
+    return isActive(path) ? 'bg-gray-100 dark:bg-gray-700' : 'text-default-500';
   };
 
   return (
     <>
-      <nav
-        className="
-        hidden sm:flex flex-col gap-4
-        p-4
-        border-r
-        sm:w-20
-        lg:min-w-[200px]
-      "
-      >
+      <nav className=" hidden sm:flex flex-col gap-4 p-4 border-r dark:border-gray-700 sm:w-20 lg:min-w-[200px]">
         <div
           className="h-20 flex gap-2 items-center justify-center cursor-pointer"
           onClick={() => replace(PATH.DEVELOPER.WEPP)}
         >
-          <Image
-            src="/logo.svg"
-            alt="wepp store logo"
-            width={28}
-            height={28}
-            className="aspect-square w-[28px] min-w-[28px] h-[28px]"
-          />
+          <LogoIcon width={36} height={36} />
           <h1 className="text-xl font-semibold text-nowrap hidden lg:inline">
             Developer
           </h1>

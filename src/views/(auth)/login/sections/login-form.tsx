@@ -57,7 +57,7 @@ const LoginForm = () => {
 
           <p className="text-center text-small">
             계정이 없으신가요?{' '}
-            <Link size="sm" href="/sign-up">
+            <Link size="sm" href="/sign-up" className="dark:text-gray-400">
               회원가입
             </Link>
           </p>
@@ -65,10 +65,10 @@ const LoginForm = () => {
 
         <div className="flex flex-col justify-end">
           <Button
-            color="primary"
             type="submit"
             fullWidth
             isLoading={signInMutation.isPending}
+            className="bg-black text-white dark:bg-default"
           >
             {signInMutation.isPending || '로그인하기'}
           </Button>

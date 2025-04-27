@@ -52,11 +52,12 @@ const WeppInfoPage = () => {
         <FormProvider methods={methods}>
           <Card className="border-none shadow-none rounded-md">
             <CardHeader className="flex justify-between items-center p-4">
-              <h1 className="text-3xl font-bold text-gray-800">앱 정보</h1>
+              <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-300">
+                앱 정보
+              </h1>
 
               <div className="flex items-center gap-4">
                 <Button
-                  color="primary"
                   variant="bordered"
                   isLoading={patchWeppMutation.isPending}
                   onPress={() =>

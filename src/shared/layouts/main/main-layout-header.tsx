@@ -1,15 +1,10 @@
 'use client';
-import {
-  Tab,
-  Tabs,
-  Image,
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-} from '@nextui-org/react';
+import { Navbar, NavbarBrand, NavbarContent } from '@nextui-org/react';
 import { usePathname, useRouter } from 'next/navigation';
 import AccountPopover from './account-popover';
 import { PATH } from '@/shared/constants';
+import { LogoIcon } from '@/shared/ui/icons';
+import { ThemeSwitcher } from '@/shared/ui/theme-switcher';
 
 interface Props {
   showMenu?: boolean;
@@ -30,7 +25,7 @@ const Header = ({ showMenu = true, showBackButton = false }: Props) => {
           className="flex gap-2 items-center cursor-pointer"
           onClick={() => push(PATH.MAIN.WEPPS)}
         >
-          <Image src="/logo.svg" alt="wepp store logo" width={28} height={28} />
+          <LogoIcon width={36} height={36} />
           <h1 className="text-xl font-semibold">Wepp Store</h1>
         </div>
 
@@ -52,7 +47,8 @@ const Header = ({ showMenu = true, showBackButton = false }: Props) => {
         </Tabs> */}
       </NavbarBrand>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="gap-6">
+        <ThemeSwitcher />
         <AccountPopover />
       </NavbarContent>
     </Navbar>

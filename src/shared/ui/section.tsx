@@ -23,4 +23,4 @@ const Section: React.FC<Props> = ({ children, className = '', ...other }) => {
   );
 };
 
-export default Section;
+export { Section };

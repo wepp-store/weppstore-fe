@@ -22,7 +22,7 @@ const WeppDashboardHeader = () => {
     <Section>
       <header className="flex justify-between">
         <div className="flex gap-2 items-center">
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-300">
             {wepp?.name} 대시보드
           </h1>
           <Chip

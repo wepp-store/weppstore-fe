@@ -16,14 +16,14 @@ const ProfileWeppsSection = ({ profile }: Props) => {
   }
 
   return (
-    <Card className="mt-4 shadow-sm border">
+    <Card className="mt-4 shadow-sm border dark:border-gray-700">
       <CardBody className="p-6">
         <h2 className="text-xl font-bold mb-4">만든 앱</h2>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1">
           {wepps.map((wepp) => (
             <Link
               key={wepp.id}
-              className="flex items-center hover:bg-gray-100 p-2 rounded-lg"
+              className="flex items-center p-2 rounded-lg hover:-translate-y-1 transition-transform duration-200"
               href={PATH.MAIN.WEPP_DETAIL(wepp.id)}
             >
               <img

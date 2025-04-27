@@ -35,7 +35,7 @@ const UpdateWeppScreenshotsSection = () => {
     <Section>
       <h2 className="text-xl font-semibold mb-4">스크린샷 (최대 5개)</h2>
       <WeppScreenshotDropzone>
-        <div className="flex gap-4 p-4 bg-gray-200 rounded-lg overflow-x-auto">
+        <div className="flex gap-4 p-4 bg-gray-200 dark:bg-gray-800 rounded-lg overflow-x-auto">
           <AddWeppScreenshot />
 
           <DragDropContext onDragEnd={onDragEnd}>

@@ -14,10 +14,11 @@ export default {
         //   DEFAULT: "#F3F4F6",
         //   foreground: "#fff",
         // }
-        primary: {
-          DEFAULT: '#000',
-          foreground: '#fff',
-        },
+        // primary: {
+        //   DEFAULT: '#000',
+        //   foreground: '#fff',
+        //   background: '#ff0000',
+        // },
       },
       aspectRatio: {
         mobile: '9 / 16',
@@ -28,6 +29,24 @@ export default {
   },
   plugins: [
     nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: '#000',
+              foreground: '#fff',
+            },
+          },
+        },
+        dark: {
+          colors: {
+            primary: {
+              DEFAULT: '#3f3f46',
+              foreground: '#fff',
+            },
+          },
+        },
+      },
       layout: {
         // radius: {
         //   small: "0.125rem",

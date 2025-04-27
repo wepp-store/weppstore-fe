@@ -63,7 +63,7 @@ const WeppDetailTitle = ({ wepp }: Props) => {
 
       <div className="flex justify-between items-center min-w-48">
         <div className="flex items-center gap-2 text-gray-600">
-          <span className="">
+          <span className="text-gray-500 dark:text-gray-400">
             {(categories ?? [])
               .slice(0, 2)
               .map((c) => c.name)
@@ -71,23 +71,20 @@ const WeppDetailTitle = ({ wepp }: Props) => {
           </span>
 
           {(categories ?? []).length > 2 && (
-            <span className="text-gray-500">
+            <span className="text-gray-500 dark:text-gray-400">
               외 {(categories ?? []).length - 2}개
             </span>
           )}
 
           <span className="font-bold">·</span>
 
-          <div className="flex gap-3 text-gray-600">
-            <span
-              className="flex items-center gap-1 text-gray-500"
-              aria-label="좋아요 수"
-            >
+          <div className="flex gap-3 text-gray-600 dark:text-gray-400">
+            <span className="flex items-center gap-1" aria-label="좋아요 수">
               <WeppLikeButton />
               {_count?.likes || 0}
             </span>
             <span
-              className="flex items-center gap-1 text-gray-500"
+              className="flex items-center gap-1 text-gray-500 dark:text-gray-400"
               aria-label="댓글 수"
             >
               <MessageCircle

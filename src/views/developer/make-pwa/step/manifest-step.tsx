@@ -252,12 +252,7 @@ const ManifestStep = () => {
           <ModalHeader>Manifest.json</ModalHeader>
           <ModalBody>
             <div className="flex justify-end gap-4">
-              <Button
-                size="sm"
-                color="primary"
-                variant="bordered"
-                onPress={handleDownload}
-              >
+              <Button size="sm" variant="bordered" onPress={handleDownload}>
                 다운로드
               </Button>
               <Button size="sm" color="primary" onPress={handleCopy}>

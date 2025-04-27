@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Button,
+  cn,
   Image,
   Modal,
   ModalBody,
@@ -38,19 +39,18 @@ const UpdateProfileImage = ({
           src={src || '/no-image.svg'}
           alt="Profile"
           fallbackSrc="/no-image.svg"
-          className="
-          w-24 md:w-32
-          min-w-24 md:min-w-32
-          max-w-24 md:max-w-32
-          h-24 md:h-32
-          min-h-24 md:min-h-32
-          max-h-24 md:max-h-32
-          rounded-full
-          border-4
-          border-white
-          z-50
-          cursor-pointer
-          "
+          className={cn(
+            'w-24 md:w-32',
+            'min-w-24 md:min-w-32',
+            'max-w-24 md:max-w-32',
+            'h-24 md:h-32',
+            'min-h-24 md:min-h-32',
+            'max-h-24 md:max-h-32',
+            'rounded-full',
+            'border-4 dark:border-gray-700',
+            'z-50',
+            'cursor-pointer'
+          )}
           onClick={onOpen}
         />
         <Modal
@@ -97,19 +97,19 @@ const UpdateProfileImage = ({
           src={src || '/no-image.svg'}
           alt="Profile"
           fallbackSrc="/no-image.svg"
-          className="
-          w-24 md:w-32
-          min-w-24 md:min-w-32
-          max-w-24 md:max-w-32
-          h-24 md:h-32
-          min-h-24 md:min-h-32
-          max-h-24 md:max-h-32
-          rounded-full
-          border-4
-          border-white
-          z-50
-          cursor-pointer
-          "
+          className={cn(
+            'w-24 md:w-32',
+            'min-w-24 md:min-w-32',
+            'max-w-24 md:max-w-32',
+            'h-24 md:h-32',
+            'min-h-24 md:min-h-32',
+            'max-h-24 md:max-h-32',
+            'rounded-full',
+            'border-4',
+            'border dark:border-gray-700',
+            'z-50',
+            'cursor-pointer'
+          )}
         />
         <input type="file" onChange={onUpload} className="hidden" />
       </label>

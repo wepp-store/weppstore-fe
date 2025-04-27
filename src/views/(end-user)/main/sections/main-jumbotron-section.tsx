@@ -95,7 +95,7 @@ const MainJumbotronSection = () => {
             size="lg"
             color="default"
             variant="solid"
-            className="bg-black text-white rounded-lg"
+            className="bg-black text-white dark:bg-default rounded-lg"
             onPress={onClickBrowse}
           >
             <Sparkles className="mr-2 h-5 w-5" />
