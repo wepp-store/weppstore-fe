@@ -24,7 +24,7 @@ const LoginPage = () => {
       </Button>
       <div className="flex flex-col items-center gap-8">
         <div className="flex flex-col justify-center items-center">
-          <LogoIcon width={52} height={52} aria-label="logo icon" />
+          <LogoIcon width={52} height={52} />
           <h1 className="mt-2 text-3xl font-bold">로그인</h1>
         </div>
         <Card className="shadow-none border dark:border-gray-700">

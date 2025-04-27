@@ -25,7 +25,7 @@ const Header = ({ showMenu = true, showBackButton = false }: Props) => {
           className="flex gap-2 items-center cursor-pointer"
           onClick={() => push(PATH.MAIN.WEPPS)}
         >
-          <LogoIcon width={36} height={36} aria-label="logo icon" />
+          <LogoIcon width={36} height={36} />
           <h1 className="text-xl font-semibold">Wepp Store</h1>
         </div>
 

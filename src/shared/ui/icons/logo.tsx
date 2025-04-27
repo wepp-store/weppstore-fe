@@ -3,6 +3,7 @@ import React from 'react';
 const LogoIcon = (props?: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
+      aria-label="Logo"
       width="48"
       height="48"
       viewBox="0 0 48 48"

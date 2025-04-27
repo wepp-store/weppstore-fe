@@ -30,7 +30,7 @@ const DeveloperLayoutNav = () => {
           className="h-20 flex gap-2 items-center justify-center cursor-pointer"
           onClick={() => replace(PATH.DEVELOPER.WEPP)}
         >
-          <LogoIcon width={36} height={36} aria-label="logo icon" />
+          <LogoIcon width={36} height={36} />
           <h1 className="text-xl font-semibold text-nowrap hidden lg:inline">
             Developer
           </h1>

@@ -18,7 +18,7 @@ const Header = () => {
           className="flex gap-2 items-center cursor-pointer"
           onClick={() => push(PATH.DEVELOPER.WEPP)}
         >
-          <LogoIcon width={36} height={36} aria-label="logo icon" />
+          <LogoIcon width={36} height={36} />
           <h1 className="text-xl font-semibold">Developer</h1>
         </div>
       </NavbarBrand>
